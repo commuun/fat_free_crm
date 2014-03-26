@@ -12,7 +12,7 @@ require 'nokogiri'
 module FatFreeCRM
   module MailProcessor
     class Base
-      KEYWORDS = %w(account campaign contact lead opportunity).freeze
+      KEYWORDS = %w(account contact).freeze
 
       #--------------------------------------------------------------------------------------
       def initialize

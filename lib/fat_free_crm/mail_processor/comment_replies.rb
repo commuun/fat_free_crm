@@ -13,11 +13,7 @@ module FatFreeCRM
       # e.g. [contact:1234] OR [co:1234]
       ENTITY_SHORTCUTS = {
         'ac' => 'account',
-        'ca' => 'campaign',
         'co' => 'contact',
-        'le' => 'lead',
-        'op' => 'opportunity',
-        'ta' => 'task'
       }
 
       #--------------------------------------------------------------------------------------

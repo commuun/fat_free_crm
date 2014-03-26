@@ -1,4 +1,3 @@
-- amount = account.opportunities.not_lost.map(&:weighted_amount).sum
 %li.highlight[account]
   - if account.category
     .strip{:class => account.category} #{t(account.category)}
@@ -21,8 +20,7 @@
         = link_to(account.website, account.website.to_url) << " | " if account.website.present?
         = link_to_email(account.email) << " | " if account.email.present?
         = t(:phone_small) << ": " << (account.toll_free_phone || account.phone) << " | " if account.toll_free_phone? || account.phone?
-        = t('pluralize.contact', account.contacts.count) << " | "
-        = t('pluralize.opportunity', account.opportunities.count)
+        = t('pluralize.contact', account.contacts.count)
       - if account.tag_list.present?
         %dt
           .tags= tags_for_dashboard(account)

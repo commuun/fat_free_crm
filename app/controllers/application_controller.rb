@@ -152,11 +152,7 @@ private
 
   #----------------------------------------------------------------------------
   def called_from_index_page?(controller = controller_name)
-    if controller != "tasks"
-      request.referer =~ %r(/#{controller}$)
-    else
-      request.referer =~ /tasks\?*/
-    end
+    request.referer =~ %r(/#{controller}$)
   end
 
   #----------------------------------------------------------------------------

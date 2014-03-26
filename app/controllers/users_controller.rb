@@ -5,7 +5,7 @@
 #------------------------------------------------------------------------------
 class UsersController < ApplicationController
 
-  before_filter :set_current_tab, :only => [ :show, :opportunities_overview ] # Don't hightlight any tabs.
+  before_filter :set_current_tab, :only => [ :show ] # Don't hightlight any tabs.
 
   check_authorization
   load_and_authorize_resource # handles all security
@@ -123,13 +123,6 @@ class UsersController < ApplicationController
   def redraw
     current_user.preference[:locale] = params[:locale]
     render :text => %Q{window.location.href = "#{user_path(current_user)}";}
-  end
-
-  # GET /users/opportunities_overview
-  #----------------------------------------------------------------------------
-  def opportunities_overview
-    @users_with_opportunities = User.have_assigned_opportunities.order(:first_name)
-    @unassigned_opportunities = Opportunity.unassigned.pipeline.order(:stage)
   end
 
 end

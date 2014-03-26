@@ -28,9 +28,3 @@
             = f.label :group_ids, "#{t(:groups)}:"
             %br
             = f.select :group_ids, group_options, {}, :multiple => true, :class => 'select2'
-
-    - if !edit and entity.is_a?(Lead)
-      .radio_box
-        = f.radio_button :access, t(:campaign), :onclick => "$('#people').hide(); $('#lead_access_campaign').val('Campaign');", :disabled => true
-        %font{ :id => :copy_permissions, :color => :grey }
-          = t(:copy_permissions, t(:campaign_small))

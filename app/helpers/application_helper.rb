@@ -176,7 +176,7 @@ module ApplicationHelper
 
   #----------------------------------------------------------------------------
   def jumpbox(current)
-    tabs = [ :campaigns, :accounts, :leads, :contacts, :opportunities ]
+    tabs = [ :accounts, :contacts ]
     current = tabs.first unless tabs.include?(current)
     tabs.map do |tab|
       link_to_function(t("tab_#{tab}"), "crm.jumper('#{tab}')", "html-data" => tab, :class => (tab == current ? 'selected' : ''))
@@ -485,13 +485,8 @@ module ApplicationHelper
   # Translate List name to FontAwesome icon text
   def get_icon(name)
     case name
-      when "tasks" then "fa-check-square-o"
-      when "campaigns" then "fa-bar-chart-o"
-      when "leads" then "fa-tasks"
       when "accounts" then "fa-users"
       when "contacts" then "fa-user"
-      when "opportunities" then "fa-money"
-      when "team" then "fa-globe"
     end
   end
 

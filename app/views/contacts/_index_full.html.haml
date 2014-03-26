@@ -24,10 +24,6 @@
       - if (account = contact.account) and account.name?
         == #{t :at} #{link_to_if can?(:read, account), account.name, account_path(account)}
 
-      - if (lead = contact.lead) and lead.referred_by?
-        &ndash;
-        == #{t :referred_by_small} #{lead.referred_by}
-
     %dt{ :style => "padding: 2px 0px 0px 0px" }
       - if can?(:read, contact)
         - if contact.email.present?

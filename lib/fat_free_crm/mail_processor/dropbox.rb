@@ -8,7 +8,7 @@ require 'fat_free_crm/mail_processor/base'
 module FatFreeCRM
   module MailProcessor
     class Dropbox < Base
-      KEYWORDS = %w(account campaign contact lead opportunity).freeze
+      KEYWORDS = %w(account contact).freeze
 
       #--------------------------------------------------------------------------------------
       def initialize
@@ -16,7 +16,7 @@ module FatFreeCRM
         # when Dropbox is initialized. This needs to be done so that Rake tasks such as
         # 'assets:precompile' can run on Heroku without depending on a database.
         # See: http://devcenter.heroku.com/articles/rails31_heroku_cedar#troubleshooting
-        @@assets = [ Account, Contact, Lead ].freeze
+        @@assets = [ Account, Contact ].freeze
         @settings = Setting.email_dropbox.dup
         super
       end
@@ -175,10 +175,6 @@ module FatFreeCRM
         )
         asset.touch
 
-        if asset.is_a?(Lead) && asset.status == "new"
-          asset.update_attribute(:status, "contacted")
-        end
-
         if @settings[:attach_to_account] && asset.respond_to?(:account) && asset.account
           Email.create(
             :imap_message_id => email.message_id,
@@ -207,15 +203,12 @@ module FatFreeCRM
         }
 
         case keyword
-        when "Account", "Campaign", "Opportunity"
-          defaults[:status] = "planned" if keyword == "Campaign"      # TODO: I18n
-          defaults[:stage] = Opportunity.default_stage if keyword == "Opportunity" # TODO: I18n
+        when "Account"
 
-        when "Contact", "Lead"
+        when "Contact"
           first_name, *last_name = data.delete("Name").split(' ')
           defaults[:first_name] = first_name
           defaults[:last_name] = (last_name.any? ? last_name.join(" ") : "(unknown)")
-          defaults[:status] = "contacted" if keyword == "Lead"        # TODO: I18n
         end
 
         data.each do |key, value|

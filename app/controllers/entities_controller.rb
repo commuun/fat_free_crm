@@ -64,16 +64,6 @@ class EntitiesController < ApplicationController
   def contacts
   end
 
-  # GET /entities/leads                                                    AJAX
-  #----------------------------------------------------------------------------
-  def leads
-  end
-
-  # GET /entities/opportunities                                            AJAX
-  #----------------------------------------------------------------------------
-  def opportunities
-  end
-
   # GET /entities/versions                                                 AJAX
   #----------------------------------------------------------------------------
   def versions

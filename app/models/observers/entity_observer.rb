@@ -4,7 +4,7 @@
 # See MIT-LICENSE file or http://www.opensource.org/licenses/mit-license.php
 #------------------------------------------------------------------------------
 class EntityObserver < ActiveRecord::Observer
-  observe :account, :contact, :lead, :opportunity
+  observe :account, :contact
 
   def after_create(item)
     send_notification_to_assignee(item) if current_user != item.assignee

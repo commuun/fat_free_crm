@@ -49,11 +49,7 @@ class User < ActiveRecord::Base
   has_many    :avatars                                         # As owner who uploaded it, ex. Contact avatar.
   has_many    :comments, :as => :commentable                   # As owner who created a comment.
   has_many    :accounts
-  has_many    :campaigns
-  has_many    :leads
   has_many    :contacts
-  has_many    :opportunities
-  has_many    :assigned_opportunities, :class_name => 'Opportunity', :foreign_key => 'assigned_to'
   has_many    :permissions, :dependent => :destroy
   has_many    :preferences, :dependent => :destroy
   has_many    :lists
@@ -71,12 +67,6 @@ class User < ActiveRecord::Base
   }
 
   scope :my, -> { accessible_by(User.current_ability) }
-
-  scope :have_assigned_opportunities, -> {
-    joins("INNER JOIN opportunities ON users.id = opportunities.assigned_to")
-    .where("opportunities.stage <> 'lost' AND opportunities.stage <> 'won'")
-    .select('DISTINCT(users.id), users.*')
-  }
 
   acts_as_authentic do |c|
     c.session_class = Authentication
@@ -164,7 +154,7 @@ class User < ActiveRecord::Base
   # Prevent deleting a user unless she has no artifacts left.
   #----------------------------------------------------------------------------
   def check_if_has_related_assets
-    artifacts = %w(Account Campaign Lead Contact Opportunity Comment Task).inject(0) do |sum, asset|
+    artifacts = %w(Account Contact Comment).inject(0) do |sum, asset|
       klass = asset.constantize
       sum += klass.assigned_to(self).count if asset != "Comment"
       sum += klass.created_by(self).count

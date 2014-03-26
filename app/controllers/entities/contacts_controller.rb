@@ -21,7 +21,6 @@ class ContactsController < EntitiesController
   # AJAX /contacts/1
   #----------------------------------------------------------------------------
   def show
-    @stage = Setting.unroll(:opportunity_stage)
     @comment = Comment.new
     @timeline = timeline(@contact)
     respond_with(@contact)
@@ -74,7 +73,6 @@ class ContactsController < EntitiesController
             @account = Account.new(:user => current_user)
           end
         end
-        @opportunity = Opportunity.my.find(params[:opportunity]) unless params[:opportunity].blank?
       end
     end
   end
@@ -124,13 +122,9 @@ class ContactsController < EntitiesController
     # Sorting and naming only: set the same option for Leads if the hasn't been set yet.
     if params[:sort_by]
       current_user.pref[:contacts_sort_by] = Contact::sort_by_map[params[:sort_by]]
-      if Lead::sort_by_fields.include?(params[:sort_by])
-        current_user.pref[:leads_sort_by] ||= Lead::sort_by_map[params[:sort_by]]
-      end
     end
     if params[:naming]
       current_user.pref[:contacts_naming] = params[:naming]
-      current_user.pref[:leads_naming] ||= params[:naming]
     end
 
     @contacts = get_contacts(:page => 1, :per_page => params[:per_page]) # Start on the first page.

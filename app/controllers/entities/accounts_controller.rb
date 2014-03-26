@@ -21,7 +21,6 @@ class AccountsController < EntitiesController
   # AJAX /accounts/1
   #----------------------------------------------------------------------------
   def show
-    @stage = Setting.unroll(:opportunity_stage)
     @comment = Comment.new
     @timeline = timeline(@account)
     respond_with(@account)

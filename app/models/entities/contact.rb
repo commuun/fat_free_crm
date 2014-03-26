@@ -9,7 +9,6 @@
 #
 #  id              :integer         not null, primary key
 #  user_id         :integer
-#  lead_id         :integer
 #  assigned_to     :integer
 #  reports_to      :integer
 #  first_name      :string(64)      default(""), not null
@@ -38,21 +37,15 @@
 
 class Contact < ActiveRecord::Base
   belongs_to  :user
-  belongs_to  :lead
   belongs_to  :assignee, :class_name => "User", :foreign_key => :assigned_to
   belongs_to  :reporting_user, :class_name => "User", :foreign_key => :reports_to
   has_one     :account_contact, :dependent => :destroy
   has_one     :account, :through => :account_contact
-  has_many    :contact_opportunities, :dependent => :destroy
-  has_many    :opportunities, :through => :contact_opportunities, :uniq => true, :order => "opportunities.id DESC"
-  has_many    :tasks, :as => :asset, :dependent => :destroy
   has_one     :business_address, :dependent => :destroy, :as => :addressable, :class_name => "Address", :conditions => "address_type = 'Business'"
   has_many    :addresses, :dependent => :destroy, :as => :addressable, :class_name => "Address" # advanced search uses this
   has_many    :emails, :as => :mediator
 
-  delegate :campaign, :to => :lead, :allow_nil => true
-
-  has_ransackable_associations %w(account opportunities tags activities emails addresses comments tasks)
+  has_ransackable_associations %w(account tags activities emails addresses comments)
   ransack_can_autocomplete
 
   serialize :subscribed_users, Set
@@ -116,7 +109,6 @@ class Contact < ActiveRecord::Base
   def save_with_account_and_permissions(params)
     save_account(params)
     result = self.save
-    self.opportunities << Opportunity.find(params[:opportunity]) unless params[:opportunity].blank?
     result
   end
 
@@ -141,51 +133,7 @@ class Contact < ActiveRecord::Base
   # Discard given attachment from the contact.
   #----------------------------------------------------------------------------
   def discard!(attachment)
-    if attachment.is_a?(Task)
-      attachment.update_attribute(:asset, nil)
-    else # Opportunities
-      self.send(attachment.class.name.tableize).delete(attachment)
-    end
-  end
-
-  # Class methods.
-  #----------------------------------------------------------------------------
-  def self.create_for(model, account, opportunity, params)
-    attributes = {
-      :lead_id     => model.id,
-      :user_id     => params[:account][:user_id],
-      :assigned_to => params[:account][:assigned_to],
-      :access      => params[:access]
-    }
-    %w(first_name last_name title source email alt_email phone mobile blog linkedin facebook twitter skype do_not_call background_info).each do |name|
-      attributes[name] = model.send(name.intern)
-    end
-
-    contact = Contact.new(attributes)
-
-    # Set custom fields.
-    if model.class.respond_to?(:fields)
-      model.class.fields.each do |field|
-        if contact.respond_to?(field.name)
-          contact.send "#{field.name}=", model.send(field.name)
-        end
-      end
-    end
-
-    contact.business_address = Address.new(:street1 => model.business_address.street1, :street2 => model.business_address.street2, :city => model.business_address.city, :state => model.business_address.state, :zipcode => model.business_address.zipcode, :country => model.business_address.country, :full_address => model.business_address.full_address, :address_type => "Business") unless model.business_address.nil?
-
-    # Save the contact only if the account and the opportunity have no errors.
-    if account.errors.empty? && opportunity.errors.empty?
-      # Note: contact.account = account doesn't seem to work here.
-      contact.account_contact = AccountContact.new(:account => account, :contact => contact) unless account.id.blank?
-      if contact.access != "Lead" || model.nil?
-        contact.save
-      else
-        contact.save_with_model_permissions(model)
-      end
-      contact.opportunities << opportunity unless opportunity.id.blank? # must happen after contact is saved
-    end
-    contact
+    self.send(attachment.class.name.tableize).delete(attachment)
   end
 
   private

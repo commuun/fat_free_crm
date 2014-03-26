@@ -6,7 +6,7 @@
 Rails.application.routes.draw do
   resources :lists
 
-  root :to => 'home#index'
+  root :to => 'contacts#index'
 
   match 'activities' => 'home#index'
   match 'admin'      => 'admin/users#index',       :as => :admin
@@ -42,27 +42,6 @@ Rails.application.routes.draw do
       post :subscribe
       post :unsubscribe
       get  :contacts
-      get  :opportunities
-    end
-  end
-
-  resources :campaigns, :id => /\d+/ do
-    collection do
-      get  :advanced_search
-      post :filter
-      get  :options
-      get  :field_group
-      match :auto_complete
-      get  :redraw
-      get  :versions
-    end
-    member do
-      put  :attach
-      post :discard
-      post :subscribe
-      post :unsubscribe
-      get  :leads
-      get  :opportunities
     end
   end
 
@@ -81,58 +60,6 @@ Rails.application.routes.draw do
       post :discard
       post :subscribe
       post :unsubscribe
-      get  :opportunities
-    end
-  end
-
-  resources :leads, :id => /\d+/ do
-    collection do
-      get  :advanced_search
-      post :filter
-      get  :options
-      get  :field_group
-      match :auto_complete
-      get  :redraw
-      get  :versions
-      get  :autocomplete_account_name
-    end
-    member do
-      get  :convert
-      post :discard
-      post :subscribe
-      post :unsubscribe
-      put  :attach
-      put  :promote
-      put  :reject
-    end
-  end
-
-  resources :opportunities, :id => /\d+/ do
-    collection do
-      get  :advanced_search
-      post :filter
-      get  :options
-      get  :field_group
-      match :auto_complete
-      get  :redraw
-      get  :versions
-    end
-    member do
-      put  :attach
-      post :discard
-      post :subscribe
-      post :unsubscribe
-      get  :contacts
-    end
-  end
-
-  resources :tasks, :id => /\d+/ do
-    collection do
-      post :filter
-      match :auto_complete
-    end
-    member do
-      put  :complete
     end
   end
 
@@ -145,7 +72,6 @@ Rails.application.routes.draw do
       get  :redraw
     end
     collection do
-      get  :opportunities_overview
       match :auto_complete
     end
   end

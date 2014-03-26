@@ -18,10 +18,6 @@
     %tt
       = brief_account_info(contact)
 
-      - if (lead = contact.lead) and lead.referred_by?
-        &ndash;
-        == #{t :referred_by_small} #{lead.referred_by}
-
     %dt{ :style => "padding: 2px 0px 0px 0px" }
       - if can?(:read, contact)
         - if contact.email.present?
