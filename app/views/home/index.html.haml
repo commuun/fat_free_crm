@@ -1,16 +1,15 @@
--#
-  = styles_for :account
+= styles_for :account
 
-  .title
-    %span#title #{t :recent_activity}
-    = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
-  .remote#options{ hidden }
+.title
+  %span#title #{t :recent_activity}
+  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
+.remote#options{ hidden }
 
-  %ul.list#activities
-    - unless @activities.empty?
-      = render :partial => "activity", :collection => @activities
-    - else
-      #{t :no_activity_records}
+%ul.list#activities
+  - unless @activities.empty?
+    = render :partial => "activity", :collection => @activities
+  - else
+    #{t :no_activity_records}
 
 
-  #export= render "shared/export"
+#export= render "shared/export"
