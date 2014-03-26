@@ -19,13 +19,8 @@ en-US:
   # Settings.
   #----------------------------------------------------------------------------
   tab_dashboard: Dashboard
-  tab_tasks: Tasks
-  tab_campaigns: Campaigns
-  tab_leads: Leads
   tab_accounts: Accounts
   tab_contacts: Contacts
-  tab_opportunities: Opportunities
-  tab_team: Team
   admin_tab_groups: Groups
   admin_tab_users: Users
   admin_tab_fields: Custom Fields
@@ -38,51 +33,9 @@ en-US:
   partner: Partner
   reseller: Reseller
   vendor: Vendor
-  planned: Planned
-  started: Started
-  on_hold: On Hold
-  completed: Completed
-  called_off: Called Off
   new: New
-  contacted: Contacted
-  converted: Converted
-  rejected: Rejected
-  cold_call: Cold Call
-  conference: Conference
-  online: Online Marketing
-  referral: Referral
-  self: Self Generated
   web: Website
-  word_of_mouth: Word of Mouth
-  other: Other
-  prospecting: Prospecting
-  analysis: Analysis
-  presentation: Presentation
-  proposal: Proposal
-  negotiation: Negotiation
-  final_review: Final Review
-  won: Closed/Won
-  lost: Closed/Lost
-  call: Call
   email: Email
-  follow_up: Follow-up
-  lunch: Lunch
-  meeting: Meeting
-  money: Money
-  trip: Trip
-  overdue: Overdue
-  due_asap: As Soon As Possible
-  due_today: Today
-  due_tomorrow: Tomorrow
-  due_this_week: This Week
-  due_next_week: Next Week
-  due_later: Sometime Later
-  due_specific_date: On Specific Date...
-  completed_today: Today
-  completed_yesterday: Yesterday
-  completed_last_week: Last week
-  completed_this_month: This month
-  completed_last_month: Last month
 
   # Models/Activity.
   #----------------------------------------------------------------------------
@@ -110,15 +63,6 @@ en-US:
               missing_account_name: ^Please specify account name.
             access:
               share_account: ^Please specify users to share the account with.
-        campaign:
-          attributes:
-            name:
-              missing_campaign_name: ^Please specify campaign name.
-            ends_on:
-              dates_not_in_sequence: ^Please make sure the campaign end date is after
-                the start date.
-            access:
-              share_campaign: ^Please specify users to share the campaign with.
         contact:
           attributes:
             first_name:
@@ -127,26 +71,6 @@ en-US:
               missing_last_name: ^Please specify last name.
             access:
               share_contact: ^Please specify users to share the contact with.
-        lead:
-          attributes:
-            first_name:
-              missing_first_name: ^Please specify first name.
-            last_name:
-              missing_last_name: ^Please specify last name.
-            access:
-              share_lead: ^Please specify users to share the lead with.
-        opportunity:
-          attributes:
-            name:
-              missing_opportunity_name: ^Please specify opportunity name.
-            access:
-              share_opportunity: ^Please specify users to share the opportunity with.
-        task:
-          attributes:
-            name:
-              missing_task_name: ^Please specify task name.
-            calendar:
-              invalid_date: ^Please specify valid date.
         user:
           attributes:
             username:
@@ -160,16 +84,6 @@ en-US:
           maxlength: ^%{field} is too long.
           endbeforestart: ^%{field} cannot end before it begins.
     attribute_options:
-      opportunity:
-        stage:
-          prospecting: Prospecting
-          analysis: Analysis
-          presentation: Presentation
-          proposal: Proposal
-          negotiation: Negotiation
-          final_review: Final Review
-          won: Closed/Won
-          lost: Closed/Lost
       account:
         rating:
           "0": "-"
@@ -233,15 +147,12 @@ en-US:
   option_ends_on: end date
   option_first_name: first name
   option_last_name: last name
-  option_leads_count: actual leads
   option_long: long
   option_name: name
   option_probability: probability
   option_rating: rating
   option_revenue: actual revenue
   option_starts_on: start date
-  option_target_leads: target leads
-  option_target_revenue: target revenue
   option_updated_at: date updated
   show_per_page: Show %{number} %{models} per page using %{fmt} format.
   sort_by: Sort by %{field}
@@ -251,10 +162,7 @@ en-US:
   contacts_index_long: Long format
   contacts_index_brief: Brief format
   contacts_index_full: Full format
-  opportunities_index_normal: Normal format
   accounts_index_normal: Normal format
-  leads_index_normal: Normal format
-  campaigns_index_normal: Normal format
 
   # Views -> Profile.
   #----------------------------------------------------------------------------
@@ -340,51 +248,6 @@ en-US:
   account_with_title_department: ! '%{title}, %{department} at %{account}'
   account_with_title: ! '%{title} at %{account}'
 
-  # Views -> Campaigns.
-  #----------------------------------------------------------------------------
-  actual: Actual
-  actual_performance: Actual Performance
-  budget: Budget
-  budget_label: Budget ($)
-  campaign: Campaign
-  campaign_and_leads: campaign and its leads
-  campaign_small: campaign
-  campaign_summary: Campaign Summary
-  campaign_targets: Campaign Targets
-  campaign_statuses: Campaign Statuses
-  campaigns: Campaigns
-  campaigns_options: Campaigns Options
-  campaigns_small: campaigns
-  conversion: Conversion
-  conversion_label: Conversion (%)
-  conversion_number: ! '%{value} conversion'
-  target_conversion: Targe conversion
-  create_campaign: Create Campaign
-  end_date: End date
-  finished_on: completed on %{value}
-  finishes_in: finishes in %{value}
-  no_start_date: no start date specified
-  number_of_leads: Number of leads
-  objectives: Objectives
-  objectives_help: Please specify target number of leads, expected leads-to-opportunities
-    conversion ratio, target revenue, and campaign budget. These numbers will let
-    you track actual campaign performance.
-  objectives_small: campaign objectives
-  revenue: Revenue
-  revenue_label: Revenue ($)
-  revenue_number: ! '%{value} in revenue'
-  save_campaign: Save Campaign
-  start_date: Start date
-  started_ago: started %{value} ago
-  starts_in: starts in %{value}
-  starts_today: starts today!
-  target: Target
-  total_campaigns: Total Campaigns
-  was_supposed_to_finish: was supposed to finish on %{value}
-  was_supposed_to_start: was supposed to start %{time_ago} ago on %{start_date}
-  was_supposed_to_start_in: was supposed to start in %{starts_in} on %{start_date}
-  select_a_campaign: Select a campaign
-
   # Views -> Contacts.
   #----------------------------------------------------------------------------
   alt_email_small: Other
@@ -427,127 +290,6 @@ en-US:
   title: Title
   subscriptions: Subscriptions
 
-  # Views -> Leads.
-  #----------------------------------------------------------------------------
-  convert: Convert
-  convert_lead: Convert Lead
-  convert_lead_permissions_intro: Contact permissions will be copied from the lead
-    being converted. You can change contact permissions later.
-  convert_lead_text: By converting the lead %{value} will become a contact associated
-    with the existing or newly created account. Lead status will be automatically
-    set to converted.
-  create_lead: Create Lead
-  create_opp_for_contact: You can optionally create an opportunity for the %{value}
-    contact by specifying the name, current stage, estimated closing date, sale probability,
-    amount of the deal, and the discount offered.
-  lead: Lead
-  lead_info_small: lead contact
-  lead_permissions_intro_private: By default permissions will be copied from the campaign
-    or set to private. You can change lead permissions later.
-  lead_permissions_intro_public: By default permissions will be copied from the campaign
-    or set to public. You can change lead permissions later.
-  lead_permissions_intro_shared: By default permissions will be copied from the campaign
-    or shared with the specified users. You can change lead permissions later.
-  lead_small: lead
-  lead_status_small: lead status
-  lead_summary: Lead Summary
-  lead_statuses: Lead Statuses
-  leads: Leads
-  leads_options: Leads Options
-  leads_small: leads
-  none: None
-  rating: Rating
-  reject: Reject
-  reject_lead_confirm: Are you sure you want to reject this lead?
-  save_lead: Save Lead
-  source: Source
-  status: Status
-  total_leads: Total Leads
-  show_status_info_small: Show status information for this lead.
-  show_contact_info_small: Show contact information for this lead.
-
-  # Views -> Opportunities.
-  #----------------------------------------------------------------------------
-  amount: Amount
-  close_date: Close date
-  closes_on: Closes on
-  closed_ago_on: closed %{time_ago} ago on %{date}
-  closes_today: expected to close today!
-  closing_date: closing date is %{value}
-  create_opportunity: Create Opportunity
-  currency: ($)
-  days_late: Late by
-  days_left: Days left
-  discount: Discount
-  discount_number: with %{value} discount
-  expected_to_close: expected to close in %{time} on %{date}
-  from: from
-  no_closing_date: no expected closing date
-  no_discount: with no discount
-  opportunities: Opportunities
-  opportunities_options: Opportunities Options
-  opportunities_small: opportunities
-  opportunity: Opportunity
-  opportunity_small: opportunity
-  opportunity_stages: Opportunity Stages
-  opportunity_summary: Opportunity At a Glance
-  opportunity_summary_text: ! '%{amount} with %{discount} discount and %{probability}
-    probability'
-  past_due: past due, was expected to close %{value} ago
-  probability: Probability
-  probability_number: and %{value} probability
-  save_opportunity: Save Opportunity
-  stage: Stage
-  total_opportunities: Total Opportunities
-  weighted_amount: Weighted amount
-
-  # Views -> Tasks.
-  #----------------------------------------------------------------------------
-  task: Task
-  task_small: task
-  tasks: Tasks
-  tasks_small: tasks
-  assign_to: Assign to
-  assigned_tab: Assigned
-  assigned_tasks: Assigned Tasks
-  category: Category
-  completed_tab: Completed
-  completed_tasks: Completed Tasks
-  create_task: Create Task
-  create_task_small: create new task
-  due: Due
-  feel_free: Feel free to
-  move_to: move to
-  no_tasks: You don't have any %{value} tasks
-  no_tasks_pending: pending
-  no_tasks_assigned: assigned
-  no_tasks_completed: completed
-  pending_tab: Pending
-  pending_tasks: Pending Tasks
-  related: ! 're:'
-  save_task: Save Task
-  task_assigned: The task has been assigned to %{value}
-  task_assigned_to: and assigned to %{value}
-  task_completed: completed
-  task_completed_ago: completed %{value} ago
-  task_completed_by: completed %{time_ago} ago (%{date}) by %{user}
-  task_created: The task has been created
-  task_due_in: due in %{value}
-  task_due_later: due sometime soon
-  task_due_now: due now
-  task_due_today: due today
-  task_from: From %{value}
-  task_overdue: late, was due on
-  task_pending: The task has been moved to pending tasks
-  total_tasks: Total %{value}
-  view_assigned_tasks: view assigned tasks
-  view_pending_tasks: view pending tasks
-
-  # Views -> Team.
-  #----------------------------------------------------------------------------
-  unassigned_opportunities: Unassigned Opportunities
-  no_opportunities_found: There are currently no outstanding opportunities.
-
   # Views -> Home.
   #----------------------------------------------------------------------------
   action_completed: completed
@@ -565,13 +307,9 @@ en-US:
   recent_activity_options: Recent Activity Options
   subject_account: account
   subject_address: address on
-  subject_campaign: campaign
   subject_comment: comment on
   subject_contact: contact
   subject_email: email on
-  subject_lead: lead
-  subject_opportunity: opportunity
-  subject_task: task
   subject_user: user
   tag_list: Tags
   create_past_participle: Record Creations
@@ -580,10 +318,6 @@ en-US:
   destroy_past_participle: Deletions
   all_events_past_participle: Activities
   action_create_comment: ! '- &quot;%{comment}&quot;'
-  my_tasks: My Tasks
-  no_task_records: You have no tasks.
-  my_opportunities: My Opportunities
-  no_opportunity_records: You have no opportunities.
   my_accounts: My Accounts
   no_account_records: You have no accounts
   not_showing_hidden_entities: Not showing %{count} hidden %{entity}.
@@ -623,9 +357,6 @@ en-US:
   please_retry: please try another query.
   recent_items: Recent Items
   select_contact: Select Contact
-  select_lead: Select Lead
-  select_task: Select Task
-  select_opportunity: Select Opportunity
   search_assets: Search %{value}
   time_ago: ! '%{value} ago'
   background_info: Background
@@ -792,12 +523,6 @@ en-US:
     contact:
       one: 1 contact
       other: ! '%{count} contacts'
-    opportunity:
-      one: 1 opportunity
-      other: ! '%{count} opportunities'
-    lead:
-      one: 1 lead
-      other: ! '%{count} leads'
     day:
       one: 1 day
       other: ! '%{count} days'
