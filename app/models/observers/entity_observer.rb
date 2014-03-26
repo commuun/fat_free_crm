@@ -6,23 +6,7 @@
 class EntityObserver < ActiveRecord::Observer
   observe :account, :contact
 
-  def after_create(item)
-    send_notification_to_assignee(item) if current_user != item.assignee
-  end
-
-  def after_update(item)
-    if item.assigned_to_changed? && item.assignee != current_user
-      send_notification_to_assignee(item)
-    end
-  end
-
   private
-
-  def send_notification_to_assignee(item)
-    if item.assignee.present? && current_user.present? && can_send_email?
-      UserMailer.assigned_entity_notification(item, current_user).deliver
-    end
-  end
 
   # Need to have a host set before email can be sent
   def can_send_email?

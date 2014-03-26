@@ -5,7 +5,6 @@ xml.Worksheet 'ss:Name' => I18n.t(:tab_accounts) do
       xml.Row do
         heads = [I18n.t('id'),
                  I18n.t('user'),
-                 I18n.t('assigned_to'),
                  I18n.t('name'),
                  I18n.t('email'),
                  I18n.t('phone'),
@@ -45,7 +44,6 @@ xml.Worksheet 'ss:Name' => I18n.t(:tab_accounts) do
           address = account.billing_address
           data    = [account.id,
                      account.user.try(:name),
-                     account.assignee.try(:name),
                      account.name,
                      account.email,
                      account.phone,

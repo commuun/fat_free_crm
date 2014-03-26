@@ -24,9 +24,6 @@
   %li
     %dt= @account.category ? t(@account.category) : t(:other)
     %tt #{t :category}:
-  %li
-    %dt= @account.assigned_to ? truncate(@account.assignee.full_name, :length => 16) : nil
-    %tt #{t :assigned_to}:
 
   - unless @account.background_info.blank?
     .caption #{t :background_info}

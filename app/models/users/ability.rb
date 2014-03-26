@@ -22,7 +22,6 @@ class Ability
       # Entities
       can :manage, entities, :access => 'Public'
       can :manage, entities, :user_id => user.id
-      can :manage, entities, :assigned_to => user.id
 
       #
       # Due to an obscure bug (see https://github.com/ryanb/cancan/issues/213)

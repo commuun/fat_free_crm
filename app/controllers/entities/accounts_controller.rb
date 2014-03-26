@@ -29,7 +29,7 @@ class AccountsController < EntitiesController
   # GET /accounts/new
   #----------------------------------------------------------------------------
   def new
-    @account.attributes = {:user => current_user, :access => Setting.default_access, :assigned_to => nil}
+    @account.attributes = {:user => current_user, :access => Setting.default_access}
 
     if params[:related]
       model, id = params[:related].split('_')

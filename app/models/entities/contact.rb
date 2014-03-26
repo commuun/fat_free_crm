@@ -9,7 +9,6 @@
 #
 #  id              :integer         not null, primary key
 #  user_id         :integer
-#  assigned_to     :integer
 #  reports_to      :integer
 #  first_name      :string(64)      default(""), not null
 #  last_name       :string(64)      default(""), not null
@@ -37,7 +36,6 @@
 
 class Contact < ActiveRecord::Base
   belongs_to  :user
-  belongs_to  :assignee, :class_name => "User", :foreign_key => :assigned_to
   belongs_to  :reporting_user, :class_name => "User", :foreign_key => :reports_to
   has_one     :account_contact, :dependent => :destroy
   has_one     :account, :through => :account_contact
@@ -53,7 +51,6 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :business_address, :allow_destroy => true, :reject_if => proc {|attributes| Address.reject_address(attributes)}
 
   scope :created_by,  ->(user) { where( user_id: user.id ) }
-  scope :assigned_to, ->(user) { where( assigned_to: user.id ) }
 
   scope :text_search, ->(query) {
     t = Contact.arel_table

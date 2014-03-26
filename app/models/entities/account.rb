@@ -9,7 +9,6 @@
 #
 #  id              :integer         not null, primary key
 #  user_id         :integer
-#  assigned_to     :integer
 #  name            :string(64)      default(""), not null
 #  access          :string(8)       default("Public")
 #  website         :string(64)
@@ -27,7 +26,6 @@
 
 class Account < ActiveRecord::Base
   belongs_to  :user
-  belongs_to  :assignee, :class_name => "User", :foreign_key => :assigned_to
   has_many    :account_contacts, :dependent => :destroy
   has_many    :contacts, :through => :account_contacts, :uniq => true
   has_one     :billing_address, :dependent => :destroy, :as => :addressable, :class_name => "Address", :conditions => "address_type = 'Billing'"
@@ -44,13 +42,12 @@ class Account < ActiveRecord::Base
     where('category IN (?)' + (filters.delete('other') ? ' OR category IS NULL' : ''), filters)
   }
   scope :created_by,  ->(user) { where(:user_id => user.id) }
-  scope :assigned_to, ->(user) { where(:assigned_to => user.id) }
 
   scope :text_search, ->(query) { search('name_or_email_cont' => query).result }
 
   scope :visible_on_dashboard, ->(user) {
     # Show accounts which either belong to the user and are unassigned, or are assigned to the user
-    where('(user_id = :user_id AND assigned_to IS NULL) OR assigned_to = :user_id', :user_id => user.id)
+    where('(user_id = :user_id)', :user_id => user.id)
   }
 
   scope :by_name, -> { order(:name) }

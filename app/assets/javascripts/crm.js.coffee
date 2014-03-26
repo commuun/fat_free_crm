@@ -149,14 +149,12 @@
     #----------------------------------------------------------------------------
     create_contact: ->
       @clear_all_hints()  if $("#contact_business_address_attributes_country")
-      $("#account_assigned_to").val $("contact_assigned_to").val()
       $("#account_id").prop('disabled', false)  if $("#account_id:visible").length
 
 
     #----------------------------------------------------------------------------
     save_contact: ->
       @clear_all_hints()  if $("#contact_business_address_attributes_country")
-      $("#account_assigned_to").val $("contact_assigned_to").val()
 
 
     #----------------------------------------------------------------------------

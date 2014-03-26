@@ -29,7 +29,7 @@ class ContactsController < EntitiesController
   # GET /contacts/new
   #----------------------------------------------------------------------------
   def new
-    @contact.attributes = {:user => current_user, :access => Setting.default_access, :assigned_to => nil}
+    @contact.attributes = {:user => current_user, :access => Setting.default_access}
     @account = Account.new(:user => current_user)
 
     if params[:related]
