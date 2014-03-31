@@ -21,14 +21,6 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "account_opportunities", :force => true do |t|
-    t.integer  "account_id"
-    t.integer  "opportunity_id"
-    t.datetime "deleted_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.integer  "assigned_to"
@@ -94,32 +86,6 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
     t.datetime "updated_at",         :null => false
   end
 
-  create_table "campaigns", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assigned_to"
-    t.string   "name",                :limit => 64,                                :default => "",       :null => false
-    t.string   "access",              :limit => 8,                                 :default => "Public"
-    t.string   "status",              :limit => 64
-    t.decimal  "budget",                            :precision => 12, :scale => 2
-    t.integer  "target_leads"
-    t.float    "target_conversion"
-    t.decimal  "target_revenue",                    :precision => 12, :scale => 2
-    t.integer  "leads_count"
-    t.integer  "opportunities_count"
-    t.decimal  "revenue",                           :precision => 12, :scale => 2
-    t.date     "starts_on"
-    t.date     "ends_on"
-    t.text     "objectives"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                                                             :null => false
-    t.datetime "updated_at",                                                                             :null => false
-    t.string   "background_info"
-    t.text     "subscribed_users"
-  end
-
-  add_index "campaigns", ["assigned_to"], :name => "index_campaigns_on_assigned_to"
-  add_index "campaigns", ["user_id", "name", "deleted_at"], :name => "index_campaigns_on_user_id_and_name_and_deleted_at", :unique => true
-
   create_table "comments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "commentable_id"
@@ -132,21 +98,11 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
     t.string   "state",            :limit => 16, :default => "Expanded", :null => false
   end
 
-  create_table "contact_opportunities", :force => true do |t|
-    t.integer  "contact_id"
-    t.integer  "opportunity_id"
-    t.string   "role",           :limit => 32
-    t.datetime "deleted_at"
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
-  end
-
   create_table "contacts", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "lead_id"
     t.integer  "assigned_to"
     t.integer  "reports_to"
-    t.string   "first_name",       :limit => 64,  :default => "",       :null => false
+    t.string   "first_name",       :limit => 64,  :default => ""
     t.string   "last_name",        :limit => 64,  :default => "",       :null => false
     t.string   "access",           :limit => 8,   :default => "Public"
     t.string   "title",            :limit => 64
@@ -244,39 +200,6 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
   add_index "groups_users", ["group_id"], :name => "index_groups_users_on_group_id"
   add_index "groups_users", ["user_id"], :name => "index_groups_users_on_user_id"
 
-  create_table "leads", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "campaign_id"
-    t.integer  "assigned_to"
-    t.string   "first_name",       :limit => 64,  :default => "",       :null => false
-    t.string   "last_name",        :limit => 64,  :default => "",       :null => false
-    t.string   "access",           :limit => 8,   :default => "Public"
-    t.string   "title",            :limit => 64
-    t.string   "company",          :limit => 64
-    t.string   "source",           :limit => 32
-    t.string   "status",           :limit => 32
-    t.string   "referred_by",      :limit => 64
-    t.string   "email",            :limit => 64
-    t.string   "alt_email",        :limit => 64
-    t.string   "phone",            :limit => 32
-    t.string   "mobile",           :limit => 32
-    t.string   "blog",             :limit => 128
-    t.string   "linkedin",         :limit => 128
-    t.string   "facebook",         :limit => 128
-    t.string   "twitter",          :limit => 128
-    t.integer  "rating",                          :default => 0,        :null => false
-    t.boolean  "do_not_call",                     :default => false,    :null => false
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.string   "background_info"
-    t.string   "skype",            :limit => 128
-    t.text     "subscribed_users"
-  end
-
-  add_index "leads", ["assigned_to"], :name => "index_leads_on_assigned_to"
-  add_index "leads", ["user_id", "last_name", "deleted_at"], :name => "index_leads_on_user_id_and_last_name_and_deleted_at", :unique => true
-
   create_table "lists", :force => true do |t|
     t.string   "name"
     t.text     "url"
@@ -286,28 +209,6 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
   end
 
   add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
-
-  create_table "opportunities", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "campaign_id"
-    t.integer  "assigned_to"
-    t.string   "name",             :limit => 64,                                :default => "",       :null => false
-    t.string   "access",           :limit => 8,                                 :default => "Public"
-    t.string   "source",           :limit => 32
-    t.string   "stage",            :limit => 32
-    t.integer  "probability"
-    t.decimal  "amount",                         :precision => 12, :scale => 2
-    t.decimal  "discount",                       :precision => 12, :scale => 2
-    t.date     "closes_on"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                                                          :null => false
-    t.datetime "updated_at",                                                                          :null => false
-    t.string   "background_info"
-    t.text     "subscribed_users"
-  end
-
-  add_index "opportunities", ["assigned_to"], :name => "index_opportunities_on_assigned_to"
-  add_index "opportunities", ["user_id", "name", "deleted_at"], :name => "id_name_deleted", :unique => true
 
   create_table "permissions", :force => true do |t|
     t.integer  "user_id"
@@ -367,28 +268,6 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-
-  create_table "tasks", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "assigned_to"
-    t.integer  "completed_by"
-    t.string   "name",                           :default => "", :null => false
-    t.integer  "asset_id"
-    t.string   "asset_type"
-    t.string   "priority",         :limit => 32
-    t.string   "category",         :limit => 32
-    t.string   "bucket",           :limit => 32
-    t.datetime "due_at"
-    t.datetime "completed_at"
-    t.datetime "deleted_at"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.string   "background_info"
-    t.text     "subscribed_users"
-  end
-
-  add_index "tasks", ["assigned_to"], :name => "index_tasks_on_assigned_to"
-  add_index "tasks", ["user_id", "name", "deleted_at"], :name => "index_tasks_on_user_id_and_name_and_deleted_at", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "username",            :limit => 32, :default => "",    :null => false

@@ -102,6 +102,64 @@ class ContactsController < EntitiesController
     end
   end
 
+  # GET|POST /contacts/import
+  #----------------------------------------------------------------------------
+  def import
+    if request.post?
+      # If a CSV file is submitted, store it in a tempfile and allow the user to select mapping
+      if params[:import][:csv_file]
+
+        session[:temp_csv_path] = Rails.root.join( 'tmp', "#{Time.now.to_i}_#{Time.now.usec}.csv" )
+        File.open( session[:temp_csv_path], 'wb' ).write( params[:import][:csv_file].read )
+
+        # Find the headers for the imported CSV file
+        @csv_header = CSV.read(session[:temp_csv_path]).first.uniq.reject(&:blank?)
+
+      # If we've got a csv file uploaded previously, process it
+      elsif !session[:temp_csv_path].blank?
+
+        # The import method returns all lines that failed to validate (or raised an error somehow.)
+        @failed_lines = Contact.import_csv File.read( session[:temp_csv_path] ), params[:import]
+
+        # If there are contacts that failed to validate, write those lines back to a file so the
+        # user can download and review them
+        if @failed_lines.blank?
+          session[:failed_path] = nil
+        else
+          # Find a new unique temporary file path where we can write the failed lines
+          # For data security reasons we don't want this file in the public path
+          session[:failed_path] = Rails.root.join( 'tmp', "#{Time.now.to_i}_#{Time.now.usec}.csv" )
+
+          # Generate a CSV from the failed lines
+          my_csv = CSV.generate do |csv|
+            csv << @failed_lines.first.keys
+            @failed_lines.each do |line|
+              csv << line.values
+            end
+          end
+
+          # Write those lines to the tempfile (we can download them later through the action below)
+          File.open( session[:failed_path], 'wb' ).write(my_csv)
+        end
+
+        # Remove the tempfile and the session reference to it
+        File.unlink( session[:temp_csv_path] )
+        session[:temp_csv_path] = nil
+      end
+    end
+  end
+
+  # GET /contacts/download_failed_import
+  # Download any failed lines that were stored by the import function above.
+  #----------------------------------------------------------------------------
+  def download_failed_import
+    if session[:failed_path].blank?
+      render text: ''
+    else
+      send_file session[:failed_path], type: "text/csv", filename: File.basename(session[:failed_path])
+    end
+  end
+
   # PUT /contacts/1/attach
   #----------------------------------------------------------------------------
   # Handled by EntitiesController :attach

@@ -18,5 +18,11 @@ module ContactsHelper
     summary << "#{t(:mobile_small)}: #{contact.mobile}" if contact.mobile.present?
     summary.join(', ')
   end
+
+  def import_contacts_link
+    link_to import_contacts_path, :text => t('import_contacts') do
+      content_tag( :span, '&#9658;'.html_safe, class: 'arrow' ) + t('import_contacts')
+    end
+  end
 end
 

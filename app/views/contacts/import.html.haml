@@ -1,0 +1,31 @@
+= render 'entities/title_bar'
+
+- if !@csv_header.blank?
+
+  %h3= t('import.select_mapping')
+  %p= t('import.warning')
+
+  = simple_form_for :import, url: import_contacts_path do |form|
+    %table
+      %tbody
+        - %w[account first_name last_name email department street1 street2 city zipcode country phone mobile fax].each do |attr|
+          %tr
+            %td= t(attr)
+            %td= form.input attr, as: :select, collection: @csv_header, label: false, required: false
+
+    = form.button :submit, disable_with: t('import.processing')
+
+- elsif !@failed_lines.blank?
+  %h3= t('import.failed_lines')
+
+  - unless session[:failed_path].blank?
+    = link_to t('import.download_failed_lines', count: @failed_lines.size), [:download_failed_import, :contacts]
+
+- else
+  %h3= t('import.select_csv_file')
+
+  = simple_form_for :import, url: import_contacts_path do |form|
+    .section
+      = form.input :csv_file, as: :file
+    .section
+      = form.button :submit, disable_with: t('import.processing')

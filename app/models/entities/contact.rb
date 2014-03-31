@@ -154,5 +154,55 @@ class Contact < ActiveRecord::Base
     self.reload unless self.new_record? # ensure the account association is updated
   end
 
+  # Handles importing and processing new contact data
+  # > Takes a string containing the CSV data and a hash which maps the column
+  #   names of the CSV file to the database fields, e.g. { first_name: 'givenname' }
+  # > Returns an array of contacts that failed to validate or raised an error
+  #----------------------------------------------------------------------------
+  def self.import_csv( data, mapping )
+    failed_lines = []
+
+    CSV.parse( data, headers: true ) do |line|
+      contact = Contact.new
+
+      contact.attributes = {
+        first_name:   line[mapping['first_name']],
+        last_name:    line[mapping['last_name']],
+        title:        line[mapping['title']],
+        department:   line[mapping['department']],
+        email:        line[mapping['email']],
+        phone:        line[mapping['phone']],
+        mobile:       line[mapping['mobile']],
+        fax:          line[mapping['fax']]
+      }
+
+      contact.addresses.new(
+        street1:      line[mapping['street1']],
+        street2:      line[mapping['street2']],
+        city:         line[mapping['city']],
+        zipcode:      line[mapping['zipcode']],
+        country:      line[mapping['country']]
+      )
+
+      begin
+        if contact.save
+          unless line[mapping['account']].blank?
+            account = Account.where( name: line[mapping['account']] ).first_or_create
+            account.contacts << contact
+          end
+        else
+          failed_lines << line.to_hash.merge(error: contact.errors.full_messages.join(', '))
+        end
+
+      rescue Exception => e
+        # If an exception occurred, add it to the error report
+        contact.errors.add( :base, "#{e.class.name}: #{e.message}" )
+        failed_lines << line.to_hash.merge(error: "#{e.class.name}: #{e.message}")
+      end
+    end
+
+    failed_lines
+  end
+
   ActiveSupport.run_load_hooks(:fat_free_crm_contact, self)
 end

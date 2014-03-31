@@ -54,6 +54,8 @@ Rails.application.routes.draw do
       match :auto_complete
       get  :redraw
       get  :versions
+      match :import
+      get :download_failed_import
     end
     member do
       put  :attach
