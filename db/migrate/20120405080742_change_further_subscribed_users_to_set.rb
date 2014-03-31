@@ -1,7 +1,7 @@
 class ChangeFurtherSubscribedUsersToSet < ActiveRecord::Migration
   def up
     # Change the other tables that were missing from the previous migration
-    %w(campaigns opportunities leads tasks accounts).each do |table|
+    %w(accounts).each do |table|
       entities = connection.select_all %Q{
         SELECT id, subscribed_users
         FROM #{table}

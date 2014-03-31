@@ -28,16 +28,10 @@ class CreateAddresses < ActiveRecord::Migration
       Address.create(:street1 => asset.shipping_address, :full_address => asset.shipping_address, :address_type => "Shipping", :addressable => asset)
     end
 
-    Lead.find(:all).each do |asset|
-      Address.create(:street1 => asset.address, :full_address => asset.address, :address_type => "Business", :addressable => asset)
-    end
-
     # Remove addresses columns from assets allready migrated
     remove_column(:contacts, :address)
     remove_column(:accounts, :billing_address)
     remove_column(:accounts, :shipping_address)
-    remove_column(:leads,    :address)
-
   end
 
   def self.down
@@ -45,7 +39,6 @@ class CreateAddresses < ActiveRecord::Migration
     add_column(:contacts, :address, :string)
     add_column(:accounts, :billing_address, :string)
     add_column(:accounts, :shipping_address, :string)
-    add_column(:leads,    :address, :string)
   end
 end
 

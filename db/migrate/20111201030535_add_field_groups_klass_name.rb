@@ -3,7 +3,7 @@ class AddFieldGroupsKlassName < ActiveRecord::Migration
     add_column :field_groups, :klass_name, :string, :limit => 32
 
     # Add a default field group for each model
-    %w(Account Campaign Contact Lead Opportunity).each do |entity|
+    %w(Account Contact).each do |entity|
       klass = entity.classify.constantize
       field_group = FieldGroup.new
       field_group.label, field_group.klass_name = 'Custom Fields', klass.name
