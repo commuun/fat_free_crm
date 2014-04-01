@@ -12,8 +12,14 @@ class ContactsController < EntitiesController
     @contacts = get_contacts(:page => params[:page], :per_page => params[:per_page])
 
     respond_with @contacts do |format|
-      format.xls { render :layout => 'header' }
-      format.csv { render :csv => @contacts }
+      format.xls {
+        add_comment( @contacts, params[:comment] )
+        render :layout => 'header'
+      }
+      format.csv {
+        add_comment( @contacts, params[:comment] )
+        render :csv => @contacts
+      }
     end
   end
 

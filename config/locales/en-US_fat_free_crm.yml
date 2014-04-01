@@ -297,7 +297,8 @@ en-US:
     download_failed_lines: '%{count} records could not be processed, click here to download them.'
     warning: 'Note: depending on the size of the file this could take some time.'
     errors: Errors
-    processing: Processing...
+
+  processing: Processing...
 
   # Views -> Home.
   #----------------------------------------------------------------------------

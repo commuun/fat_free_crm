@@ -12,8 +12,14 @@ class AccountsController < EntitiesController
     @accounts = get_accounts(:page => params[:page], :per_page => params[:per_page])
 
     respond_with @accounts do |format|
-      format.xls { render :layout => 'header' }
-      format.csv { render :csv => @accounts }
+      format.xls {
+        add_comment( @accounts, params[:comment] )
+        render :layout => 'header'
+      }
+      format.csv {
+        add_comment( @accounts, params[:comment] )
+        render :csv => @accounts
+      }
     end
   end
 

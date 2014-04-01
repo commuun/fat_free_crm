@@ -197,4 +197,20 @@ private
       current_user.pref[:"#{controller}_#{action}_view"] = params['view']
     end
   end
+
+  # When records are bulk-exported we can add a comment to them
+  #----------------------------------------------------------------------------
+  def add_comment( records, comment )
+    wants = request.format
+
+    return unless wants.xls? || wants.csv?
+    return if comment.blank?
+
+    records.each do |record|
+      record.comments.create(
+        user: current_user,
+        comment: comment
+      )
+    end
+  end
 end

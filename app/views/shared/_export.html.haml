@@ -1,2 +1,7 @@
 - action = nil unless defined?(action)
 = raw links_to_export(action)
+
+= form_tag( '', { :method => :get, :class => 'export-form' }.merge(hidden) ) do
+  = t('comment')
+  = text_area_tag( :comment, '', :class => 'comment' )
+  = submit_tag :export

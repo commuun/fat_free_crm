@@ -8,6 +8,8 @@
 
 .remote#options{ hidden }
 
+#export= render "shared/export"
+
 .list#accounts
   - if @accounts.any?
     = render @accounts
@@ -15,4 +17,3 @@
     = render "shared/empty"
 
 #paginate= render "shared/paginate_with_per_page"
-#export= render "shared/export"
