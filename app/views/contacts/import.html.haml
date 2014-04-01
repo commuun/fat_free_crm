@@ -6,12 +6,29 @@
   %p= t('import.warning')
 
   = simple_form_for :import, url: import_contacts_path do |form|
+    %h4= t('contact')
     %table
       %tbody
-        - %w[account first_name last_name email department street1 street2 city zipcode country phone mobile fax].each do |attr|
+        - Contact.import_attributes[:contact].each do |attr|
+          %tr
+            %td{ width: '50%' }= t(attr)
+            %td{ width: '50%' }= form.input "contact[#{attr}]", as: :select, collection: @csv_header, label: false, required: false
+        - Contact.import_attributes[:address].each do |attr|
           %tr
             %td= t(attr)
-            %td= form.input attr, as: :select, collection: @csv_header, label: false, required: false
+            %td= form.input "contact_address[#{attr}]", as: :select, collection: @csv_header, label: false, required: false
+
+    %h4= t('account')
+    %table
+      %tbody
+        - Contact.import_attributes[:account].each do |attr|
+          %tr
+            %td{ width: '50%' }= t(attr)
+            %td{ width: '50%' }= form.input "account[#{attr}]", as: :select, collection: @csv_header, label: false, required: false
+        - Contact.import_attributes[:address].each do |attr|
+          %tr
+            %td= t(attr)
+            %td= form.input "account_address[#{attr}]", as: :select, collection: @csv_header, label: false, required: false
 
     = form.button :submit, disable_with: t('import.processing')
 

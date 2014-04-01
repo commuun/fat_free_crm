@@ -163,31 +163,29 @@ class Contact < ActiveRecord::Base
     failed_lines = []
 
     CSV.parse( data, headers: true ) do |line|
-      contact = Contact.new
-
-      contact.attributes = {
-        first_name:   line[mapping['first_name']],
-        last_name:    line[mapping['last_name']],
-        title:        line[mapping['title']],
-        department:   line[mapping['department']],
-        email:        line[mapping['email']],
-        phone:        line[mapping['phone']],
-        mobile:       line[mapping['mobile']],
-        fax:          line[mapping['fax']]
-      }
-
-      contact.addresses.new(
-        street1:      line[mapping['street1']],
-        street2:      line[mapping['street2']],
-        city:         line[mapping['city']],
-        zipcode:      line[mapping['zipcode']],
-        country:      line[mapping['country']]
-      )
 
       begin
+        contact = Contact.new
+        mapping[:contact].each do |field, mapping|
+          contact[field] = line[mapping]
+        end
+        address = contact.addresses.new
+        mapping[:contact_address].each do |field, mapping|
+          address[field] = line[mapping]
+        end
+
+        Rails.logger.debug ">> Saving contact: #{contact.inspect} with addresses: #{contact.addresses.inspect} (#{address.valid?})"
         if contact.save
-          unless line[mapping['account']].blank?
-            account = Account.where( name: line[mapping['account']] ).first_or_create
+          account = Account.where( name: line[mapping[:account][:name]] ).first_or_initialize
+          mapping[:account].each do |field, mapping|
+            account[field] = line[mapping]
+          end
+          address = account.addresses.first || account.addresses.new
+          mapping[:account_address].each do |field, mapping|
+            address[field] = line[mapping]
+          end
+          Rails.logger.debug ">> Saving account: #{account.inspect} with addresses: #{account.addresses.inspect} (#{address.valid?})"
+          if account.save
             account.contacts << contact
           end
         else
@@ -198,10 +196,22 @@ class Contact < ActiveRecord::Base
         # If an exception occurred, add it to the error report
         contact.errors.add( :base, "#{e.class.name}: #{e.message}" )
         failed_lines << line.to_hash.merge(error: "#{e.class.name}: #{e.message}")
+
+        Rails.logger.info "An error occurred importing csv line:"
+        Rails.logger.info "#{e.class.name}: #{e.message}"
+        Rails.logger.info e.backtrace.join("\n")
       end
     end
 
     failed_lines
+  end
+
+  def self.import_attributes
+    {
+      account: [:name, :email, :website, :phone, :fax],
+      contact: [:first_name, :last_name, :title, :department, :email, :phone, :mobile, :fax],
+      address: [:street1, :street2, :city, :zipcode, :country]
+    }
   end
 
   ActiveSupport.run_load_hooks(:fat_free_crm_contact, self)
