@@ -104,7 +104,35 @@ GEM
     factory_girl_rails (4.4.1)
       factory_girl (~> 4.4.0)
       railties (>= 3.0.0)
-    ffaker (1.23.0)
+    fat_free_crm (0.13.2)
+      acts-as-taggable-on (~> 2.3.3)
+      acts_as_commentable (~> 3.0.1)
+      acts_as_list (~> 0.1.4)
+      authlogic (= 3.1.0)
+      cancan
+      cocaine
+      dynamic_form
+      email_reply_parser_ffcrm
+      ffaker (>= 1.12.0)
+      font-awesome-rails
+      haml (~> 3)
+      jquery-rails (~> 2.1.4)
+      nokogiri
+      paper_trail (~> 2.7.0)
+      paperclip
+      premailer
+      prototype-rails
+      psych (~> 1)
+      rails (~> 3.2.12)
+      rails3-jquery-autocomplete
+      ransack_ui (>= 1.1.0)
+      responds_to_parent (>= 1.1.0)
+      sass (~> 3)
+      select2-rails
+      simple_form (~> 2.0.1)
+      valium
+      will_paginate (~> 3.0.2)
+    ffaker (1.24.0)
     ffi (1.9.3)
     font-awesome-rails (4.0.3.1)
       railties (>= 3.2, < 5.0)
@@ -146,6 +174,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.3)
     multi_json (1.9.2)
+    mysql2 (0.3.15)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.2)
@@ -171,12 +200,15 @@ GEM
     premailer (1.8.2)
       css_parser (>= 1.3.5)
       htmlentities (>= 4.0.0)
+    prototype-rails (3.2.1)
+      rails (~> 3.2)
     pry (0.9.12.6)
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
+    psych (1.3.4)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.4.5)
@@ -315,60 +347,38 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 2.3.3)
-  acts_as_commentable (~> 3.0.1)
   acts_as_fu
-  acts_as_list (~> 0.1.4)
-  authlogic (= 3.1.0)
-  cancan
   capistrano (~> 2)
   capistrano_colors
   capybara
-  cocaine
   coffee-rails (~> 3.2.1)
   coveralls
   database_cleaner
   debugger
-  dynamic_form
-  email_reply_parser_ffcrm
   execjs
   factory_girl_rails
-  ffaker (>= 1.12.0)
-  font-awesome-rails
+  fat_free_crm
   guard
   guard-rails
   guard-rspec
-  haml (~> 3)
   headless
-  jquery-rails (~> 2.1.4)
-  nokogiri
-  paper_trail (~> 2.7.0)
-  paperclip
+  highline
+  mysql2
   pg
   premailer
   pry-rails
   quiet_assets
-  rails (~> 3.2.12)
-  rails3-jquery-autocomplete
   rails_12factor
-  ransack_ui (>= 1.1.0)
   rb-fchange
   rb-fsevent
   rb-inotify
-  responds_to_parent (>= 1.1.0)
   rspec-rails
-  sass (~> 3)
   sass-rails (~> 3.2.3)
-  select2-rails
   selenium-webdriver
-  simple_form (~> 2.0.1)
   therubyracer
   thin
-  thor
   timecop
   turbo-sprockets-rails3
   uglifier (>= 1.0.3)
   unicorn
-  valium
-  will_paginate
   zeus
