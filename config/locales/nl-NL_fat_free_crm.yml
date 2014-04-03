@@ -1,0 +1,641 @@
+---
+en-US:
+  language: English
+
+  # Generic terms.
+  #----------------------------------------------------------------------------
+  id: Id
+  all: Alle
+  at: bij
+  here: hier
+  no_button: 'Nee'
+  not_implemented: Nog niet geòmplementeerd.
+  or: of
+  select_none: -- Geen --
+  select_blank: -- Selecteer --
+  yes_button: 'Ja'
+
+
+  # Settings.
+  #----------------------------------------------------------------------------
+  tab_dashboard: Dashboard
+  tab_accounts: Organisaties
+  tab_contacts: Personen
+  admin_tab_groups: Groepen
+  admin_tab_users: Gebruikers
+  admin_tab_fields: Aangepaste Velden
+  admin_tab_tags: Tags
+  admin_tab_settings: Settings
+  admin_tab_plugins: Plugins
+  affiliate: Affiliate
+  competitor: Concurrent
+  customer: Klant
+  partner: Partner
+  reseller: Reseller
+  vendor: Verkoper
+  new: Nieuw
+  web: Website
+  email: Email
+
+  # Models/Activity.
+  #----------------------------------------------------------------------------
+  one_hour: âÄn Uur
+  one_day: âÄn Dag
+  two_days: Twee Dagen
+  one_week: âÄn Week
+  two_weeks: Twee Weken
+  one_month: âÄn Maand
+
+  # Model Validations.
+  #----------------------------------------------------------------------------
+  activerecord:
+    errors:
+      models:
+        authentication:
+          attributes:
+            login_field:
+              is_not_valid: is niet geldig
+            password_field:
+              is_not_valid: is niet geldig
+        account:
+          attributes:
+            name:
+              missing_account_name: ^Geef a.u.b. naam organisatie op.
+            access:
+              share_account: ^Geef a.u.b. gebruikers op om de organisatie mee te delen.
+        contact:
+          attributes:
+            first_name:
+              missing_first_name: ^Geef a.u.b. voornaam op.
+            last_name:
+              missing_last_name: ^Geef a.u.b. achternaam op.
+            access:
+              share_contact: ^ Geef a.u.b. gebruikers op om de persoon mee te delen.
+        user:
+          attributes:
+            username:
+              missing_username: ^Geef a.u.b. gebruikersnaam op.
+              username_taken: ^Deze gebruikersnaam is reeds bezet.
+            email:
+              missing_email: ^Geef a.u.b. emailadres op.
+              email_in_use: ^Er is reeds een andere gebruiker met hetzelfde emailadres.
+        custom_field:
+          required: ^%{field} is verplicht.
+          maxlength: ^%{field} is te lang.
+          endbeforestart: ^%{field} kan niet eindigen voor het begint.
+    attribute_options:
+      account:
+        rating:
+          "0": "-"
+          "1": "Γÿà"
+          "2": "ΓÿàΓÿà"
+          "3": "ΓÿàΓÿàΓÿà"
+          "4": "ΓÿàΓÿàΓÿàΓÿà"
+          "5": "ΓÿàΓÿàΓÿàΓÿàΓÿà"
+
+  msg_account_suspended: Gebruikersaccount is stopgezet.
+  password_reset_instruction: wachtwoord reset instructies
+
+  # Controllers.
+  #----------------------------------------------------------------------------
+  msg_account_created: Uw account is gecreæerd en wacht op goedkeuring door de systeembeheerder.
+  msg_account_not_approved: Uw account is nog niet goedgekeurd.
+  msg_asset_deleted: ! '%{value} is verwijderd.'
+  msg_asset_not_available: This %{value} is niet meer beschikbaar.
+  msg_not_authorized: U bent niet geautoriseerd voor deze actie.
+  msg_assets_not_available: The %{value} zijn niet beschikbaar.
+  msg_asset_rejected: ! '%{value} is afgewezen.'
+  msg_bad_image_file: ^De opgegeven afbeelding kon niet geƒpload of geresized worden.
+  msg_cant_create_related: De %{asset} kan niet gecreæeerd worden omdat de %{related} niet langer beschikbaar is.
+  msg_cant_delete_user: ^De gebruiker kan niet verwijderd worden omdat %{value} momenteel nog gerelateerde assets heeft.
+  msg_cant_do: Kan de %{asset} niet %{action} daar deze niet langer beschikbaar is.
+  msg_email_not_found: Er is geen gebruiker met dat emailadres gevonden.
+  msg_enter_new_password: Geef a.u.b. uw nieuwe wachtwoord op.
+  msg_goodbye: U bent uitgelogd.
+  msg_invalid_password: ^Geef a.u.b. geldig wachtwoord op
+  msg_invalig_login: Ongeldige gebruikersnaam of wachtwoord.
+  msg_last_login: U was voor het laatst ingelogd op %{value}.
+  msg_login_needed: U moet ingelogd zijn om toegang te krijgen tot deze pagina.
+  msg_logout_needed: U moet uitgelogd zijn om toegang te krijgen tot deze pagina.
+  msg_password_changed: Uw wachtwoord is gewijzigd.
+  msg_password_not_changed: Uw wachtwoord is niet gewijzigd.
+  msg_password_updated: Uw wachtwoord is succesvol bijgewerkt.
+  msg_pwd_instructions_sent: Instructies voor het opnieuw instellen van uw wachtwoord zijn naar u verzonden. Controleer a.u.b. uw email.
+  msg_require_admin: U moet Administrator zijn om toegang te krijgen tot deze pagina.
+  msg_successful_signup: Succesvol aangemeld, welkom in het CRM van Het Nieuwe Instituut!
+  msg_welcome: Welkom in het CRM van Het Nieuwe Instituut!
+
+  # Options.
+  #----------------------------------------------------------------------------
+  option_amount*probability: gewogen hoeveelheid
+  activity_options: Toon %{models} %{action_type} uitgevoerd door %{user} in de afgelopen %{period}.
+  all_users: alle gebruikers
+  option_after: na
+  option_all: alle
+  option_all_users: Alle Gebruikers
+  option_amount: hoeveelheid
+  option_before: voor
+  option_brief: korte
+  option_closes_on: sluitingsdatum
+  option_company: organisatie
+  option_created_at: opvoerdatum
+  option_ends_on: eind datum
+  option_first_name: voornaam
+  option_last_name: achternaam
+  option_long: lang
+  option_name: naam
+  option_probability: waarschijnlijkheid
+  option_rating: waardering
+  option_revenue: actuele opbrengst
+  option_starts_on: startdatum
+  option_updated_at: date updated
+  show_per_page: Toon %{number} %{models} per pagina gebruik makend van %{fmt} format.
+  sort_by: Sorteer op %{field}
+  sort_by_displaying: Sorteer %{models} op %{field} waarbij de naam van %{position} als eerste getoond wordt.
+  entities_per_page: ! '%{entity} per pagina:'
+  contacts_index_long: Lang formaat
+  contacts_index_brief: Kort formaat
+  contacts_index_full: Vol formaat
+  accounts_index_normal: Normaal formaat
+
+  # Views -> Profile.
+  #----------------------------------------------------------------------------
+  aim: AOL IM
+  already_signed_up: Al aangemeld?
+  alt_email: Alternatieve email
+  avatar: Avatar
+  change_password: Verander Wachtwoord
+  company: Organisatie
+  contact_info: Contact Informatie
+  current_password: Current password
+  edit_profile: Wijzig Profiel
+  first_name: Voornaam
+  google: Google IM
+  gravatar_help: Niet bekend met Gravatars? Leer meer over Gravatars
+  image_file: Afbeeldingsbestand
+  image_help: De afbeelding die u upload zal automatisch geresized worden tot 75 x 75 pixels. Ondersteunde bestandsformaten zijn GIF, JPG, en PNG.
+  job_title: Functienaam
+  last_name: Achternaam
+  login_now_link: Log nu in!
+  mobile: Mobiel
+  my_profile: Mijn Profiel
+  new_password: Nieuw wachtwoord
+  password: Wachtwoord
+  password_confirmation: Bevestig nieuw wachtwoord
+  phone: Telefoon
+  profile: Profiel
+  profile_language: Taal
+  save_profile: Sla profiel op
+  sign_up: Meld Aan 
+  sign_up_button: Meld Aan
+  skype: Skype
+  upload_picture: Afbeelding Laden
+  use_gravatar: Gebruik Gravatar
+  user: Gebruiker
+  username: Gebruikersnaam
+  yahoo: Yahoo IM
+  born_on: Geboren op
+  reports_to: Reporteert aan
+  access: Toegang
+
+  # Views -> Authenticate.
+  #----------------------------------------------------------------------------
+  forgot_password: Wachtwoord Vergeten
+  login: Inloggen
+  no_account: Heeft u geen account?
+  remember_me: Onthoud mij
+  sign_up_now: Meld u nu aan!
+
+  # Views -> Accounts.
+  #----------------------------------------------------------------------------
+  account: Organisatie
+  account_id: Organisatie
+  select_an_account: Selecteer een Organisatie
+  account_small: organisatie
+  account_summary: Samenvatting Organisatie
+  account_categories: Categorieën Organisaties
+  accounts: Organisaties
+  accounts_options: Opties Organisaties
+  accounts_small: organisaties
+  assigned_to: Toegewezen aan
+  billing_address: Facturatieadres
+  create_account: Creëer organisatie
+  date_created: Datum Gecreëeerd
+  date_updated: Datum Geüpdate
+  fax: Fax
+  intro: U kunt informatie over %{value} later opvoeren.
+  keep_private: Houd het privé, deel niet met anderen
+  mail_to: Mail naar %{value}
+  make_public: Deel met iedereen
+  mobile_small: mobiel
+  open_in_window: Open %{value} in een nieuw venster
+  phone_small: telefoon
+  phone_toll_free: Heffingsvrij
+  pipeline: Pijplijn
+  same_as_billing: zelfde als facturatie
+  save_account: Bewaar Organisatie
+  share_with: Deel het met andere mensen
+  shipping_address: Verzendadres
+  total_accounts: Totaal Organisaties
+  website: Website
+  account_with_title_department: ! '%{title}, %{department} bij %{account}'
+  account_with_title: ! '%{title} bij %{account}'
+
+  # Views -> Contacts.
+  #----------------------------------------------------------------------------
+  alt_email_small: Andere
+  blog: Website/Blog
+  contact: Persoon
+  contact_small: persoon
+  contacts: Personen
+  contacts_options: Opties Personen
+  contacts_small: personen
+  contact_summary: Samenvatting Persoon
+  create_contact: Creëer Persoon
+  department: Afdeling
+  department_small: ! '%{value} afdeling'
+  do_not_call: Niet bellen
+  extra_info: Extra Informatie
+  extra_info_small: extra persoon
+  facebook: Facebook
+  linked_in: LinkedIn
+  myself: Mijzelf
+  permissions_intro_private: Standaard heeft alleen u toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.
+  permissions_intro_public: Standaard hebben alle gebruikers toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.
+  permissions_intro_shared: Standaard hebben alleen de geselecteerde gebruikers toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.
+  referred_by: Doorverwezen door
+  referred_by_small: doorverwezen door
+  save_contact: Bewaar Persoon
+  twitter: Twitter
+  unassigned: Niet toegwezen
+  web_presence: Web Aanwezigheid
+  web_presence_small: web aanwezigheid
+  works_at: ! '%{job_title} bij %{company}'
+  general_info: Algemene Informatie
+  show_general_info_small: Toon algemene informatie van deze persoon.
+  show_extra_info_small: Toon extra informatie van deze persoon.
+  tag_details: ! '%{tag} Details'
+  show_tag_info_small: Toon %{tag} informatie van deze persoon.
+  shared_with_everyone: Met iedereen gedeeld
+  title: Titel
+  subscriptions: Abonnementen
+
+  # Views -> Home.
+  #----------------------------------------------------------------------------
+  action_completed: voltooid
+  action_create: gecreëerd
+  action_destroy: verwijderd
+  action_reassigned: opnieuw toegewezen
+  action_rejected: afgewezen
+  action_rescheduled: opnieuw ingepland
+  action_update: geüpdate
+  action_view: bekeken
+  action_won: gewonnen
+  activities: Activiteiten
+  no_activity_records: Geen activiteiten records gevonden.
+  recent_activity: Recente Activiteit
+  recent_activity_options: Opties Recente Activiteit
+  subject_account: organisatie
+  subject_address: adres op
+  subject_comment: commentaar op
+  subject_contact: persoon
+  subject_email: email op
+  subject_user: gebruiker
+  tag_list: Tags
+  create_past_participle: Record Creaties
+  view_past_participle: Vertoningen
+  update_past_participle: Updates
+  destroy_past_participle: Verwijderingen
+  all_events_past_participle: Activiteiten
+  action_create_comment: ! '- &quot;%{comment}&quot;'
+  my_accounts: Mijn Organisaties
+  no_account_records: U heeft geen organisaties
+  not_showing_hidden_entities: De %{count} van %{entity} wordt niet getoond.
+
+  # Views -> Common.
+  #----------------------------------------------------------------------------
+  add_note: Voeg Notitie Toe
+  save_note: Sla Notitie Op
+  add_note_help: Voeg nieuwe notitie toe...
+  edit_note: Bewerk Notitie
+  added_ago: toegevoegde %{value}
+  added_by: toegevoegd %{time_ago} door %{user}
+  back: Terug
+  cancel: Cancel
+  close_form: Sluit formulier
+  comment_intro: U kunt later opmerkingen toevoegen.
+  confirm_delete: Weet u zeker dat u deze %{value} wil verwijderen?
+  copy_permissions: Kopieer %{value} permissies
+  could_not_find: Kon geen %{value} vinden.
+  could_not_find_matching: Kon geen %{value} vinden gerelateerd aan
+  create_new: creëer nieuw
+  create_a_new: creëer een nieuwe
+  select_existing: selecteer bestaande
+  delete: Verwijder
+  discard: Verwijder
+  edit: Bewerk
+  items_total: ! '%{count} totaal.'
+  less: Minder...
+  me: mij
+  more: Meer...
+  n_a: N/B
+  name: Naam
+  no_match: Geen %{value} overeenkomst
+  no_recent_items: Er zijn nog geen recente items om te tonen.
+  options: Opties
+  permissions: Permissies
+  please_retry: probeer a.u.b. een andere query.
+  recent_items: Recente Items
+  select_contact: Selecteer Persoon
+  search_assets: Zoek %{value}
+  time_ago: ! '%{value} geleden'
+  background_info: Achtergrond
+  address: Addres
+  street1: Straat 1
+  street2: Straat 2
+  city: Stad
+  zipcode: Postcode
+  state: Provincie
+  country: Lan
+  select_a_country: Selecteer een Land
+  expand_all: Vergroot alles uit
+  collapse_all: Klap alles uit
+  expanded: Uitvergroot
+  collapsed: Uitgeklapt
+
+  # Views -> Layout.
+  #----------------------------------------------------------------------------
+  about: Over
+  about_dev_group: Discussiegroep voor ontwikkelaars
+  about_features: Features en bugs
+  about_ffc: About Fat Free CRM
+  about_ffc_resources: Fat Free CRM resources (links openen een nieuw venster)
+  about_ffc_version: Fat Free CRM versie
+  about_home_page: Home pagina
+  about_project_page: Project pagina
+  about_thank_you: Bedankt voor het gebruiken van dit CRM!
+  about_twitter: Twitter commit updates
+  about_user_group: Discussiegroep voor gebruikers
+  admin: Admin
+  logout: Uitloggen
+  quick_find: Snelzoeken
+  welcome: Welkom
+
+  # Advanced search
+  accounts_advanced_search: Organisaties uitgebreid zoeken 
+  advanced_search: Uitgebreid zoeken
+  basic_search: Standaard zoeken
+  search_results_count:
+    one: Zoekopdracht had %{count} resultaat.
+    other: Zoekopdracht had %{count} resultaten.
+
+  # Views -> Comments.
+  #----------------------------------------------------------------------------
+  comment: Opmerking
+  edit_comment: Opmerking aanpassen
+  show: Tonen
+  update: Updaten
+  following_users_will_be_notified: De volgende gebruikers worden via mail op de hoogte gesteld
+  notifications_tooltip: Geabonneerden worden via email op de hoogte gebracht van opmerkingen
+  subscribe_via_email: Abonneer via email
+  disable_email_subscriptions: Schakel email abonnementen uit
+  added_note: toegevoegde notitie %{value}
+
+  # Views -> Emails.
+  #----------------------------------------------------------------------------
+
+  # Views -> Passwords.
+  #----------------------------------------------------------------------------
+  confirm_password_intro: Voer a.u.b. uw nieuwe wachtwoord op en bevestig deze vervolgens. 
+  password_intro: Geef a.u.b. uw emailadres op en de instructies om uw wachtwoord te resetten worden naar u opgestuurd. 
+  reset_password: Reset Wachtwoord
+  update_password_and_login: Update Wachtwoord en Login
+
+  # Views -> Admin
+  #----------------------------------------------------------------------------
+  back_to_crm: Terug naar CRM
+  crm_admin_page: CRM Administratie
+
+  # Views -> Admin -> Groups
+  #----------------------------------------------------------------------------
+  create_group: Creëer Groep
+  save_group: Bewaar Groep
+  group_members: leden
+  groups: Groepen
+  groups_small: groepen
+  group_small: groep
+
+  # Views -> Admin -> Users
+  #----------------------------------------------------------------------------
+  confirm_group_delete: Weet u zeker dat u deze groep wil verwijderen. Er zijn %{count} items die er naar verwijzen.
+  approve: Bevestig
+  create_user: Creëer Gebruiker
+  last_seen: '%{value} geleden voor het laatst gezien'
+  last_seen2: last seen %{value}
+  personal_information: Persoonlijke Informatie
+  group_memberships: Groep Lidmaatschappen
+  reactivate: Heractiveren
+  save_user: Bewaar Gebruiker
+  suspend: Blokkeren
+  user_active: Actief
+  user_admin: Admin
+  user_awaits_approval: wacht op uw goedkeuring
+  user_confirm_delete: Een gebruiker kan alleen verwijderd worden als er geen gerelateerde onderdelen achterblijven.
+  user_is_admin: De gebruiker is Administrator
+  user_never_logged_in: is nog niet ingelogd
+  user_signed_up: Aangemeld
+  user_signed_up_on: is aangemeld op %{value}
+  user_since: user sinds %{value}
+  user_suspended: Geblokkeerd
+  user_suspended_on: geblokkeerd op %{value}
+  users: Gebruikers
+  users_small: gebruikers
+
+  # Views -> Versions
+  #----------------------------------------------------------------------------
+  versions: History
+  version:
+    create: ! '%{item} gecreëerd door %{by}'
+    update: ! '%{item} aangepast door %{by}'
+    destroy: ! '%{item} vernietigd door %{by}'
+    set_html: ! '%{attr} ingesteld op %{to}'
+    unset_html: ! '%{attr} ongedaan'
+    change_html: ! '%{attr} veranderd van %{from} naar %{to}'
+    anonymous: anoniem
+  account_contact_id: Organisatie id
+  account_contact_name: Organisatie naam
+  user_id: Gebruiker id
+  created_at: Gecreëerd op
+  updated_at: Geüpdate op
+
+  # Export.
+  #----------------------------------------------------------------------------
+  to_xls: Exporteer naar Excel
+  to_csv: Exporteer naar csv (inclusief verwijderde records)
+  to_rss: RSS feed
+  to_atom: Atom feed
+  to_perm: Permalink
+
+  # Dropbox.
+  #----------------------------------------------------------------------------
+  dropbox_notification_subject: dropbox - Toegevoegde email - %{subject}
+  dropbox_notification_intro: De door u verstuurde naar Dropbox verstuurde email is succesvol toegevoegd. 
+  dropbox_notification_to: Toegevoegd aan
+  subject: Subject
+  body: Body
+
+  # Comment Inbox
+  #----------------------------------------------------------------------------
+  comment_notification:
+    intro: ! '%{user_full_name} gaf commentaar op %{entity_type}: %{entity_name}'
+    reply_instructions: Beantwoord deze mail voor het toevoegen van een nieuwe comment, of bekijk de %{entity} online
+
+  # Lists
+  #----------------------------------------------------------------------------
+  global_lists: Algemene lijsten
+  personal_lists: Mijn lijsten
+  list: Lijst
+  no_saved_lists: Geen bewaarde lijsten
+  make_current_view_list: Maak een lijst van huidige scherm
+  list_name_info: Als u de naam gebruikt van een bestaande lijst, zal die lijst overschreven worden met de huidige instellingen. 
+
+  # Pluralizations.
+  #----------------------------------------------------------------------------
+  pluralize:
+    comment:
+      one: 1 commentaar
+      other: ! '%{count} commentaren'
+    contact:
+      one: 1 persoon
+      other: ! '%{count} personen'
+    day:
+      one: 1 dag
+      other: ! '%{count} dagen'
+    login:
+      one: 1 login
+      other: ! '%{count} logins'
+
+  # Custom date/time formats.
+  #----------------------------------------------------------------------------
+  date:
+    formats:
+      mmddyyyy: ! '%m/%d/%Y'
+      mmdd: ! '%b %e'
+      mmddyy: ! '%b %e, %Y'
+  time:
+    formats:
+      mmddhhss: ! '%b %e at %l:%M%p'
+      mmddyyyy_hhmm: ! '%e %b %Y at %l:%M%p'
+
+  # will_paginate translations copied for 'en-US'
+  #----------------------------------------------------------------------------
+  will_paginate:
+    previous_label: ! '&#8592; Previous'
+    next_label: Next &#8594;
+    page_gap: ! '&hellip;'
+    page_entries_info:
+      single_page:
+        zero: Geen %{plural} gevonden
+        one: Getoond 1 %{name}
+        other: Getoond alle %{count} %{plural}
+      multi_page: Getoond %{plural} %{from} - %{to} van %{total} in totaal
+
+  # Views -> Admin -> Custom Fields
+  #----------------------------------------------------------------------------
+  label: Label
+  custom_fields: Custom Velden
+  custom_field_options: Custom Veld Opties
+  create_field: Crëer veld
+  save_field: Bewaar veld
+  create_field_group: Creëer veld groep
+  edit_field_group: Bewerk veld groep
+  save_field_group: Bewaar veld groep
+  field_group_empty: Er zijn geen velden in deze groep.
+  select_or_create_tags: Selecteer bepaalde tags, of creëer een nieuwe tag door op 'enter’ te drukken.
+  restrict_by_tag: ! Beperkt door Tag:'
+  restrict_by_tag_info: (Toon alleen velden voor %{assets} die getagd zijn met volgende)
+  field_group_tag_restriction: Deze veldengroep is van toepassing op %{assets} getagd met "%{tag}"
+  field_group_unrestricted: Deze veldengroep is van toepassing op alle %{assets}
+  field_group_confirm_delete: Als een veldengroep verwijderd is, worden velden verplaatst naar de standaard veldengroep.
+
+  msg_cant_delete_field_group: Veldengroep kon niet verwijderd worden.
+  admin_fields_info: ! 'Custom velden worden getoond in groepen. Creëer een nieuwe veldengroep, of voeg velden toe aan de onderstaande groepen.<br /> U kunt velden verslepen om de volgorde van vertoning te wijzigen of om ze tussen veldgroepen te verplaatsen.'
+
+  # Views -> Admin -> Tags
+  #----------------------------------------------------------------------------
+  admin_fields_info2: ! 'Het wordt sterk aangeraden uw server te herstarten na het toevoegen of verwijderen van een custom veld.'
+  tags: Tags
+  tag_small: tag
+  tagged: Getagd
+  create_tag: Creëer Tag
+  save_tag: Bewaar Tag
+  field_group_tags: Veldgroepen getoond voor deze Tag
+
+  # Views -> Admin -> Plugins
+  #----------------------------------------------------------------------------
+  tag_with_taggings_confirm_delete: Als deze tag verwijderd wordt, zal deze verwijderd worden uit %{value} records.
+  msg_cant_delete_tag: Kon '%{value}' niet verwijderen doordat het gerelateerde veldgroepen heeft. 
+  views:
+    admin:
+      plugins:
+        author: Auteur
+        version: Versie
+        description: Beschrijving
+
+  # Simple Form translations
+  #----------------------------------------------------------------------------
+  simple_form:
+    yes: 'Ja'
+    no: 'Nee'
+    required:
+      text: noodzakelijk
+      mark: ! '*'
+      # U kan de onderstaande zin uncommenten als u de hele benodigde html moet overschrijven. 
+      # Als u gebruik maakt van html, zal text en mark niet gebruikt worden.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: ! Er zijn fouten gevonden, bekijk a.u.b.:'
+
+  # Form field types
+  #----------------------------------------------------------------------------
+  field_types:
+    string:
+      title: Kort Antwoord
+    text:
+      title: Lang Antwoord
+    select:
+      title: Selecteer Lijst
+    multiselect:
+      title: Multi Select
+    radio:
+      title: Radio Buttons
+    boolean:
+      title: Checkbox
+    check_boxes:
+      title: Checkbox Lijst
+    date:
+      title: Datum
+    date_pair:
+      title: Datum Pair
+    datetime:
+      title: Datum & Tijd
+    datetime_pair:
+      title: Datum & Tijd Pair
+    email:
+      title: Emailadres
+    url:
+      title: URL
+    tel:
+      title: Telefoonnummer
+    decimal:
+      title: Nummer (Decimaal)
+    integer:
+      title: Nummer (Integer)
+    float:
+      title: Nummer (Floating Point)
+  pair:
+    start: Start
+    end: Einde
+    from_to: Van %{from} tot %{to}
+    from_only: Van %{from}
+    to_only: Tot %{to}
