@@ -62,7 +62,11 @@ module AccountsHelper
   # - a helper so it is easy to override in plugins that allow for several accounts
   #----------------------------------------------------------------------------
   def account_with_url_for(contact)
-    contact.account ? link_to(h(contact.account.name), account_path(contact.account)) : ""
+    accounts = []
+    contact.accounts.each do |account|
+      accounts << link_to(h(account.name), account_path(account))
+    end
+    accounts.join(', ').html_safe
   end
 
   # Output account with title and department
@@ -74,7 +78,7 @@ module AccountsHelper
         content_tag :div, t(:works_at, :job_title => h(contact.title), :company => account_with_url_for(contact)).html_safe
       elsif !contact.title.blank?
         content_tag :div, h(contact.title)
-      elsif contact.account
+      elsif !contact.accounts.empty?
         content_tag :div, account_with_url_for(contact)
       else
         ""
@@ -87,25 +91,27 @@ module AccountsHelper
   # - a helper so it is easy to override in plugins that allow for several accounts
   #----------------------------------------------------------------------------
   def brief_account_info(contact)
-    text = ""
+    text = []
     title = contact.title
     department = contact.department
-    account = contact.account
-    account_text = ""
-    account_text = link_to_if(can?(:read, account), h(account.name), account_path(account)) if account.present?
+    accounts = contact.accounts
 
-    text << if title.present? && department.present?
-          t(:account_with_title_department, :title => h(title), :department => h(department), :account => account_text)
-        elsif title.present?
-          t(:account_with_title, :title => h(title), :account => account_text)
-        elsif department.present?
-          t(:account_with_title, :title => h(department), :account => account_text)
-        elsif account_text.present?
-          t(:works_at, :job_title => "", :company => account_text)
-        else
-          ""
-        end
-    text.html_safe
+    accounts.each do |account|
+      account_text = account.present? ? link_to_if(can?(:read, account), h(account.name), account_path(account)) : ''
+
+      text << if title.present? && department.present?
+            t(:account_with_title_department, :title => h(title), :department => h(department), :account => account_text)
+          elsif title.present?
+            t(:account_with_title, :title => h(title), :account => account_text)
+          elsif department.present?
+            t(:account_with_title, :title => h(department), :account => account_text)
+          elsif account_text.present?
+            t(:works_at, :job_title => "", :company => account_text)
+          else
+            ""
+          end
+    end
+    text.join(', ').html_safe
   end
 
 end

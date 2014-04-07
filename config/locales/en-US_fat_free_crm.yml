@@ -289,6 +289,8 @@ en-US:
   shared_with_everyone: Shared with everyone
   title: Title
   subscriptions: Subscriptions
+  add_new_account: Add a new account
+  new_account: New account name
 
   import:
     select_csv_file: You can upload your CSV file here

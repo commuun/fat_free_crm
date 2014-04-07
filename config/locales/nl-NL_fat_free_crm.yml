@@ -252,6 +252,7 @@ en-US:
   contacts_small: personen
   contact_summary: Samenvatting Persoon
   create_contact: Creëer Persoon
+  import_contacts: Personen importeren
   department: Afdeling
   department_small: ! '%{value} afdeling'
   do_not_call: Niet bellen
@@ -279,6 +280,18 @@ en-US:
   shared_with_everyone: Met iedereen gedeeld
   title: Titel
   subscriptions: Abonnementen
+  add_new_account: Voeg een nieuwe organisatie toe
+  new_account: Nieuwe organisatie naam
+
+  import:
+    select_csv_file: U kunt hier uw CSV bestand uploaden
+    select_mapping: Kies a.u.b. de velden uit het CSV bestand welke overeenkomen met de onderstaande database velden
+    failed_lines: De volgende regels konden niet worden geïmporteerd
+    download_failed_lines: '%{count} regels konden niet worden verwerkt. Klik hier om deze nu te downloaden.'
+    warning: 'NB: Afhankelijk van het formaat van het bestand kan dit enkele minuten duren.'
+    errors: Fouten
+
+  processing: Wordt verwerkt...
 
   # Views -> Home.
   #----------------------------------------------------------------------------
@@ -356,7 +369,7 @@ en-US:
   city: Stad
   zipcode: Postcode
   state: Provincie
-  country: Lan
+  country: Land
   select_a_country: Selecteer een Land
   expand_all: Vergroot alles uit
   collapse_all: Klap alles uit

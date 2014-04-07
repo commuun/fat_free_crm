@@ -37,8 +37,8 @@
 class Contact < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :reporting_user, :class_name => "User", :foreign_key => :reports_to
-  has_one     :account_contact, :dependent => :destroy
-  has_one     :account, :through => :account_contact
+  has_many    :account_contacts, :dependent => :destroy
+  has_many    :accounts, :through => :account_contacts
   has_one     :business_address, :dependent => :destroy, :as => :addressable, :class_name => "Address", :conditions => "address_type = 'Business'"
   has_many    :addresses, :dependent => :destroy, :as => :addressable, :class_name => "Address" # advanced search uses this
   has_many    :emails, :as => :mediator
@@ -82,6 +82,11 @@ class Contact < ActiveRecord::Base
   exportable
   sortable :by => [ "first_name ASC",  "last_name ASC", "created_at DESC", "updated_at DESC" ], :default => "created_at DESC"
 
+  # Assign a string to this temporary value to create a new account for this contact
+  attr_accessor :new_account
+
+  before_save :add_new_account
+
   validates_presence_of :first_name, :message => :missing_first_name, :if => -> { Setting.require_first_names }
   validates_presence_of :last_name,  :message => :missing_last_name,  :if => -> { Setting.require_last_names  }
   validate :users_for_shared_access
@@ -104,7 +109,6 @@ class Contact < ActiveRecord::Base
   # Backend handler for [Create New Contact] form (see contact/create).
   #----------------------------------------------------------------------------
   def save_with_account_and_permissions(params)
-    save_account(params)
     result = self.save
     result
   end
@@ -112,7 +116,6 @@ class Contact < ActiveRecord::Base
   # Backend handler for [Update Contact] form (see contact/update).
   #----------------------------------------------------------------------------
   def update_with_account_and_permissions(params)
-    save_account(params)
     # Must set access before user_ids, because user_ids= method depends on access value.
     self.access = params[:contact][:access] if params[:contact][:access]
     self.attributes = params[:contact]
@@ -138,20 +141,6 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def users_for_shared_access
     errors.add(:access, :share_contact) if self[:access] == "Shared" && !self.permissions.any?
-  end
-
-  # Handles the saving of related accounts
-  #----------------------------------------------------------------------------
-  def save_account(params)
-    if params[:account][:id] == "" || params[:account][:name] == ""
-      self.account = nil
-    else
-      account = Account.create_or_select_for(self, params[:account])
-      if self.account != account and account.id.present?
-        self.account_contact = AccountContact.new(:account => account, :contact => self)
-      end
-    end
-    self.reload unless self.new_record? # ensure the account association is updated
   end
 
   # Handles importing and processing new contact data
@@ -212,6 +201,12 @@ class Contact < ActiveRecord::Base
       contact: [:first_name, :last_name, :title, :department, :email, :phone, :mobile, :fax],
       address: [:street1, :street2, :city, :zipcode, :country]
     }
+  end
+
+  def add_new_account
+    unless self.new_account.blank?
+      self.accounts.build name: self.new_account
+    end
   end
 
   ActiveSupport.run_load_hooks(:fat_free_crm_contact, self)

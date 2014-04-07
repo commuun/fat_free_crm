@@ -19,24 +19,17 @@
           .label #{t :phone}:
           = f.text_field :phone
 
-    %table
-      = fields_for(@account) do |a|
-        = a.hidden_field :user_id
-        = a.hidden_field :access, :value => Setting.default_access
-        %tr
-          %td
-            != account_select_or_create(a) do |options|
-              - # Add [-- None --] account choice when editing existing contact that has an account.
-              - options[:include_blank] = "" unless @contact.new_record? || @contact.account.blank?
-          %td= spacer
-          %td
+      %tr
+        %td
+          .label #{t :accounts}:
+          = f.select :account_ids, Account.all.map{|a| [a.name, a.id]}, {}, multiple: true, class: 'select2'
+        %td= spacer
+        %td
+          %p= link_to_function t(:add_new_account), '$(".new-account-field").show(); $(this).hide();', class: 'add-new-account-button'
+          .new-account-field{ hidden }
+            .label #{t :new_account}:
+            = f.text_field :new_account
 
-        - if Setting.background_info && Setting.background_info.include?(:contact)
-          %tr
-            %td(colspan="3")
-              .label= t(:background_info) << ':'
-              = f.text_area :background_info, :style =>"width:500px", :rows => 3
+      = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
 
-        = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
-
-        = hook(:contact_top_section_bottom, self, :f => f)
+      = hook(:contact_top_section_bottom, self, :f => f)

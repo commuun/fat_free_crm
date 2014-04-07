@@ -53,7 +53,7 @@ class ContactsController < EntitiesController
   # GET /contacts/1/edit                                                   AJAX
   #----------------------------------------------------------------------------
   def edit
-    @account = @contact.account || Account.new(:user => current_user)
+    @accounts = @contact.accounts
     if params[:previous].to_s =~ /(\d+)\z/
       @previous = Contact.my.find_by_id($1) || $1.to_i
     end
