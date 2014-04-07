@@ -8,6 +8,10 @@
           = f.text_field :first_name
         %td= spacer
         %td
+          .label.top #{t :preposition}:
+          = f.text_field :preposition
+        %td= spacer
+        %td
           .label.top{ :class => "#{Setting.require_last_names ? 'req' : nil}" } #{t :last_name}:
           = f.text_field :last_name
       %tr

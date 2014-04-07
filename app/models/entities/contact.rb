@@ -99,10 +99,10 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def full_name(format = nil)
     if format.nil? || format == "before"
-      "#{self.first_name} #{self.last_name}"
+      [self.first_name, self.preposition, self.last_name]
     else
-      "#{self.last_name}, #{self.first_name}"
-    end
+      [self.preposition, self.last_name, self.first_name]
+    end.reject(&:blank?).join(' ')
   end
   alias :name :full_name
 
@@ -198,7 +198,7 @@ class Contact < ActiveRecord::Base
   def self.import_attributes
     {
       account: [:name, :email, :website, :phone, :fax],
-      contact: [:first_name, :last_name, :title, :department, :email, :phone, :mobile, :fax],
+      contact: [:first_name, :last_name, :preposition, :title, :department, :email, :phone, :mobile, :fax],
       address: [:street1, :street2, :city, :zipcode, :country]
     }
   end

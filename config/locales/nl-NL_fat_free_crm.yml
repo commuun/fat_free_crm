@@ -176,6 +176,7 @@ en-US:
   image_help: De afbeelding die u upload zal automatisch geresized worden tot 75 x 75 pixels. Ondersteunde bestandsformaten zijn GIF, JPG, en PNG.
   job_title: Functienaam
   last_name: Achternaam
+  preposition: Tussenvoegsel
   login_now_link: Log nu in!
   mobile: Mobiel
   my_profile: Mijn Profiel

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131207033244) do
+ActiveRecord::Schema.define(:version => 20140407123359) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(:version => 20131207033244) do
     t.string   "background_info"
     t.string   "skype",            :limit => 128
     t.text     "subscribed_users"
+    t.string   "preposition"
   end
 
   add_index "contacts", ["assigned_to"], :name => "index_contacts_on_assigned_to"
