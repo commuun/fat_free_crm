@@ -15,9 +15,6 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-# Override Rails Engines so that plugins have higher priority than the Application
-require 'fat_free_crm/gem_ext/rails/engine'
-
 module FatFreeCRM
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

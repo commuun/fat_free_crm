@@ -1,49 +1,60 @@
 source 'https://rubygems.org'
 
-# Uncomment the database that you have configured in config/database.yml
-# ----------------------------------------------------------------------
-# gem 'sqlite3'
+gem 'rails', '~> 3.2.0'
+
+# Nice HTML/CSS templating
+gem 'haml', '~> 3'
+gem 'sass', '~> 3'
+
+# We'll use MySQL 
 gem 'mysql2'
-gem 'pg'
 
-# Disabled this hack originally from https://github.com/bundler/bundler/issues/1041
-#
-# The reason is that it was messing with the Gemfile.lock and as a result cap deploy failed:
-#
-#   You are trying to install in deployment mode after changing
-#   your Gemfile. Run `bundle install` elsewhere and add the
-#   updated Gemfile.lock to version control.
-# 
-#   You have added to the Gemfile:
-#   * psych (~> 1)
-#
-# # Removes a gem dependency
-# def remove(name)
-#   @dependencies.reject! {|d| d.name == name }
-# end
-# 
-# # Replaces an existing gem dependency (e.g. from gemspec) with an alternate source.
-# def gem(name, *args)
-#   remove(name)
-#   super
-# end
-# 
-# # Bundler no longer treats runtime dependencies as base dependencies.
-# # The following code restores this behaviour.
-# # (See https://github.com/carlhuda/bundler/issues/1041)
-# spec = Bundler.load_gemspec( File.expand_path("../fat_free_crm.gemspec", __FILE__) )
-# spec.runtime_dependencies.each do |dep|
-#   gem dep.name, *(dep.requirement.as_list)
-# end
-# 
-# # Remove fat_free_crm dependency, to stop it from being auto-required too early.
-# remove 'fat_free_crm'
+# Jquery and a selec2 for rich select boxes
+gem 'jquery-rails'
+gem 'select2-rails'
+gem 'responds_to_parent', '>= 1.1.0'
+gem 'rails3-jquery-autocomplete'
 
-gem 'fat_free_crm'
+# We use authlogic for authenticication and cancan for authorization
+gem 'authlogic', '3.1.0'
+gem 'cancan'
+
+# View helpers 
+gem 'simple_form', '~> 2.0.1'
+gem 'will_paginate'
+gem 'paperclip'
+gem 'dynamic_form'
+
+# Some behaviors for our models
+gem 'acts_as_commentable', '~> 3.0.1'
+gem 'acts-as-taggable-on', '~> 2.3.3'
+gem 'acts_as_list', '~> 0.1.4'
+
+# Paper trail allows us to version our data
+gem 'paper_trail', '~> 2.7.0' # not ready for v3 yet
+
+# FontAwesome webfonts prepackaged http://fortawesome.github.io/Font-Awesome/
+gem 'font-awesome-rails'
+
+# Pre-flight for HTML mail, converts css styles etc.
+gem 'premailer'
+
+# HTML/XML document parsing
+gem 'nokogiri'
+
+gem 'valium'
+
+gem 'thor'
+
 gem 'highline'
 
-# Remove premailer auto-require
-gem 'premailer', :require => false
+gem 'ffaker', '>= 1.12.0'
+
+gem 'psych', '~> 1' if RUBY_VERSION.to_f < 2.0
+
+# FatFreeCRM has released it's own versions of the following gems:
+gem 'ransack_ui', '>= 1.1.0'
+gem 'email_reply_parser_ffcrm'
 
 group :development do
   # don't load these gems in travis
@@ -93,5 +104,3 @@ group :assets do
   gem 'execjs'
   gem 'therubyracer', :platform => :ruby unless ENV["CI"]
 end
-
-gem 'turbo-sprockets-rails3'
