@@ -1,0 +1,33 @@
+= styles_for :contact
+
+= render 'contacts_title'
+
+%h1= t('duplicate_contacts')
+
+%p= duplicate_filter_options
+
+%table
+  %thead
+    %tr
+      %th= t('id')
+      %th= t('name')
+      %th= t('address')
+      %th= t('account')
+  %tbody
+    - @duplicates.each do |group|
+      %tr
+        %td{ colspan: 6 }
+          %hr/
+      - group.each do |contact|
+        %tr
+          %td= contact.id
+          %td
+            = link_to contact.full_name, contact, target: '_new'
+            %br/
+            = contact.email
+          %td
+            = contact.addresses.pluck(:street1).join('<br/'.html_safe)
+            %br/
+            = contact.addresses.pluck(:zipcode).join('<br/'.html_safe)
+          %td
+            = contact_account_links( contact )

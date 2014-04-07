@@ -1,17 +1,6 @@
 = styles_for :contact
 
-.title_tools
-  #buttons
-    = view_buttons
-  .create_asset
-    = import_contacts_link
-    = link_to_inline :create_contact, new_contact_path, :text => t('create_contact')
-
-.title
-  %span{:id => "create_contact_title"}= t controller_name.to_sym
-  = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
-
-.remote#create_contact{ hidden }
+= render 'contacts_title'
 
 = render "search"
 

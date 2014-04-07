@@ -199,6 +199,11 @@ class ContactsController < EntitiesController
     end
   end
 
+  def find_duplicates
+    @filter = (params[:filter] || Contact::DUPLICATE_FILTERS.keys.first).to_sym
+    @duplicates = Contact.duplicate_search( @filter )
+  end
+
   private
   #----------------------------------------------------------------------------
   alias :get_contacts :get_list_of_records

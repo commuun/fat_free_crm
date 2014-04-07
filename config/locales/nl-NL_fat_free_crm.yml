@@ -254,6 +254,7 @@ en-US:
   contact_summary: Samenvatting Persoon
   create_contact: Creëer Persoon
   import_contacts: Personen importeren
+  duplicate_contacts: Dubbele personen
   department: Afdeling
   department_small: ! '%{value} afdeling'
   do_not_call: Niet bellen
@@ -364,7 +365,7 @@ en-US:
   search_assets: Zoek %{value}
   time_ago: ! '%{value} geleden'
   background_info: Achtergrond
-  address: Addres
+  address: Adres
   street1: Straat 1
   street2: Straat 2
   city: Stad

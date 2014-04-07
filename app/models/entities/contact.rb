@@ -35,6 +35,14 @@
 #
 
 class Contact < ActiveRecord::Base
+  # This hash is used to determine whether the database contains duplicates
+  # The keys are a simple title, the values either a string to match or an array to match more than one field
+  DUPLICATE_FILTERS = {
+    email:    :email,
+    name:     [:first_name, :preposition, :last_name],
+    address:  ['addresses.zipcode', 'addresses.street1']
+  }.freeze
+
   belongs_to  :user
   belongs_to  :reporting_user, :class_name => "User", :foreign_key => :reports_to
   has_many    :account_contacts, :dependent => :destroy
@@ -134,6 +142,27 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def discard!(attachment)
     self.send(attachment.class.name.tableize).delete(attachment)
+  end
+
+  def self.duplicate_search type
+    return [] unless DUPLICATE_FILTERS.keys.include?(type.to_sym)
+
+    fields = DUPLICATE_FILTERS[type.to_sym]
+
+    # First map the fields array into a concatenated whole
+    # (or just use the value if a field is a string or symbol)
+    if fields.is_a?(Array)
+      set = "CONCAT( #{fields.map{ |n| "IFNULL(#{n}, '')" }.join('," ",')} )"
+    else
+      set = fields.to_s
+    end
+
+    # Find all of this (combinations of) field(s) with more than one result
+    duplicates = self.joins(:addresses).select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("COUNT(#{set}) > 1")
+
+    duplicates.order(set).map do |d|
+      self.joins(:addresses).where( "#{set} = ?", d.value )
+    end
   end
 
   private

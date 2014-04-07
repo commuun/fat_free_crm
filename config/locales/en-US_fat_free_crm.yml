@@ -260,6 +260,7 @@ en-US:
   contact_summary: Contact Summary
   create_contact: Create Contact
   import_contacts: Import Contacts
+  duplicate_contacts: Find duplicates
   department: Department
   department_small: ! '%{value} department'
   do_not_call: Do not call
