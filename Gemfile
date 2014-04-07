@@ -50,8 +50,6 @@ gem 'highline'
 
 gem 'ffaker', '>= 1.12.0'
 
-gem 'psych', '~> 1' if RUBY_VERSION.to_f < 2.0
-
 # FatFreeCRM has released it's own versions of the following gems:
 gem 'ransack_ui', '>= 1.1.0'
 gem 'email_reply_parser_ffcrm'
