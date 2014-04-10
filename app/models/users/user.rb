@@ -92,7 +92,11 @@ class User < ActiveRecord::Base
 
   #----------------------------------------------------------------------------
   def full_name
-    self.first_name.blank? && self.last_name.blank? ? self.email : "#{self.first_name} #{self.last_name}".strip
+    if self.first_name.blank? && self.last_name.blank?
+      self.email
+    else
+      [self.first_name, self.preposition, self.last_name].reject(&:blank?).join(' ')
+    end
   end
 
   #----------------------------------------------------------------------------
