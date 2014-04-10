@@ -116,10 +116,16 @@ class ContactsController < EntitiesController
       if params[:import][:csv_file]
 
         session[:temp_csv_path] = Rails.root.join( 'tmp', "#{Time.now.to_i}_#{Time.now.usec}.csv" )
-        File.open( session[:temp_csv_path], 'wb' ).write( params[:import][:csv_file].read )
+
+        # We're assuming the uploaded file is in UTF-8 encoding
+        # We'll drop any invalid UTF8 sequences from the imported file
+        valid_csv = params[:import][:csv_file].read.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
+
+        # Store the converted CSV in the temp path
+        File.open( session[:temp_csv_path], 'wb' ).write( valid_csv )
 
         # Find the headers for the imported CSV file
-        @csv_header = CSV.read(session[:temp_csv_path]).first.uniq.reject(&:blank?)
+        @csv_header = CSV.read(session[:temp_csv_path], col_sep: Setting.csv_separator).first.uniq.reject(&:blank?)
 
       # If we've got a csv file uploaded previously, process it
       elsif !session[:temp_csv_path].blank?

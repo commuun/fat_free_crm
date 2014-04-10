@@ -180,7 +180,7 @@ class Contact < ActiveRecord::Base
   def self.import_csv( data, mapping )
     failed_lines = []
 
-    CSV.parse( data, headers: true ) do |line|
+    CSV.parse( data, headers: true, col_sep: Setting.csv_separator ) do |line|
 
       begin
         contact = Contact.new

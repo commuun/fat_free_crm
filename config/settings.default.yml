@@ -62,6 +62,11 @@
 :locale: "en-US"
 
 
+# The default separator for imported CSV files
+#------------------------------------------------------------------------------
+:csv_separator: ';'
+
+
 # Settings for outgoing email (SMTP)
 #------------------------------------------------------------------------------
 :smtp:
