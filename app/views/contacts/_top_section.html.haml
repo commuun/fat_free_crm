@@ -16,6 +16,10 @@
           = f.text_field :last_name
       %tr
         %td
+          .label #{t :salutation}:
+          = f.text_field :salutation
+        %td= spacer
+        %td
           .label #{t :email}:
           = f.text_field :email
         %td= spacer
@@ -24,7 +28,7 @@
           = f.text_field :phone
 
       %tr
-        %td{ colspan: 3, class: 'accounts' }
+        %td{ colspan: 5, class: 'accounts' }
           %table
             = f.fields_for :account_contacts do |account_contacts_form|
               = render 'account_form', form: account_contacts_form

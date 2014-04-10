@@ -255,6 +255,7 @@ en-US:
   create_contact: Creëer Persoon
   import_contacts: Personen importeren
   duplicate_contacts: Dubbele personen
+  salutation: Aanhef
   department: Afdeling
   department_small: ! '%{value} afdeling'
   do_not_call: Niet bellen
