@@ -42,9 +42,18 @@ module ContactsHelper
   end
 
   def contact_account_links contact
-    contact.accounts.map do |account|
+    contact.accounts.uniq.map do |account|
       link_to account.name, account
     end.join(', ').html_safe
+  end
+
+  #
+  # Add a new account to the list of accounts in the edit user form
+  def add_account_link(form, label)
+    html = form.fields_for :account_contacts, AccountContact.new do |accounts_form|
+      render( partial: 'contacts/account_form', locals: { form: accounts_form })
+    end
+    link_to label, '#', class: 'add-line', data: { html: html.to_json }
   end
 
 end

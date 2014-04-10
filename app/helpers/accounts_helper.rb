@@ -73,9 +73,10 @@ module AccountsHelper
   # - a helper so it is easy to override in plugins that allow for several accounts
   #----------------------------------------------------------------------------
   def account_with_title_and_department(contact)
-    text = if !contact.title.blank? && contact.account
-        # works_at: "{{h(job_title)}} at {{h(company)}}"
-        content_tag :div, t(:works_at, :job_title => h(contact.title), :company => account_with_url_for(contact)).html_safe
+    text = if !contact.title.blank? && !contact.accounts.blank?
+        contact.account_contacts.map do |account_contact|
+          t(:works_at, :job_title => h(account_contact.title), :company => link_to( account_contact.account.name, account_contact.account) ).html_safe
+        end.join(', ').html_safe
       elsif !contact.title.blank?
         content_tag :div, h(contact.title)
       elsif !contact.accounts.empty?
@@ -92,11 +93,12 @@ module AccountsHelper
   #----------------------------------------------------------------------------
   def brief_account_info(contact)
     text = []
-    title = contact.title
-    department = contact.department
-    accounts = contact.accounts
 
-    accounts.each do |account|
+    contact.account_contacts.each do |account_contact|
+      account = account_contact.account
+      title = account_contact.title
+      department = account_contact.department
+
       account_text = account.present? ? link_to_if(can?(:read, account), h(account.name), account_path(account)) : ''
 
       text << if title.present? && department.present?

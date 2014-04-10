@@ -21,7 +21,7 @@
       - else
         = contact.title if contact.title?
 
-      - if (account = contact.account) and account.name?
+      - contact.accounts.uniq.each do |account|
         == #{t :at} #{link_to_if can?(:read, account), account.name, account_path(account)}
 
     %dt{ :style => "padding: 2px 0px 0px 0px" }

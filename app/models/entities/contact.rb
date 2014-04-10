@@ -56,6 +56,7 @@ class Contact < ActiveRecord::Base
 
   serialize :subscribed_users, Set
 
+  accepts_nested_attributes_for :account_contacts, :allow_destroy => true, :reject_if => proc {|attributes| AccountContact.reject_account_contact(attributes)}
   accepts_nested_attributes_for :business_address, :allow_destroy => true, :reject_if => proc {|attributes| Address.reject_address(attributes)}
 
   scope :created_by,  ->(user) { where( user_id: user.id ) }

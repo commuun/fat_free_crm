@@ -24,15 +24,14 @@
           = f.text_field :phone
 
       %tr
+        %td{ colspan: 3, class: 'accounts' }
+          %table
+            = f.fields_for :account_contacts do |account_contacts_form|
+              = render 'account_form', form: account_contacts_form
+
+      %tr
         %td
-          .label #{t :accounts}:
-          = f.select :account_ids, Account.all.map{|a| [a.name, a.id]}, {}, multiple: true, class: 'select2'
-        %td= spacer
-        %td
-          %p= link_to_function t(:add_new_account), '$(".new-account-field").show(); $(this).hide();', class: 'add-new-account-button'
-          .new-account-field{ hidden }
-            .label #{t :new_account}:
-            = f.text_field :new_account
+          .label= add_account_link( f, t('add_new_account') )
 
       = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
 

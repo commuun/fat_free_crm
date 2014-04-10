@@ -283,7 +283,6 @@ en-US:
   title: Titel
   subscriptions: Abonnementen
   add_new_account: Voeg een nieuwe organisatie toe
-  new_account: Nieuwe organisatie naam
 
   import:
     select_csv_file: U kunt hier uw CSV bestand uploaden
@@ -333,7 +332,7 @@ en-US:
   save_note: Sla Notitie Op
   add_note_help: Voeg nieuwe notitie toe...
   edit_note: Bewerk Notitie
-  added_ago: toegevoegde %{value}
+  added_ago: toegevoegd %{value}
   added_by: toegevoegd %{time_ago} door %{user}
   back: Terug
   cancel: Cancel
