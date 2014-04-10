@@ -30,7 +30,7 @@
             %td= t(attr)
             %td= form.input "account_address[#{attr}]", as: :select, collection: @csv_header, label: false, required: false
 
-    = form.button :submit, disable_with: t('import.processing')
+    = form.button :submit, disable_with: t('import.processing'), value: t('import.send_file')
 
 - elsif !@failed_lines.blank?
   %h3= t('import.failed_lines')
@@ -43,6 +43,6 @@
 
   = simple_form_for :import, url: import_contacts_path do |form|
     .section
-      = form.input :csv_file, as: :file
+      = form.input :csv_file, as: :file, label: t('import.choose_file')
     .section
-      = form.button :submit, disable_with: t('processing')
+      = form.button :submit, disable_with: t('processing'), value: t('import.send_file')

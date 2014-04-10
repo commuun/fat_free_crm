@@ -286,6 +286,8 @@ en-US:
 
   import:
     select_csv_file: U kunt hier uw CSV bestand uploaden
+    choose_file: Kies uw bestand
+    send_file: Opslaan
     select_mapping: Kies a.u.b. de velden uit het CSV bestand welke overeenkomen met de onderstaande database velden
     failed_lines: De volgende regels konden niet worden geïmporteerd
     download_failed_lines: '%{count} regels konden niet worden verwerkt. Klik hier om deze nu te downloaden.'

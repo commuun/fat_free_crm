@@ -296,6 +296,8 @@ en-US:
 
   import:
     select_csv_file: You can upload your CSV file here
+    choose_file: Select your CSV file
+    send_file: Save
     select_mapping: Please select the columns from your CSV file that match the database below
     failed_lines: The following lines could not be imported
     download_failed_lines: '%{count} records could not be processed, click here to download them.'
