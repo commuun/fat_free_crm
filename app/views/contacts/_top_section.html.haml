@@ -4,7 +4,7 @@
     %table
       %tr
         %td
-          .label.top.req{ :class => "#{Setting.require_first_names ? 'req' : nil}" } #{t :first_name}:
+          .label.top{ :class => "#{Setting.require_first_names ? 'req' : nil}" } #{t :first_name}:
           = f.text_field :first_name
         %td= spacer
         %td
