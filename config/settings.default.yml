@@ -42,6 +42,11 @@
 :host: ""
 
 
+# Title
+#------------------------------------------------------------------------------
+# The website's title, used in the main <title> tag and some other places
+:title: "Free CRM"
+
 # Base URL
 #------------------------------------------------------------------------------
 # Leave base_url blank if Fat Free CRM has been deployed in root URL, otherwise
@@ -203,17 +208,17 @@
 :tabs:
 - :active: false
   :text: :tab_contacts
-  :icon: :fa-user
+  :icon: contacts
   :url:
     :controller: contacts
 - :active: false
   :text: :tab_accounts
-  :icon: :fa-users
+  :icon: accounts
   :url:
     :controller: accounts
 - :active: true
   :text: :tab_dashboard
-  :icon: :fa-dashboard
+  :icon: dashboard
   :url:
     :controller: home
 

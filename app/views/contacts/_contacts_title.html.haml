@@ -6,7 +6,7 @@
     = find_duplicates_contacts_link 
     = link_to_inline :create_contact, new_contact_path, :text => t('create_contact')
 
-.title
+.title.contacts
   %span{:id => "create_contact_title"}= t controller_name.to_sym
   = image_tag("loading.gif", :size => :thumb, :id => "loading", :style => "display: none;")
 

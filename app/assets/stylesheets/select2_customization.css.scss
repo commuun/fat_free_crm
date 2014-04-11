@@ -1,0 +1,22 @@
+//
+//  Select2 customization
+//
+
+.select2-container {
+
+  .select2-choice {
+    border-radius: 0px;
+    background: white;
+    text-transform: uppercase;
+
+    .select2-arrow {
+      background: white;
+      padding: 0px 4px;
+    }
+
+    abbr {
+      right: 34px;
+    }
+  }
+
+}

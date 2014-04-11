@@ -16,5 +16,16 @@
       = link_to(t(:login), login_path) << " |"
       = link_to(t(:sign_up), signup_path) << " |" if can_signup?
       = link_to(t(:about), "#", :title => t(:about_ffc), :onclick => "$('#about').dialog({ title: this.title, modal: true }); return false;")
-  %h3
-    = link_to("Fat Free CRM", root_path)
+
+  #title
+    %h3
+      = link_to Setting.title , root_path
+
+  - unless tabless_layout?
+    #tabs
+      %ul
+        - tabs.each do |tab|
+          %li{ class: tab[:icon] }
+            = link_to(tab[:url], :class => tab[:active] ? "active" : nil) do
+              = t(tab[:text])
+
