@@ -8,7 +8,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .lists {
-  i.fa { font-size: 130% }
+  a.list_icon { font-size: 10pt; color: red; font-weight: bold; }
   a:hover { background:none; color:#0033cc }
   .list_icon { opacity: 0.5; }
   img.input_info { vertical-align: middle; }

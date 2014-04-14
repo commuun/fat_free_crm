@@ -12,7 +12,7 @@
           %dt= link_to(truncate(item.name, :length => 25), h(item.url), :title => item.name)
           %tt
             = link_to(url_for(item), :method => :delete, :confirm => t(:confirm_delete, value: 'list'), :remote => true, :class => "list_icon delete_on_hover") do
-              %i.fa{:"data-controller" => item.controller, class: get_icon(item.controller)}
+              &times;
 
   .list_save{ hidden_if(!params[:q]) }
     = link_to(t(:make_current_view_list), '#')

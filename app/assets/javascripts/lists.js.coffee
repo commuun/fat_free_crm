@@ -34,13 +34,11 @@
   $(document).on "mouseover", ".lists li", ->
     icon = $(this).find('.delete_on_hover i.fa')
     iconText = crm.get_icon(icon.attr('data-controller'))
-    icon.removeClass(iconText).addClass('fa-times-circle')
 
   # On li mouseout, change asset icons back
   $(document).on "mouseout", ".lists li", ->
     icon = $(this).find('.delete_on_hover i.fa')
     iconText = crm.get_icon(icon.attr('data-controller'))
-    icon.removeClass('fa-times-circle').addClass(iconText)
 
   # On search tab click, toggle list save on/off
   $(document).on 'click', '#search .tabs a', ->
