@@ -220,7 +220,7 @@ module ApplicationHelper
   end
 
   #----------------------------------------------------------------------------
-  def spacer(width = 10)
+  def spacer(width = 20)
     image_tag "1x1.gif", :width => width, :height => 1, :alt => nil
   end
 

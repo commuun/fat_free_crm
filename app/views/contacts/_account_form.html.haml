@@ -1,5 +1,9 @@
 %tr.account-contact
   %td
+    = form.hidden_field :_destroy, class: 'delete-checkbox'
+    = link_to '&times;'.html_safe, '#', class: 'remove-line'
+  %td= spacer
+  %td
     .label= t('account')
     = form.select :account_id, Account.all.map{|a| [a.name, a.id]}, {}, class: 'select2'
   %td= spacer
@@ -10,7 +14,3 @@
   %td
     .label= t('title')
     = form.text_field :title
-  %td= spacer
-  %td
-    .label= link_to '&times;'.html_safe, '#', class: 'remove-line'
-    = form.hidden_field :_destroy, class: 'delete-checkbox'

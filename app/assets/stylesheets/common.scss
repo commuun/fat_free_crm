@@ -49,6 +49,7 @@ $size_tab_width: 80px;
 .subtitle {
   border-bottom: 1px silver solid;
   color: #2f2f2f;
+  padding: 32px 0px 12px 0px;
   font: {
     size: 14px;
     weight: bold; };
@@ -57,7 +58,6 @@ $size_tab_width: 80px;
     font-size: 11px;
     padding-left: 5px; }
   a:link, a:visited {
-    color: $color_subtitle;
     text-decoration: none; }
   a:hover {
     background: none; };
@@ -175,7 +175,6 @@ $size_tab_width: 80px;
 
 .req, label.required {
   background: url("/assets/asterisk.gif") no-repeat scroll center right transparent;
-  color: navy;
   display: inline-block; }
 
 .required label {
@@ -207,6 +206,9 @@ $size_tab_width: 80px;
         display: inline;
         vertical-align: bottom; }
       input, select, textarea {
+        border: 1px solid #aaa;
+        padding: 4px 4px;
+        margin-bottom: 8px;
         width: 240px;
         display: block; }
       input[type="checkbox"], input[type="radio"] {
@@ -239,7 +241,7 @@ $size_tab_width: 80px;
 
 .buttonbar {
   border-top: 1px gray solid;
-  margin: 8px auto;
+  margin: 16px auto 32px auto;
   padding-top: 8px; }
 
 .section input, .sidebar input, .inline input,

@@ -27,16 +27,16 @@
           .label #{t :phone}:
           = f.text_field :phone
 
+      = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
+
       %tr
         %td{ colspan: 5, class: 'accounts' }
           %table
             = f.fields_for :account_contacts do |account_contacts_form|
               = render 'account_form', form: account_contacts_form
 
-      %tr
-        %td
-          .label= add_account_link( f, t('add_new_account') )
-
-      = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
+          .label.add-account
+            &raquo;
+            = add_account_link( f, t('add_new_account') )
 
       = hook(:contact_top_section_bottom, self, :f => f)
