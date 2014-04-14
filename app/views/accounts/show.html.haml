@@ -1,16 +1,19 @@
 - if (template = template_for_current_view)
   = render(template, :account => @account)
 - else
-  
-  -# default view
 
   = styles_for :contact
 
   = render 'accounts/title_bar', :account => @account
 
-  %div#edit_account{ hidden }
+  %div#edit_account
+    = render 'accounts/account_info', :account => @account
+
+  .subtitle
+    %h2= t(:comment)
 
   = render "comments/new", :commentable => @account
+
   = render :partial => "shared/timeline", :collection => @timeline
 
   = hook(:show_account_bottom, self) do

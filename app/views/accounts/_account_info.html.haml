@@ -1,0 +1,18 @@
+%table.detail-table
+  %tbody
+    %tr
+      %td.label= t(:name)
+      %td.value= account.name
+      %td.label= t(:email)
+      %td.value= account.email
+    %tr
+      %td.label= t(:phone)
+      %td.value= account.phone
+      %td.label= t(:fax)
+      %td.value= account.fax
+    %tr
+      - unless account.billing_address.blank?
+        %td.label= t(:address)
+        %td.value
+          = simple_format [account.billing_address.street1, account.billing_address.street2, account.billing_address.zipcode, account.billing_address.city, account.billing_address.country].reject(&:blank?).join("\n")
+

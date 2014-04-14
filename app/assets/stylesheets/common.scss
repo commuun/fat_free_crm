@@ -301,6 +301,23 @@ $size_tab_width: 80px;
     top-left-radius: 7px;
     bottom-left-radius: 7px; }; }
 
+table.detail-table {
+  width: 100%;
+  tr {
+    th {
+      text-align: left; }
+    th, td {
+      font-size: 12pt;
+      padding: 8px 20px;
+      vertical-align: top;
+      p { margin-top: 0px; } }
+    td.label {
+      width: 15%; }
+    td.value {
+      width: 35%;
+      background: #eee;
+      font-weight: bold; } } }
+
 // Indentation classes:
 //   - indent: for use with strip (regular indentation).
 //   - indentslim: for use with avatar and no strip (Contacts).

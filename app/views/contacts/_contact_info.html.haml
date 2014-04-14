@@ -1,0 +1,37 @@
+%table.detail-table
+  %tbody
+    %tr
+      %td.label= t(:name)
+      %td.value= contact.full_name
+      %td.label= t(:email)
+      %td.value= contact.email
+    %tr
+      %td.label= t(:phone)
+      %td.value= contact.phone
+      %td.label= t(:fax)
+      %td.value= contact.fax
+    %tr
+      %td.label= t(:tags)
+      %td.value= contact.tags.map(&:name).join(', ')
+      - unless contact.business_address.blank?
+        %td.label= t(:address)
+        %td.value
+          = simple_format [contact.business_address.street1, contact.business_address.street2, contact.business_address.zipcode, contact.business_address.city, contact.business_address.country].reject(&:blank?).join("\n")
+
+
+- unless contact.accounts.blank?
+  .subtitle
+    %h2= t(:accounts)
+
+  %table.detail-table
+    %thead
+      %tr
+        %th= t(:account)
+        %th= t(:department)
+        %th= t(:title)
+    %tbody
+      - contact.account_contacts.each do |account_contact|
+        %tr
+          %td= account_contact.account.name
+          %td= account_contact.department
+          %td= account_contact.title
