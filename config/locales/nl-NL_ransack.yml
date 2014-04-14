@@ -1,0 +1,90 @@
+nl-NL:
+  ransack:
+    search: "zoeken"
+    predicate: "predikaat"
+    and: "en"
+    or: "of"
+    any: "een van"
+    all: "alle"
+    combinator: "combinator"
+    attribute: "attribuut"
+    value: "waarde"
+    condition: "voorwaarde"
+    sort: "sorteren"
+    asc: "oplopend"
+    desc: "aflopend"
+    submit: "Zoeken"
+    add_group: "Voeg een groep filters toe"
+    group_first: "Toon resultaten met %{combinator} van de volgende match"
+    group_rest: ! '...en waar %{combinator} van de volgende match'
+    add_condition: "Voeg een filter toe"
+    remove_condition: "Verwijder filter"
+    predicates:
+      eq: "gelijk aan"
+      eq_any: "gelijk aan één van"
+      eq_all: "gelijk aan allee"
+      not_eq: "niet gelijk aan"
+      not_eq_any: "niet gelijk aan één van"
+      not_eq_all: "niet gelijk aan allee"
+      matches: "komt overeen"
+      matches_any: "komt overeen met één van"
+      matches_all: "komt overeen met allee"
+      does_not_match: "komt niet overeen"
+      does_not_match_any: "komt niet overeen met één van"
+      does_not_match_all: "komt niet overeen met allee"
+      lt: "minder dan"
+      lt_any: "minder dan één van"
+      lt_all: "minder dan alle"
+      lteq: "minder dan or equal to"
+      lteq_any: "minder dan or equal to één van"
+      lteq_all: "minder dan or equal to alle"
+      gt: "meer dan"
+      gt_any: "meer dan één van"
+      gt_all: "meer dan alle"
+      gteq: "meer dan or equal to"
+      gteq_any: "meer dan or equal to één van"
+      gteq_all: "meer dan or equal to alle"
+      in: "bevat"
+      in_any: "in één van"
+      in_all: "in alle"
+      not_in: "niet in"
+      not_in_any: "niet in één van"
+      not_in_all: "niet in alle"
+      cont: "bevat"
+      cont_any: "bevat één van"
+      cont_all: "bevat alle"
+      not_cont: "bevat niet"
+      not_cont_any: "bevat niet één van"
+      not_cont_all: "bevat niet alle"
+      start: "begint met"
+      start_any: "begint met één van"
+      start_all: "begint met alle"
+      not_start: "begint niet met"
+      not_start_any: "begint niet met één van"
+      not_start_all: "begint niet met alle"
+      end: "eindigt met"
+      end_any: "eindigt met één van"
+      end_all: "eindigt met alle"
+      not_end: "eindigt niet met"
+      not_end_any: "eindigt niet met één van"
+      not_end_all: "eindigt niet met alle"
+      'true': "is waar"
+      'false': "is niet waar"
+      present: "is aanwezig"
+      blank: "is blanco"
+      'null': "is 'null'"
+      not_null: "is niet 'null'"
+      alt:
+        date:
+          lt: voor
+          lt_any: voor één van
+          lt_all: voor alle
+          lteq: voor of op
+          lteq_any: voor of op één van
+          lteq_all: voor of op alle
+          gt: na
+          gt_any: na één van
+          gt_all: na alle
+          gteq: na of op
+          gteq_any: na of op één van
+          gteq_all: na of op alle
