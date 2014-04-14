@@ -114,8 +114,7 @@ $size_tab_width: 80px;
   width: 480px; }
 
 .standalone {
-  background: whitesmoke;
-  border: 20px lightsteelblue solid;
+  border: 4px #2f2f2f solid;
   margin: 75px auto 6px auto;
   padding: 20px;
   width: 400px;
@@ -124,8 +123,9 @@ $size_tab_width: 80px;
   -webkit-border-radius: 6px;
   -webkit-box-shadow: 5px 5px 15px #bbbbbb, -5px 0px 15px #bbbbbb;
   input[type="text"], input[type="password"] {
+    border: 1px solid #aaa;
     font-size: 16px;
-    padding: 2px;
+    padding: 4px;
     width: 355px; }
   input[type="submit"] {
     font-size: 14px; } }
