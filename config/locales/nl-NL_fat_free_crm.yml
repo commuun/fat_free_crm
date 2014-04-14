@@ -1,6 +1,6 @@
 ---
-en-US:
-  language: English
+nl-NL:
+  language: Nederlands
 
   # Generic terms.
   #----------------------------------------------------------------------------
@@ -9,7 +9,7 @@ en-US:
   at: bij
   here: hier
   no_button: 'Nee'
-  not_implemented: Nog niet geòmplementeerd.
+  not_implemented: Nog niet geïmplementeerd.
   or: of
   select_none: -- Geen --
   select_blank: -- Selecteer --
@@ -39,12 +39,12 @@ en-US:
 
   # Models/Activity.
   #----------------------------------------------------------------------------
-  one_hour: âÄn Uur
-  one_day: âÄn Dag
+  one_hour: Één Uur
+  one_day: Één Dag
   two_days: Twee Dagen
-  one_week: âÄn Week
+  one_week: Één Week
   two_weeks: Twee Weken
-  one_month: âÄn Maand
+  one_month: Één Maand
 
   # Model Validations.
   #----------------------------------------------------------------------------
@@ -87,18 +87,18 @@ en-US:
       account:
         rating:
           "0": "-"
-          "1": "Γÿà"
-          "2": "ΓÿàΓÿà"
-          "3": "ΓÿàΓÿàΓÿà"
-          "4": "ΓÿàΓÿàΓÿàΓÿà"
-          "5": "ΓÿàΓÿàΓÿàΓÿàΓÿà"
+          "1": "★"
+          "2": "★★"
+          "3": "★★★"
+          "4": "★★★★"
+          "5": "★★★★★"
 
   msg_account_suspended: Gebruikersaccount is stopgezet.
   password_reset_instruction: wachtwoord reset instructies
 
   # Controllers.
   #----------------------------------------------------------------------------
-  msg_account_created: Uw account is gecreæerd en wacht op goedkeuring door de systeembeheerder.
+  msg_account_created: Uw account is gecreëerd en wacht op goedkeuring door de systeembeheerder.
   msg_account_not_approved: Uw account is nog niet goedgekeurd.
   msg_asset_deleted: ! '%{value} is verwijderd.'
   msg_asset_not_available: This %{value} is niet meer beschikbaar.
