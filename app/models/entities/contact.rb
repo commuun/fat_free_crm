@@ -105,6 +105,14 @@ class Contact < ActiveRecord::Base
   def self.per_page ; 20                  ; end
   def self.first_name_position ; "before" ; end
 
+  # Map all available saluations into an array for options_for_select
+  #----------------------------------------------------------------------------
+  def self.salutations_for_select
+    Setting.salutations.map { |s|
+      [I18n.t(s.to_sym), s ]
+    }
+  end
+
   #----------------------------------------------------------------------------
   def full_name(format = nil)
     if format.nil? || format == "before"

@@ -285,6 +285,14 @@ nl-NL:
   subscriptions: Abonnementen
   add_new_account: Voeg een nieuwe organisatie toe
 
+  # Contact salutations
+  mr: Dhr.
+  ms: Mevr.
+  dr: Dr.
+  ir: Ir.
+  prof: Prof.
+
+  # Contact import views
   import:
     select_csv_file: U kunt hier uw CSV bestand uploaden
     choose_file: Kies uw bestand

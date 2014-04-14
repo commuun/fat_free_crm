@@ -295,6 +295,14 @@ en-US:
   add_new_account: Add a new account
   new_account: New account name
 
+  # Contact salutations
+  mr: Mr.
+  ms: Ms.
+  dr: Dr.
+  ir: Ir.
+  prof: Prof.
+
+  # Contact import views
   import:
     select_csv_file: You can upload your CSV file here
     choose_file: Select your CSV file

@@ -17,7 +17,7 @@
       %tr
         %td
           .label #{t :salutation}:
-          = f.text_field :salutation
+          = f.select :salutation, Contact.salutations_for_select, {}, class: 'select2'
         %td= spacer
         %td
           .label #{t :email}:
