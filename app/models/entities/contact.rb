@@ -194,7 +194,8 @@ class Contact < ActiveRecord::Base
       begin
         contact = Contact.new
         mapping[:contact].each do |field, mapping|
-          contact[field] = line[mapping]
+          # We need to use send here or tag_list won't work
+          contact.send( "#{field}=", line[mapping] )
         end
         address = contact.addresses.new
         mapping[:contact_address].each do |field, mapping|
@@ -236,7 +237,7 @@ class Contact < ActiveRecord::Base
   def self.import_attributes
     {
       account: [:name, :email, :website, :phone, :fax],
-      contact: [:first_name, :last_name, :preposition, :title, :department, :email, :phone, :mobile, :fax],
+      contact: [:first_name, :last_name, :preposition, :salutation, :title, :department, :email, :phone, :mobile, :fax, :tag_list],
       address: [:street1, :street2, :city, :zipcode, :country]
     }
   end
