@@ -1,0 +1,22 @@
+#import-contacts {
+  h3 {
+    margin: 10px 0px;
+  }
+
+  form {
+    margin: 10px 0px;
+    padding: 10px;
+    border: 3px solid #ddd;
+    label { float: left; width: 15%; background-position: 5px center; padding-left: 15px; }
+    input[type=file] { float: left; margin-right: 30px; }
+  }
+
+  .mapping {
+    float: left;
+    margin-right: 10px;
+    td { padding-right: 20px; }
+    select { width: 200px; }
+  }
+
+  .clear { clear: both; }
+}
