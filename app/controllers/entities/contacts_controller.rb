@@ -122,7 +122,9 @@ class ContactsController < EntitiesController
         valid_csv = params[:import][:csv_file].read.encode("UTF-8", :invalid => :replace, :undef => :replace, :replace => "?")
 
         # Store the converted CSV in the temp path
-        File.open( session[:temp_csv_path], 'wb' ).write( valid_csv )
+        f = File.open( session[:temp_csv_path], 'wb' )
+        f.write( valid_csv )
+        f.close
 
         # Find the headers for the imported CSV file
         @csv_header = CSV.read(session[:temp_csv_path], col_sep: Setting.csv_separator).first.uniq.reject(&:blank?)
@@ -151,7 +153,9 @@ class ContactsController < EntitiesController
           end
 
           # Write those lines to the tempfile (we can download them later through the action below)
-          File.open( session[:failed_path], 'w' ).write(my_csv)
+          f = File.open( session[:failed_path], 'w' )
+          f.write(my_csv)
+          f.save
         end
 
         # Remove the tempfile and the session reference to it
