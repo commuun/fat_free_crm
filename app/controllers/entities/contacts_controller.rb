@@ -155,7 +155,7 @@ class ContactsController < EntitiesController
           # Write those lines to the tempfile (we can download them later through the action below)
           f = File.open( session[:failed_path], 'w' )
           f.write(my_csv)
-          f.save
+          f.close
         end
 
         # Remove the tempfile and the session reference to it
