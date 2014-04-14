@@ -21,6 +21,7 @@ Gemfile.ci.lock
 public/avatars/**/*
 public/assets
 
+RackMultipart*
 tmp
 Design
 .bundle
