@@ -118,10 +118,6 @@ $size_tab_width: 80px;
   margin: 75px auto 6px auto;
   padding: 20px;
   width: 400px;
-  -moz-border-radius: 6px;
-  -moz-box-shadow: 5px 5px 15px #bbbbbb, -5px 0px 15px #bbbbbb;
-  -webkit-border-radius: 6px;
-  -webkit-box-shadow: 5px 5px 15px #bbbbbb, -5px 0px 15px #bbbbbb;
   input[type="text"], input[type="password"] {
     border: 1px solid #aaa;
     font-size: 16px;
@@ -135,11 +131,7 @@ $size_tab_width: 80px;
 
 .main {
   background: white;
-  padding: 8px 15px 15px 15px;
-  -moz-border-radius: 4px;
-  -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-  -webkit-border-radius: 4px;
-  -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb; }
+  padding: 8px 15px 15px 15px; }
 
 .info {
   padding-top: 12px;
@@ -493,10 +485,6 @@ table.detail-table {
 .filters, .panel {
   margin: 0px 0px 20px 0px;
   padding: 6px 8px 20px 8px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
-  -webkit-box-shadow: 2px 2px 8px #bbbbbb, -2px 0px 8px #bbbbbb;
 
   border-bottom: 1px lightgrey solid;
 
@@ -585,7 +573,6 @@ table.detail-table {
   position: absolute;
   top: 0px;
   width: 12em;
-  -webkit-box-shadow: 10px 10px 15px gainsboro;
   ul {
     list-style: none;
     margin: 0px;
