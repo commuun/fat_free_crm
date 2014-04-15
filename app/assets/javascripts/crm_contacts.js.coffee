@@ -1,12 +1,12 @@
 # Allow users to delete a line from the account-contacts nested form
-$(document).on 'click', 'form.edit_contact a.remove-line', (event) ->
+$(document).on 'click', 'form.new_contact a.add-line, form.edit_contact a.remove-line', (event) ->
   event.preventDefault()
   line = $(this).parents('tr.account-contact')
   line.find( 'input.delete-checkbox' ).val(1)
   line.hide()
 
 # Allow users to add a line to the account-contacts nested form
-$(document).on 'click', 'form.edit_contact a.add-line', (event) ->
+$(document).on 'click', 'form.new_contact a.add-line, form.edit_contact a.add-line', (event) ->
   event.preventDefault()
 
   html = $(JSON.parse( $(this).data('html') ))
@@ -18,6 +18,6 @@ $(document).on 'click', 'form.edit_contact a.add-line', (event) ->
   select.attr( 'name', name )
 
   # Then append the new fields to the form
-  $('form.edit_contact td.accounts table').append( html )
+  $('form.new_contact td.accounts table, form.edit_contact td.accounts table').append( html )
 
   select.select2 'width':'resolve'
