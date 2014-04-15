@@ -38,7 +38,7 @@ class Contact < ActiveRecord::Base
   # This hash is used to determine whether the database contains duplicates
   # The keys are a simple title, the values either a string to match or an array to match more than one field
   DUPLICATE_FILTERS = {
-    email:    :email,
+    email:    [:email],
     name:     [:first_name, :preposition, :last_name],
     address:  ['addresses.zipcode', 'addresses.street1']
   }.freeze
@@ -160,17 +160,23 @@ class Contact < ActiveRecord::Base
 
     # First map the fields array into a concatenated whole
     # (or just use the value if a field is a string or symbol)
-    if fields.is_a?(Array)
-      set = "CONCAT( #{fields.map{ |n| "IFNULL(#{n}, '')" }.join('," ",')} )"
-    else
-      set = fields.to_s
+    set = "CONCAT( #{fields.map{ |n| "IFNULL(#{n}, '')" }.join('," ",')} )"
+
+    # Set the default scope to search with
+    scope = self
+
+    # If any of the fields contain references to another table, join it in
+    fields.each do |field|
+      if field.to_s.index('.')
+        scope = scope.joins( field.to_s.split('.').first.to_sym )
+      end
     end
 
     # Find all of this (combinations of) field(s) with more than one result
-    duplicates = self.joins(:addresses).select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("COUNT(#{set}) > 1")
+    duplicates = scope.select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("COUNT(#{set}) > 1")
 
     duplicates.order(set).map do |d|
-      self.joins(:addresses).where( "#{set} = ?", d.value )
+      scope.where( "#{set} = ?", d.value )
     end
   end
 
