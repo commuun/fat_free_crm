@@ -696,6 +696,8 @@ span.handle img {
     background-image: linear-gradient(top, #eaeaea 0%, #f2f2f2 70%);
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block;
     border-radius: 3px; }
   a:hover {
     background: #dadada; }
