@@ -204,6 +204,7 @@ class Contact < ActiveRecord::Base
           contact.send( "#{field}=", line[mapping] )
         end
         address = contact.addresses.new
+        address.address_type = 'Business'
         mapping[:contact_address].each do |field, mapping|
           address[field] = line[mapping]
         end
@@ -215,6 +216,7 @@ class Contact < ActiveRecord::Base
             account[field] = line[mapping]
           end
           address = account.addresses.first || account.addresses.new
+          address.address_type = 'Shipping'
           mapping[:account_address].each do |field, mapping|
             address[field] = line[mapping]
           end
