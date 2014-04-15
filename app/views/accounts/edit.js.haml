@@ -10,6 +10,9 @@
   - else                                            # Called from index page...
     $('##{id}').replaceWith('#{ j render(:partial => entity_name, :collection => [ @entity ]) }');
 
+  -# Show the account_info (show view, if any)
+  $('#account_info').show();
+
 - else # <----------------------------------------  Show [Edit] form.
 
   - if params[:cancel].blank?                       # Called from index page...
@@ -25,8 +28,14 @@
     -# Show [Edit] form.
     $('##{id}').html('#{ j render(:partial => "edit") }');
 
+    -# Hide the account_info (show view, if any)
+    $('#account_info').hide();
+
   - elsif params[:cancel].false?                    # Called from title of the landing page...
     $('#edit_#{entity_name}').html('#{ j render(:partial => "edit") }');
     crm.flip_form('edit_#{entity_name}');
     crm.set_title('edit_#{entity_name}', "#{t :edit} #{h @entity.name}");
+
+    -# Hide the account_info (show view, if any)
+    $('#account_info').hide();
   $('#new_#{entity_name} input[type!=hidden]').first().focus();

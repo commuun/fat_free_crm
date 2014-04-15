@@ -239,6 +239,16 @@ module ApplicationHelper
     text.html_safe
   end
 
+  # Refresh sidebar using the action view within an arbitrary controller.
+  #----------------------------------------------------------------------------
+  def refresh_show_info object
+    klass = object.class.name.underscore
+    text = ''
+    text << "$('##{klass}_info').html('#{ j render( :partial => "#{klass.pluralize}/#{klass}_info", :locals => { klass.to_sym => object } ) }');"
+    text << "$('##{klass}_info').show();"
+    text.html_safe
+  end
+
   # Display web presence mini-icons for Contact or Lead.
   #----------------------------------------------------------------------------
   def web_presence_icons(person)

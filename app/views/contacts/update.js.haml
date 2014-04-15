@@ -15,6 +15,9 @@
       = refresh_sidebar(:index)
     - else
       $('#recently').replaceWith('#{ j render(:partial => "shared/recently") }');
+
+  = refresh_show_info( @entity )
+
 - else
   $('##{id}').html('#{ j render(:partial => "edit") }');
   crm.create_or_select_account(#{ request.referer =~ /\/accounts\// || @account.id.blank? });

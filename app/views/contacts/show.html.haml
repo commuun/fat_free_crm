@@ -4,8 +4,9 @@
 
   = render 'contacts/title_bar', :contact => @contact
 
-  %div#edit_contact
-    = render 'contacts/contact_info', :contact => @contact
+  %div#edit_contact{ hidden }
+
+  #contact_info= render 'contacts/contact_info', :contact => @contact
 
   .subtitle
     %h2= t(:comment)

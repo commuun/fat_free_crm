@@ -6,8 +6,9 @@
 
   = render 'accounts/title_bar', :account => @account
 
-  %div#edit_account
-    = render 'accounts/account_info', :account => @account
+  %div#edit_account{ hidden }
+
+  #account_info= render 'accounts/account_info', :account => @account
 
   .subtitle
     %h2= t(:comment)

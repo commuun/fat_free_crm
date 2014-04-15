@@ -3,13 +3,14 @@
 - id = dom_id(@entity)
 
 - if params[:cancel].true? # <--------------------- Hide [Edit]
-
   - if called_from_landing_page?
     crm.flip_form('edit_#{entity_name}');
     crm.set_title('edit_#{entity_name}', '#{h @entity.name}');
   - else                                            # Called from index page...
     $('##{id}').replaceWith('#{ j render(:partial => entity_name, :collection => [ @entity ]) }');
 
+  -# Show the contact_info (show view, if any)
+  $('#contact_info').show();
 
 - else # <----------------------------------------- Show [Edit Contact] form.
 
@@ -26,9 +27,15 @@
     -# Show [Edit] form.
     $('##{id}').html('#{ j render(:partial => "edit") }');
 
+    -# Hide the contact_info (show view, if any)
+    $('#contact_info').hide();
+
   - elsif params[:cancel].false?                    # Called from title of the contact landing page...
     $('#edit_#{entity_name}').html('#{ j render(:partial => "edit") }');
     crm.flip_form('edit_#{entity_name}');
     crm.set_title('edit_#{entity_name}', "#{t :edit} #{h @entity.full_name}");
+
+    -# Hide the contact_info (show view, if any)
+    $('#contact_info').hide();
 
   $('#new_#{entity_name} input[type!=hidden]').first().focus();
