@@ -175,7 +175,7 @@ class Contact < ActiveRecord::Base
     end
 
     # Find all of this (combinations of) field(s) with more than one result
-    duplicates = scope.select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("COUNT(#{set}) > 1")
+    duplicates = scope.select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("count > 1 AND value != '' AND value IS NOT NULL")
 
     duplicates.order(set).map do |d|
       scope.where( "#{set} = ?", d.value )
