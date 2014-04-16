@@ -51,6 +51,8 @@ class Contact < ActiveRecord::Base
   has_many    :addresses, :dependent => :destroy, :as => :addressable, :class_name => "Address" # advanced search uses this
   has_many    :emails, :as => :mediator
 
+  before_save :sanitize_salutation
+
   has_ransackable_associations %w(account tags activities emails addresses comments)
   ransack_can_autocomplete
 
@@ -109,7 +111,7 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def self.salutations_for_select
     Setting.salutations.map { |s|
-      [I18n.t(s.to_sym), s ]
+      [I18n.t("salutations.#{s.to_sym}"), s ]
     }
   end
 
@@ -255,6 +257,13 @@ class Contact < ActiveRecord::Base
   def add_new_account
     unless self.new_account.blank?
       self.accounts.build name: self.new_account
+    end
+  end
+
+  # Make sure the salutation given for this contact is in the list or in the locale
+  def sanitize_salutation
+    unless Setting.salutations.include?( self.salutation.to_sym )
+      self.salutation = I18n.t('salutations').invert[self.salutation]
     end
   end
 

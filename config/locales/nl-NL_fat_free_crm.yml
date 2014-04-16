@@ -286,11 +286,12 @@ nl-NL:
   add_new_account: Voeg een nieuwe organisatie toe
 
   # Contact salutations
-  mr: Dhr.
-  ms: Mevr.
-  dr: Dr.
-  ir: Ir.
-  prof: Prof.
+  salutations:
+    mr: Dhr.
+    ms: Mevr.
+    dr: Dr.
+    ir: Ir.
+    prof: Prof.
 
   # Contact import views
   import:
