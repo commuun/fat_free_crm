@@ -203,6 +203,7 @@ class Contact < ActiveRecord::Base
           # We need to use send here or tag_list won't work
           contact.send( "#{field}=", line[mapping] )
         end
+
         address = contact.addresses.new
         address.address_type = 'Business'
         mapping[:contact_address].each do |field, mapping|
@@ -215,12 +216,13 @@ class Contact < ActiveRecord::Base
           mapping[:account].each do |field, mapping|
             account[field] = line[mapping]
           end
-          address = account.addresses.first || account.addresses.new
-          address.address_type = 'Shipping'
+          b_address = account.billing_address || account.addresses.new( address_type: 'Billing' )
+          s_address = account.shipping_address || account.addresses.new( address_type: 'Shipping' )
           mapping[:account_address].each do |field, mapping|
-            address[field] = line[mapping]
+            b_address[field] = line[mapping]
+            s_address[field] = line[mapping]
           end
-          Rails.logger.debug ">> Saving account: #{account.inspect} with addresses: #{account.addresses.inspect} (#{address.valid?})"
+          Rails.logger.debug ">> Saving account: #{account.inspect} with addresses: #{account.addresses.inspect}"
           if account.save
             account.contacts << contact
           end
