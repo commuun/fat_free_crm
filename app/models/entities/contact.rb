@@ -262,7 +262,7 @@ class Contact < ActiveRecord::Base
 
   # Make sure the salutation given for this contact is in the list or in the locale
   def sanitize_salutation
-    unless Setting.salutations.include?( self.salutation.to_sym )
+    unless Setting.salutations.include?( self.salutation.to_s.to_sym )
       self.salutation = I18n.t('salutations').invert[self.salutation]
     end
   end
