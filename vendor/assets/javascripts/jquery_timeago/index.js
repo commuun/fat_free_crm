@@ -15,3 +15,4 @@
 //= require jquery_timeago/jquery.timeago.sv-SE
 //= require jquery_timeago/jquery.timeago.th
 //= require jquery_timeago/jquery.timeago.zh-CN
+//= require jquery_timeago/jquery.timeago.nl
