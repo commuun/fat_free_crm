@@ -95,8 +95,11 @@ class Contact < ActiveRecord::Base
 
   # Assign a string to this temporary value to create a new account for this contact
   attr_accessor :new_account
+  # Assign a string to this accessor to create a new comment when the contact is created
+  attr_accessor :note
 
   before_save :add_new_account
+  before_save :add_new_note
 
   validates_presence_of :first_name, :message => :missing_first_name, :if => -> { Setting.require_first_names }
   validates_presence_of :last_name,  :message => :missing_last_name,  :if => -> { Setting.require_last_names  }
@@ -249,7 +252,7 @@ class Contact < ActiveRecord::Base
   def self.import_attributes
     {
       account: [:name, :email, :website, :phone, :fax],
-      contact: [:first_name, :last_name, :preposition, :salutation, :title, :department, :email, :phone, :mobile, :fax, :tag_list],
+      contact: [:first_name, :last_name, :preposition, :salutation, :title, :department, :email, :phone, :mobile, :fax, :tag_list, :note],
       address: [:street1, :street2, :city, :zipcode, :country]
     }
   end
@@ -257,6 +260,12 @@ class Contact < ActiveRecord::Base
   def add_new_account
     unless self.new_account.blank?
       self.accounts.build name: self.new_account
+    end
+  end
+
+  def add_new_note
+    unless self.note.blank?
+      self.comments.build comment: self.note.strip, user: User.first
     end
   end
 

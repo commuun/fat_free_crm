@@ -270,6 +270,7 @@ en-US:
   facebook: Facebook
   linked_in: LinkedIn
   myself: Myself
+  note: Note
   permissions_intro_private: By default only you will have access to the %{value}.
     You can change permissions later.
   permissions_intro_public: By default all users will have access to the %{value}.
