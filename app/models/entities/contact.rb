@@ -253,7 +253,7 @@ class Contact < ActiveRecord::Base
   def self.import_attributes
     {
       account: [:name, :email, :website, :phone, :fax],
-      contact: [:first_name, :last_name, :preposition, :salutation, :title, :department, :email, :phone, :mobile, :fax, :tag_list, :group_list, :note],
+      contact: [:initials, :first_name, :last_name, :preposition, :salutation, :title, :department, :email, :phone, :mobile, :fax, :tag_list, :group_list, :note],
       address: [:street1, :street2, :city, :zipcode, :country]
     }
   end

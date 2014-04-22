@@ -6,6 +6,11 @@
       %td.label= t(:email)
       %td.value= contact.email
     %tr
+      %td.label= t(:initials)
+      %td.value= contact.initials
+      %td.label= t(:salutation)
+      %td.value= I18n.t("salutations.#{contact.salutation}") unless contact.salutation.blank?
+    %tr
       %td.label= t(:phone)
       %td.value= contact.phone
       %td.label= t(:fax)

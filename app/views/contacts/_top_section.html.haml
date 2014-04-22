@@ -16,9 +16,14 @@
           = f.text_field :last_name
       %tr
         %td
+          .label #{t :initials}:
+          = f.text_field :initials
+        %td= spacer
+        %td
           .label #{t :salutation}:
           = f.select :salutation, Contact.salutations_for_select, { include_blank: true }, class: 'select2_clear'
-        %td= spacer
+
+      %tr
         %td
           .label #{t :email}:
           = f.text_field :email

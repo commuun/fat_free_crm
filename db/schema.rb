@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140410131806) do
+ActiveRecord::Schema.define(:version => 20140422132256) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20140410131806) do
     t.datetime "updated_at", :null => false
     t.string   "title"
     t.string   "department"
+    t.boolean  "primary"
   end
 
   create_table "accounts", :force => true do |t|
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20140410131806) do
     t.integer  "rating",                         :default => 0,        :null => false
     t.string   "category",         :limit => 32
     t.text     "subscribed_users"
+    t.string   "identifier"
   end
 
   add_index "accounts", ["assigned_to"], :name => "index_accounts_on_assigned_to"
@@ -104,31 +106,34 @@ ActiveRecord::Schema.define(:version => 20140410131806) do
     t.integer  "user_id"
     t.integer  "assigned_to"
     t.integer  "reports_to"
-    t.string   "first_name",       :limit => 64,  :default => ""
-    t.string   "last_name",        :limit => 64,  :default => "",       :null => false
-    t.string   "access",           :limit => 8,   :default => "Public"
-    t.string   "title",            :limit => 64
-    t.string   "department",       :limit => 64
-    t.string   "source",           :limit => 32
-    t.string   "email",            :limit => 64
-    t.string   "alt_email",        :limit => 64
-    t.string   "phone",            :limit => 32
-    t.string   "mobile",           :limit => 32
-    t.string   "fax",              :limit => 32
-    t.string   "blog",             :limit => 128
-    t.string   "linkedin",         :limit => 128
-    t.string   "facebook",         :limit => 128
-    t.string   "twitter",          :limit => 128
+    t.string   "first_name",          :limit => 64,  :default => ""
+    t.string   "last_name",           :limit => 64,  :default => "",       :null => false
+    t.string   "access",              :limit => 8,   :default => "Public"
+    t.string   "title",               :limit => 64
+    t.string   "department",          :limit => 64
+    t.string   "source",              :limit => 32
+    t.string   "email",               :limit => 64
+    t.string   "alt_email",           :limit => 64
+    t.string   "phone",               :limit => 32
+    t.string   "mobile",              :limit => 32
+    t.string   "fax",                 :limit => 32
+    t.string   "blog",                :limit => 128
+    t.string   "linkedin",            :limit => 128
+    t.string   "facebook",            :limit => 128
+    t.string   "twitter",             :limit => 128
     t.date     "born_on"
-    t.boolean  "do_not_call",                     :default => false,    :null => false
+    t.boolean  "do_not_call",                        :default => false,    :null => false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
     t.string   "background_info"
-    t.string   "skype",            :limit => 128
+    t.string   "skype",               :limit => 128
     t.text     "subscribed_users"
     t.string   "preposition"
     t.string   "salutation"
+    t.boolean  "use_private_address"
+    t.string   "identifier"
+    t.string   "initials"
   end
 
   add_index "contacts", ["assigned_to"], :name => "index_contacts_on_assigned_to"
