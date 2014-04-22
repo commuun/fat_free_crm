@@ -665,6 +665,17 @@ span.handle img {
   vertical-align: middle;
   margin-right: 5px; }
 
+.groups .group-tag {
+    background-color: #ccdcf0;
+    color: #333333;
+    font-weight: normal;
+    border: 1px solid #9caad0;
+    padding: 2px 6px 1px 6px;
+    margin: 4px 0 3px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    display: inline-block; }
+
 .tags, .list li dt .tags {
   margin-top: 4px;
   a:link, a:visited, li {
@@ -674,18 +685,9 @@ span.handle img {
     padding: 2px 6px 1px 6px;
     margin: 4px 0 3px 4px;
     border: 1px solid #bdbdbd;
-    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #eaeaea), color-stop(0.7, #f2f2f2));
-    background-image: -webkit-linear-gradient(center bottom, #eaeaea 0%, #f2f2f2 70%);
-    background-image: -moz-linear-gradient(center bottom, #eaeaea 0%, #f2f2f2 70%);
-    background-image: -o-linear-gradient(bottom, #eaeaea 0%, #f2f2f2 70%);
-    background-image: -ms-linear-gradient(top, #eaeaea 0%, #f2f2f2 70%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#eaeaea', endColorstr='#f2f2f2',GradientType=0 );
-    background-image: linear-gradient(top, #eaeaea 0%, #f2f2f2 70%);
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
+    border-radius: 3px;
     white-space: nowrap;
-    display: inline-block;
-    border-radius: 3px; }
+    display: inline-block; }
   a:hover {
     background: #dadada; }
   li {

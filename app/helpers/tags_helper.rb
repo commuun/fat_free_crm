@@ -28,4 +28,12 @@ module TagsHelper
     end.html_safe
   end
 
+  # Links for 
+  #----------------------------------------------------------------------------
+  def groups_for_index( model )
+    model.group_list.map do |group|
+      content_tag( :span, group, class: 'group-tag' )
+    end.join(" ").html_safe
+  end
+
 end

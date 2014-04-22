@@ -338,6 +338,7 @@ en-US:
   subject_email: email on
   subject_user: user
   tag_list: Tags
+  group_list: Groups
   create_past_participle: Record Creations
   view_past_participle: Views
   update_past_participle: Updates

@@ -28,6 +28,7 @@
 
   - if @contact.tag_list.present?
     %dt
-      .tags= tags_for_index(@contact)
+      %span.groups= groups_for_index(@contact)
+      %span.tags= tags_for_index(@contact)
 
   = hook(:show_contact_sidebar_bottom, self, :contact => @contact)

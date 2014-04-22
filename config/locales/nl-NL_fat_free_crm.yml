@@ -329,6 +329,7 @@ nl-NL:
   subject_email: email op
   subject_user: gebruiker
   tag_list: Tags
+  group_list: Groepen
   create_past_participle: Record Creaties
   view_past_participle: Vertoningen
   update_past_participle: Updates

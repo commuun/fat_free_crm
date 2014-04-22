@@ -1,8 +1,8 @@
 - asset = controller_name.singularize
 %td{ :valign => :top }
-  .label= t('tags')
+  .label= t('groups')
 
-  = f.hidden_field :tag_list,
-  {:class => "select2_tag", :data => {:tags => Tag.with_context('tags').all.map{|t| t.name},
+  = f.hidden_field :group_list,
+  {:class => "select2_tag", :data => {:tags => Tag.with_context('groups').all.map{|t| t.name},
   :url => url_for(action: 'field_group'), :placeholder => t(:select_or_create_tags),
   :multiple => true, :asset_id => f.object.try(:id) }}

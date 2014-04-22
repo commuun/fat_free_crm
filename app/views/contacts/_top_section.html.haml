@@ -27,7 +27,10 @@
           .label #{t :phone}:
           = f.text_field :phone
 
-      = render :partial => "/shared/tags", :locals => {:f => f, :span => 3}
+      %tr
+        = render :partial => "/shared/tags", :locals => {:f => f }
+        %td= spacer
+        = render :partial => "/shared/groups", :locals => {:f => f }
 
       %tr
         %td{ colspan: 5, class: 'accounts' }
