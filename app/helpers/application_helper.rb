@@ -116,7 +116,7 @@ module ApplicationHelper
   #----------------------------------------------------------------------------
   def link_to_delete(record, options = {})
     object = record.is_a?(Array) ? record.last : record
-    confirm = options[:confirm] || nil
+    confirm = options[:confirm] || t('confirm_delete', value: t(object.class.name.downcase))
 
     link_to(t(:delete) + "!",
       options[:url] || url_for(record),
