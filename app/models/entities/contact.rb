@@ -38,7 +38,7 @@ class Contact < ActiveRecord::Base
   # This hash is used to determine whether the database contains duplicates
   # The keys are a simple title, the values either a string to match or an array to match more than one field
   DUPLICATE_FILTERS = {
-    email:    [:email],
+    email:    [:email, :last_name],
     name:     [:first_name, :preposition, :last_name],
     address:  ['addresses.zipcode', 'addresses.street1']
   }.freeze

@@ -56,4 +56,12 @@ module ContactsHelper
     link_to label, '#', class: 'add-line', data: { html: html.to_json }
   end
 
+  #
+  # This helper renders the options field when merging multiple contacts
+  def merge_attribute_select contact, collection, attribute
+    options = [[t('merge_blank'), '']] + collection.map(&attribute).reject(&:blank?).uniq
+
+    select_tag "#{attribute}_select", options_for_select(options, contact[attribute]), class: 'select2 merge'
+  end
+
 end

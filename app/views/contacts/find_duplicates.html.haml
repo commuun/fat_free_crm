@@ -4,30 +4,38 @@
 
 %h1= t('duplicate_contacts')
 
-%p= duplicate_filter_options
+%p
+  = t('duplicate_filter')
+  = duplicate_filter_options
 
-%table
+%table.duplicates{ data: { url: merge_contacts_path } }
   %thead
     %tr
+      %th
       %th= t('id')
       %th= t('name')
       %th= t('address')
       %th= t('account')
+      %th
   %tbody
-    - @duplicates.each do |group|
+    - @duplicates.each_with_index do |group, index|
       %tr
         %td{ colspan: 6 }
           %hr/
       - group.each do |contact|
-        %tr
+        %tr{ class: "duplicate-group group-#{index}", data: { group: index } }
+          %td= check_box_tag "contacts[]", contact.id, false, class: 'duplicate-check'
           %td= contact.id
           %td
             = link_to contact.full_name, contact, target: '_new'
             %br/
             = contact.email
           %td
-            = contact.addresses.pluck(:street1).join('<br/'.html_safe)
+            = contact.addresses.pluck(:street1).join('<br/>'.html_safe)
             %br/
-            = contact.addresses.pluck(:zipcode).join('<br/'.html_safe)
+            = contact.addresses.pluck(:zipcode).join('<br/>'.html_safe)
           %td
             = contact_account_links( contact )
+          %td
+            - if contact == group.first
+              = button_tag t('merge'), hidden.merge( class: 'merge' )

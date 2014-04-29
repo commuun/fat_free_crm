@@ -57,6 +57,7 @@ Rails.application.routes.draw do
       match :import
       get :download_failed_import
       get :find_duplicates
+      match :merge
     end
     member do
       put  :attach

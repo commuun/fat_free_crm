@@ -256,6 +256,9 @@ nl-NL:
   create_contact: Creëer Persoon
   import_contacts: Personen importeren
   duplicate_contacts: Dubbele personen
+  duplicate_filter: 'Dubbele personen per:'
+  merge: Samenvoegen
+  merge_blank: Geef een nieuwe waarde op
   salutation: Aanhef
   department: Afdeling
   department_small: ! '%{value} afdeling'

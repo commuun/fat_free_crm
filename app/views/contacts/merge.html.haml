@@ -1,0 +1,159 @@
+= styles_for :contact
+
+= render 'contacts_title'
+
+%h1= t('merge')
+
+= simple_form_for @contact, url: merge_contacts_path do |f|
+
+  - @contacts.each do |contact|
+    = hidden_field_tag 'contacts[]', contact.id
+
+  = hook(:contact_top_section, self, :f => f) do
+    .section
+      %table.duplicates
+        %tr
+          %td
+            .label.top{ :class => "#{Setting.require_first_names ? 'req' : nil}" } #{t :first_name}
+            = merge_attribute_select @contact, @contacts, :first_name
+            = f.text_field :first_name, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+          %td= spacer
+          %td
+            .label.top #{t :preposition}
+            = merge_attribute_select @contact, @contacts, :preposition
+            = f.text_field :preposition, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+          %td= spacer
+          %td
+            .label.top{ :class => "#{Setting.require_last_names ? 'req' : nil}" } #{t :last_name}
+            = merge_attribute_select @contact, @contacts, :last_name
+            = f.text_field :last_name, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+        %tr
+          %td
+            .label #{t :initials}
+            = merge_attribute_select @contact, @contacts, :initials
+            = f.text_field :initials, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+          %td= spacer
+          %td
+            .label #{t :salutation}
+            = f.select :salutation, Contact.salutations_for_select, { include_blank: true }, class: 'select2_clear'
+
+        %tr
+          %td
+            .label #{t :email}
+            = merge_attribute_select @contact, @contacts, :email
+            = f.text_field :email, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+          %td= spacer
+          %td
+            .label #{t :phone}
+            = merge_attribute_select @contact, @contacts, :phone
+            = f.text_field :phone, hidden.merge( class: 'merge-blank' )
+            = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+
+        %tr
+          = render :partial => "/shared/tags", :locals => {:f => f }
+          %td= spacer
+          = render :partial => "/shared/groups", :locals => {:f => f }
+
+
+    %h2= t('accounts')
+    .section
+      %table.duplicates
+        %tr
+          %td{ colspan: 5, class: 'accounts' }
+            %table
+              = f.fields_for :account_contacts do |account_contacts_form|
+                = render 'account_form', form: account_contacts_form
+
+            .label.add-account
+              &raquo;
+              = add_account_link( f, t('add_new_account') )
+
+    .section
+      %table.duplicates
+        %tr
+          %td
+            %h2= t('address')
+            %table{ style: 'width: 300px;' }
+              = f.fields_for :business_address do |a|
+                %tr
+                  %td
+                    .label #{t :street1}
+                    = merge_attribute_select @contact.business_address, @contacts.map(&:business_address).reject(&:blank?), :street1
+                    = a.text_field :street1, hidden.merge( class: 'merge-blank' )
+                    = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %tr
+                  %td
+                    .label #{t :street2}
+                    = merge_attribute_select @contact.business_address, @contacts.map(&:business_address).reject(&:blank?), :street2
+                    = a.text_field :street2, hidden.merge( class: 'merge-blank' )
+                    = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %tr
+                  %td
+                    .label #{t :city}
+                    = merge_attribute_select @contact.business_address, @contacts.map(&:business_address).reject(&:blank?), :city
+                    = a.text_field :city, hidden.merge( class: 'merge-blank' )
+                    = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %tr
+                  %td
+                    .label #{t :state}
+                    = merge_attribute_select @contact.business_address, @contacts.map(&:business_address).reject(&:blank?), :state
+                    = a.text_field :state, hidden.merge( class: 'merge-blank' )
+                    = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %tr
+                  %td
+                    .label #{t :zipcode}
+                    = merge_attribute_select @contact.business_address, @contacts.map(&:business_address).reject(&:blank?), :zipcode
+                    = a.text_field :zipcode, hidden.merge( class: 'merge-blank' )
+                    = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %tr
+                  %td
+                    .label #{t :country}
+                    = a.country_select(:country, priority_countries, { :include_blank => "" }, {:"data-placeholder" => t(:select_a_country), :style => "width:150px; margin-top:6px", :class => 'select2'})
+
+          %td= spacer
+          %td
+            %h2= t('extra_info')
+            %table
+              %tr
+                %td
+                  .label #{t :job_title}
+                  = merge_attribute_select @contact, @contacts, :title
+                  = f.text_field :title, hidden.merge( class: 'merge-blank' )
+                  = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %td= spacer
+              %tr
+                %td
+                  .label #{t :department}
+                  = merge_attribute_select @contact, @contacts, :department
+                  = f.text_field :department, hidden.merge( class: 'merge-blank' )
+                  = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+              %tr
+                %td
+                  .label #{t :alt_email}
+                  = merge_attribute_select @contact, @contacts, :alt_email
+                  = f.text_field :alt_email, hidden.merge( class: 'merge-blank' )
+                  = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                %td= spacer
+              %tr
+                %td
+                  .label #{t :mobile}
+                  = merge_attribute_select @contact, @contacts, :mobile
+                  = f.text_field :mobile, hidden.merge( class: 'merge-blank' )
+                  = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+              %tr
+                %td
+                  .label #{t :fax}
+                  = merge_attribute_select @contact, @contacts, :title
+                  = f.text_field :title, hidden.merge( class: 'merge-blank' )
+                  = text_field_tag 'placeholder', '', class: 'merge-placeholder', disabled: true
+                  %div{:style => "margin-top:6px"}
+                    .check_box
+                      = f.check_box :do_not_call, {}, true
+                      #{t :do_not_call}
+
+  = f.button :submit

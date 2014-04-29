@@ -214,6 +214,65 @@ class ContactsController < EntitiesController
     @duplicates = Contact.duplicate_search( @filter )
   end
 
+  # GET /contacts/merge
+  #----------------------------------------------------------------------------
+  def merge
+    # Find all contacts to merge
+    @contacts = Contact.find( params[:contacts] )
+
+    # If POST then the form was submitted
+    if request.put? || request.post?
+      # Take the first contact as a base
+      @contact = @contacts.shift
+
+      Contact.transaction do
+
+        # For some reason, assigning a business address through nested attributes
+        # when the address is nil the address_type does not get set properly unless
+        # we assign it manually here.
+        params[:contact][:business_address_attributes][:address_type] = 'Business'
+
+        # And apply the submitted parameters to it
+        if @contact.update_attributes!(params[:contact])
+          # If successful, destroy all the other mergable accounts
+          @contacts.each(&:destroy)
+          # And show the new contact
+          redirect_to @contact
+        end
+      end
+    else
+      # Take the first contact as the base record
+      @contact = @contacts.first
+
+      # Apply the tags and groups from the other contacts to the base
+      @contact.tag_list = @contacts.map{ |c| c.tag_list }.flatten.uniq
+      @contact.group_list = @contacts.map{ |c| c.group_list }.flatten.uniq
+
+      # If any of the fields in the base contact is blank, fill it in with one of the others
+      %w[first_name preposition last_name salutation initials email telephone title department alt_email mobile fax].each do |attribute|
+        idx = 0
+        while @contact[attribute].blank? && idx < @contacts.count
+          @contact[attribute] = @contacts[idx][attribute]
+          idx += 1
+        end
+      end
+
+      # If the main contact doesn't have a business address, try to assign one of the others
+      idx = 0
+      while @contact.business_address.blank? && idx < @contacts.count
+        @contact.business_address = @contacts[idx].business_address unless @contacts[idx].business_address.blank?
+        idx += 1
+      end
+      @contact.build_business_address if @contact.business_address.blank?
+
+      # And assign the accounts from each other contact to the base
+      @contacts.each do |contact|
+        @contact.account_contacts += contact.account_contacts
+      end
+    end
+
+  end
+
   private
   #----------------------------------------------------------------------------
   alias :get_contacts :get_list_of_records
