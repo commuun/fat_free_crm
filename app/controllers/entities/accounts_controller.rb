@@ -127,6 +127,62 @@ class AccountsController < EntitiesController
     end
   end
 
+
+  # GET /accounts/find_duplicates
+  #----------------------------------------------------------------------------
+  def find_duplicates
+    @filter = (params[:filter] || Account::DUPLICATE_FILTERS.keys.first).to_sym
+    @duplicates = Account.duplicate_search( @filter )
+  end
+
+
+  # MATCH /accounts/merge
+  #----------------------------------------------------------------------------
+  def merge
+    # Find all accounts to merge
+    @accounts = Account.find( params[:accounts] )
+
+    # If POST then the form was submitted
+    if request.put? || request.post?
+      # Take the first account as a base
+      @account = @accounts.shift
+
+      Account.transaction do
+
+        # For some reason, assigning an address through nested attributes when
+        # the address is nil the address_type does not get set properly unless
+        # we assign it manually here.
+        params[:account][:billing_address_attributes][:address_type] = 'Billing'
+        params[:account][:shipping_address_attributes][:address_type] = 'Shipping'
+
+        # And apply the submitted parameters to it
+        if @account.update_attributes!(params[:account])
+          # If successful, destroy all the other mergable accounts
+          @accounts.each(&:destroy)
+          # And show the new account
+          redirect_to @account
+        end
+      end
+    else
+      # Take the first account as the base record
+      @account = @accounts.first
+
+      # Apply the tags and groups from the other accounts to the base
+      @account.tag_list = @accounts.map{ |c| c.tag_list }.flatten.uniq
+
+      # If any of the fields in the base account is blank, fill it in with one of the others
+      %w[name category rating toll_free_phone phone fax website email].each do |attribute|
+        idx = 0
+        while @account[attribute].blank? && idx < @accounts.count
+          @account[attribute] = @accounts[idx][attribute]
+          idx += 1
+        end
+      end
+      @account.build_billing_address if @account.billing_address.blank?
+      @account.build_shipping_address if @account.shipping_address.blank?
+    end
+  end
+
 private
 
   #----------------------------------------------------------------------------

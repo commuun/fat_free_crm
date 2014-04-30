@@ -19,28 +19,24 @@ module ContactsHelper
     summary.join(', ')
   end
 
+  # Link to the "import contacts" view
+  #----------------------------------------------------------------------------
   def import_contacts_link
     link_to import_contacts_path, :text => t('import_contacts') do
       content_tag( :span, '&#9658;'.html_safe, class: 'arrow' ) + t('import_contacts')
     end
   end
 
+  # Link to the "find duplicates" view
+  #----------------------------------------------------------------------------
   def find_duplicates_contacts_link
     link_to find_duplicates_contacts_path, :text => t('duplicate_contacts') do
       content_tag( :span, '&#9658;'.html_safe, class: 'arrow' ) + t('duplicate_contacts')
     end
   end
 
-  def duplicate_filter_options
-    Contact::DUPLICATE_FILTERS.keys.map do |filter|
-      if filter == @filter
-        content_tag( :strong, t(filter) )
-      else
-        link_to t(filter), find_duplicates_contacts_path( filter: filter )
-      end
-    end.join(' | ').html_safe
-  end
-
+  # Links to the accounts that belong to a contact
+  #----------------------------------------------------------------------------
   def contact_account_links contact
     contact.accounts.uniq.map do |account|
       link_to account.name, account

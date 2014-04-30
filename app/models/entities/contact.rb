@@ -159,6 +159,8 @@ class Contact < ActiveRecord::Base
     self.send(attachment.class.name.tableize).delete(attachment)
   end
 
+  # Find any duplicate records based of the given type
+  #----------------------------------------------------------------------------
   def self.duplicate_search type
     return [] unless DUPLICATE_FILTERS.keys.include?(type.to_sym)
 

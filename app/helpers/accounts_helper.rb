@@ -21,6 +21,14 @@ module AccountsHelper
     ].join(', ')
   end
 
+  # Link to the "find duplicates" view
+  #----------------------------------------------------------------------------
+  def find_duplicates_accounts_link
+    link_to find_duplicates_accounts_path, :text => t('duplicate_accounts') do
+      content_tag( :span, '&#9658;'.html_safe, class: 'arrow' ) + t('duplicate_accounts')
+    end
+  end
+
   # Generates a select list with the first 25 accounts
   # and prepends the currently selected account, if any.
   #----------------------------------------------------------------------------

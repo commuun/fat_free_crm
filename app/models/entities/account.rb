@@ -25,6 +25,14 @@
 #
 
 class Account < ActiveRecord::Base
+  # This hash is used to determine whether the database contains duplicates
+  # The keys are a simple title, the values either a string to match or an array to match more than one field
+  DUPLICATE_FILTERS = {
+    name:     [:name],
+    email:    [:email],
+    address:  ['addresses.address_type', 'addresses.zipcode', 'addresses.street1']
+  }.freeze
+
   belongs_to  :user
   has_many    :account_contacts, :dependent => :destroy
   has_many    :contacts, :through => :account_contacts, :uniq => true
@@ -112,6 +120,35 @@ class Account < ActiveRecord::Base
       end
     end
     account
+  end
+
+  # Find any duplicate records based of the given type
+  #----------------------------------------------------------------------------
+  def self.duplicate_search type
+    return [] unless DUPLICATE_FILTERS.keys.include?(type.to_sym)
+
+    fields = DUPLICATE_FILTERS[type.to_sym]
+
+    # First map the fields array into a concatenated whole
+    # (or just use the value if a field is a string or symbol)
+    set = "CONCAT( #{fields.map{ |n| "IFNULL(#{n}, '')" }.join('," ",')} )"
+
+    # Set the default scope to search with
+    scope = self
+
+    # If any of the fields contain references to another table, join it in
+    fields.each do |field|
+      if field.to_s.index('.')
+        scope = scope.joins( field.to_s.split('.').first.to_sym )
+      end
+    end
+
+    # Find all of this (combinations of) field(s) with more than one result
+    duplicates = scope.select( "COUNT(#{set}) as `count`, #{set} as `value`" ).group( set ).having("count > 1 AND value != '' AND value IS NOT NULL")
+
+    duplicates.order(set).map do |d|
+      scope.where( "#{set} = ?", d.value )
+    end
   end
 
   private

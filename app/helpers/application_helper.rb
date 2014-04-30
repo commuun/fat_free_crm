@@ -502,4 +502,16 @@ module ApplicationHelper
     will_paginate(collection, options)
   end
 
+  # Links to the various filter options of the "find duplicates" views
+  #----------------------------------------------------------------------------
+  def duplicate_filter_options type = Contact
+    type::DUPLICATE_FILTERS.keys.map do |filter|
+      if filter == @filter
+        content_tag( :strong, t(filter) )
+      else
+        link_to t(filter), polymorphic_path( [:find_duplicates, type.name.underscore.pluralize], filter: filter )
+      end
+    end.join(' | ').html_safe
+  end
+
 end

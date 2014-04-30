@@ -209,12 +209,14 @@ class ContactsController < EntitiesController
     end
   end
 
+  # GET /contacts/find_duplicates
+  #----------------------------------------------------------------------------
   def find_duplicates
     @filter = (params[:filter] || Contact::DUPLICATE_FILTERS.keys.first).to_sym
     @duplicates = Contact.duplicate_search( @filter )
   end
 
-  # GET /contacts/merge
+  # MATCH /contacts/merge
   #----------------------------------------------------------------------------
   def merge
     # Find all contacts to merge

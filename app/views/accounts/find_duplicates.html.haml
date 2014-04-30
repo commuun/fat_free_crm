@@ -1,0 +1,38 @@
+= styles_for :account
+
+= render 'accounts_title'
+
+%h1= t('duplicate_accounts')
+
+%p
+  = t('duplicate_filter')
+  = duplicate_filter_options Account
+
+%table.duplicates{ data: { url: merge_accounts_path } }
+  %thead
+    %tr
+      %th
+      %th= t('id')
+      %th= t('name')
+      %th= t('address')
+      %th
+  %tbody
+    - @duplicates.each_with_index do |group, index|
+      %tr
+        %td{ colspan: 6 }
+          %hr/
+      - group.each do |account|
+        %tr{ class: "duplicate-group group-#{index}", data: { group: index } }
+          %td= check_box_tag "accounts[]", account.id, false, class: 'duplicate-check'
+          %td= account.id
+          %td
+            = link_to account.name, account, target: '_new'
+            %br/
+            = account.email
+          %td
+            = account.addresses.pluck(:street1).first
+            %br/
+            = account.addresses.pluck(:zipcode).first
+          %td
+            - if account == group.first
+              = button_tag t('merge'), hidden.merge( class: 'merge' )

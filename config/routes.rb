@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       match :auto_complete
       get  :redraw
       get  :versions
+      get :find_duplicates
+      match :merge
     end
     member do
       put  :attach

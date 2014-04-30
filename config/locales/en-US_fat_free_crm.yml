@@ -226,6 +226,7 @@ en-US:
   accounts_options: Accounts Options
   accounts_small: accounts
   assigned_to: Assigned to
+  duplicate_accounts: Find duplicate accounts
   billing_address: Billing address
   create_account: Create Account
   date_created: Date Created
@@ -262,6 +263,7 @@ en-US:
   create_contact: Create Contact
   import_contacts: Import Contacts
   duplicate_contacts: Find duplicates
+  duplicate_filter: Filter duplicates by
   salutation: Salutation
   department: Department
   department_small: ! '%{value} department'

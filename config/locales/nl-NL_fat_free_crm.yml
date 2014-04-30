@@ -213,6 +213,8 @@ nl-NL:
   account: Organisatie
   account_id: Organisatie
   select_an_account: Selecteer een Organisatie
+  category: Categorie
+  rating: Rating
   account_small: organisatie
   account_summary: Samenvatting Organisatie
   account_categories: Categorieën Organisaties
@@ -220,6 +222,7 @@ nl-NL:
   accounts_options: Opties Organisaties
   accounts_small: organisaties
   assigned_to: Toegewezen aan
+  duplicate_accounts: Dubbele organisaties
   billing_address: Facturatieadres
   create_account: Creëer organisatie
   date_created: Datum Gecreëeerd
@@ -256,7 +259,7 @@ nl-NL:
   create_contact: Creëer Persoon
   import_contacts: Personen importeren
   duplicate_contacts: Dubbele personen
-  duplicate_filter: 'Dubbele personen per:'
+  duplicate_filter: 'Dubbele records per:'
   merge: Samenvoegen
   merge_blank: Geef een nieuwe waarde op
   salutation: Aanhef
