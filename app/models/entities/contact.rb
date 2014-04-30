@@ -104,6 +104,7 @@ class Contact < ActiveRecord::Base
 
   validates_presence_of :first_name, :message => :missing_first_name, :if => -> { Setting.require_first_names }
   validates_presence_of :last_name,  :message => :missing_last_name,  :if => -> { Setting.require_last_names  }
+  validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, allow_blank: true
   validate :users_for_shared_access
 
   # Default values provided through class methods.

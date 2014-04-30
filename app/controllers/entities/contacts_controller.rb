@@ -87,13 +87,7 @@ class ContactsController < EntitiesController
   #----------------------------------------------------------------------------
   def update
     respond_with(@contact) do |format|
-      unless @contact.update_with_account_and_permissions(params)
-        if @contact.account
-          @account = Account.find(@contact.account.id)
-        else
-          @account = Account.new(:user => current_user)
-        end
-      end
+      @contact.update_with_account_and_permissions(params)
     end
   end
 
