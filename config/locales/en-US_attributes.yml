@@ -1,0 +1,54 @@
+nl-NL:
+  activerecord:
+    models:
+      contact: Contact
+      account: Account
+      address: Address
+      tag: Tag
+      comment: Comment
+    attributes:
+      contact:
+        first_name: First name
+        last_name: Last name
+        title: Title
+        initials: Initials
+        department: Department
+        source: Source
+        email: Email
+        alt_email: Alternative email
+        phone: Telephone
+        mobile: Mobile
+        fax: Fax
+        born_on: Date of birth
+        do_not_call: Do Not Call
+        background_info: Background
+        preposition: Preposition
+        salutation: Salutation
+        use_private_address: Use private address
+      account:
+        name: Name
+        access: Access
+        website: Website
+        phone: Telephone
+        toll_free_phone: Toll free telephone
+        fax: Fax
+        email: Email
+        background_info: Background
+        rating: Rating
+        category: Category
+      address:
+        street1: Street
+        street2: Street 2
+        city: City
+        state: State
+        zipcode: Zipcode
+        country: Country
+        full_address: Full Address
+        address_type: Address Type
+      tag:
+        name: Name
+      comment:
+        private: Private
+        title: Title
+        comment: Comment
+        state: State

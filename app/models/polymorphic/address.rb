@@ -24,7 +24,12 @@
 #
 
 class Address < ActiveRecord::Base
+  include RansackableAttributes
+
   belongs_to :addressable, :polymorphic => true
+
+  # Exclude these attributes from Ransack search
+  unransackable :full_address, :address_type, :addressable_id, :addressable_type, :created_at, :updated_at, :deleted_at
 
   has_paper_trail :meta => { :related => :addressable }
 

@@ -20,8 +20,13 @@
 #
 
 class Comment < ActiveRecord::Base
+  include RansackableAttributes
+
   belongs_to  :user
   belongs_to  :commentable, :polymorphic => true
+
+  # Exclude these attributes from Ransack search
+  unransackable :title, :user_id, :commentable_id, :commentable_type, :private, :created_at, :updated_at, :state
 
   scope :created_by, lambda { |user| where(:user_id => user.id) }
 

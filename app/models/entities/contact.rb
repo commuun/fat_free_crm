@@ -35,6 +35,8 @@
 #
 
 class Contact < ActiveRecord::Base
+  include RansackableAttributes
+
   # This hash is used to determine whether the database contains duplicates
   # The keys are a simple title, the values either a string to match or an array to match more than one field
   DUPLICATE_FILTERS = {
@@ -53,8 +55,11 @@ class Contact < ActiveRecord::Base
 
   before_save :sanitize_salutation
 
-  has_ransackable_associations %w(account tags activities emails addresses comments)
+  has_ransackable_associations %w(accounts addresses comments)
   ransack_can_autocomplete
+
+  # Exclude these attributes from Ransack search
+  unransackable :user_id, :assigned_to, :reports_to, :access, :blog, :linkedin, :facebook, :twitter, :deleted_at, :created_at, :updated_at, :skype, :subscribed_users, :preposition, :source, :fax, :use_private_address
 
   serialize :subscribed_users, Set
 

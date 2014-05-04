@@ -41,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20140422132256) do
     t.integer  "rating",                         :default => 0,        :null => false
     t.string   "category",         :limit => 32
     t.text     "subscribed_users"
-    t.string   "identifier"
   end
 
   add_index "accounts", ["assigned_to"], :name => "index_accounts_on_assigned_to"
@@ -132,7 +131,6 @@ ActiveRecord::Schema.define(:version => 20140422132256) do
     t.string   "preposition"
     t.string   "salutation"
     t.boolean  "use_private_address"
-    t.string   "identifier"
     t.string   "initials"
   end
 

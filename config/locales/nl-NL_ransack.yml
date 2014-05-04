@@ -1,22 +1,28 @@
 nl-NL:
+  ransack_ui:
+    select_a_field: "Kies een veld"
+    select_a_field_first: "Kies eerst een veld"
+    search_entity: "Zoek"
+    add_a_search_term: "Voeg een zoekopdracht toe"
   ransack:
     search: "zoeken"
     predicate: "predikaat"
     and: "en"
     or: "of"
-    any: "een van"
-    all: "alle"
+    any: "één van"
+    all: "al"
     combinator: "combinator"
     attribute: "attribuut"
     value: "waarde"
     condition: "voorwaarde"
     sort: "sorteren"
+    sort_by: "sorteer op"
     asc: "oplopend"
     desc: "aflopend"
     submit: "Zoeken"
     add_group: "Voeg een groep filters toe"
-    group_first: "Toon resultaten met %{combinator} van de volgende match"
-    group_rest: ! '...en waar %{combinator} van de volgende match'
+    group_first: 'Toon resultaten met %{combinator} de volgende criteria'
+    group_rest: ! '...en met %{combinator} de volgende criteria'
     add_condition: "Voeg een filter toe"
     remove_condition: "Verwijder filter"
     predicates:

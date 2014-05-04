@@ -1,0 +1,54 @@
+nl-NL:
+  activerecord:
+    models:
+      contact: Persoon
+      account: Account
+      address: Adres
+      tag: Tag
+      comment: Notitie
+    attributes:
+      contact:
+        first_name: Voornaam
+        last_name: Achternaam
+        title: Titel
+        initials: Initialen
+        department: Afdeling
+        source: Bron
+        email: E-mail
+        alt_email: Alternatieve email
+        phone: Telefoon
+        mobile: Mobiel
+        fax: Fax
+        born_on: Geboortedatum
+        do_not_call: Niet bellen
+        background_info: Achtergrond
+        preposition: Tussenvoegsel
+        salutation: Aanhef
+        use_private_address: Gebruik privéadres
+      account:
+        name: Naam
+        access: Toegang
+        website: Website
+        phone: Telefoonnr.
+        toll_free_phone: Gratis tel. nr.
+        fax: Fax
+        email: E-mail
+        background_info: Achtergrond
+        rating: Rating
+        category: Categorie
+      address:
+        street1: Straat
+        street2: Straat 2
+        city: Plaats
+        state: Provincie
+        zipcode: Postcode
+        country: Land
+        full_address: Volledig adres
+        address_type: Adres type
+      tag:
+        name: Naam
+      comment:
+        private: Prive
+        title: Titel
+        comment: Notitie
+        state: Status

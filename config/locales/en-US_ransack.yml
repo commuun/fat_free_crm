@@ -1,5 +1,10 @@
 ---
 en-US:
+  ransack_ui:
+    select_a_field: Select a field
+    select_a_field_first: Select a field first
+    search_entity: Search
+    add_a_search_term: Add a search term
   ransack:
     search: search
     predicate: predicate

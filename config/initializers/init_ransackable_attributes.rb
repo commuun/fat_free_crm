@@ -1,0 +1,1 @@
+require 'ransackable_attributes'
