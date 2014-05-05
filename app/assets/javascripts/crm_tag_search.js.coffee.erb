@@ -1,0 +1,55 @@
+
+# Auto-complete the advanced search fields when tags are selected
+(($) ->
+
+  window.crm ||= {}
+
+  crm.set_autocomplete = (select) ->
+    value = select.find('option:selected').val()
+    input = select.parents('.fields').find('input[type=text]')
+
+    if value == 'tags_name'
+      input.attr('min-length', '0')
+      input.attr('data-autocomplete', '/tags')
+    else
+      input.attr('data-autocomplete', null)
+
+  crm.populate_tags = (select) ->
+    value = select.find('option:selected').val()
+    input = select.parents('.fields').find('input.ransack_query, select.ransack_query')
+
+    if value == 'tags_name'
+      $.ajax
+        url: '/tags'
+        dataType: 'JSON'
+        success: (data) ->
+          select = $('<select>')
+          select.attr( 'id',    input.attr('id') )
+          select.attr( 'name',  input.attr('name') )
+          select.attr( 'class', input.attr('class') )
+          select.attr( 'style', input.attr('style') )
+          select.addClass( 'select2' )
+          $('<option>').attr('value', '' ).html('').appendTo(select)
+          $.each data, (idx, value) ->
+            $('<option>').attr('value', value[0] ).html(value[1]).appendTo(select)
+          input.replaceWith( select )
+    else
+      input_new = $('<input>')
+      input_new.attr( 'id',    input.attr('id') )
+      input_new.attr( 'name',  input.attr('name') )
+      input_new.attr( 'class', input.attr('class') )
+      input_new.attr( 'style', input.attr('style') )
+      input_new.removeClass( 'select2 select2-offscreen' )
+      input_new.removeClass( 'select2-container' )
+      input.select2('destroy')
+      input.replaceWith( input_new )
+
+
+  $(document).on 'change', '#advanced_search select.ransack_attribute', (event) ->
+    crm.populate_tags $(this)
+
+  $(document).on 'page:load ready', (event) ->
+    $('#advanced_search select.ransack_attribute').each (idx, field) ->
+      crm.populate_tags $(field)
+
+) jQuery

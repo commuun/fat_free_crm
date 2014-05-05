@@ -55,7 +55,7 @@ class Contact < ActiveRecord::Base
 
   before_save :sanitize_salutation
 
-  has_ransackable_associations %w(accounts addresses comments)
+  has_ransackable_associations %w(tags accounts addresses comments)
   ransack_can_autocomplete
 
   # Exclude these attributes from Ransack search
