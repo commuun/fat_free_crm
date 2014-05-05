@@ -35,7 +35,6 @@
 
     - if contact.tag_list.present?
       %dt
-        %span.groups= groups_for_index(contact)
         %span.tags= tags_for_index(contact)
 
     = hook(:contact_bottom, self, :contact => contact)
