@@ -618,6 +618,7 @@ en-US:
 
 '
   tags: Tags
+  priority: Priority
   tag_small: tag
   tagged: Tagged
   create_tag: Create Tag

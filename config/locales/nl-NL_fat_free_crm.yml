@@ -599,6 +599,7 @@ nl-NL:
   #----------------------------------------------------------------------------
   admin_fields_info2: ! 'Het wordt sterk aangeraden uw server te herstarten na het toevoegen of verwijderen van een custom veld.'
   tags: Tags
+  priority: Prioriteit
   tag_small: tag
   tagged: Getagd
   create_tag: Creëer Tag

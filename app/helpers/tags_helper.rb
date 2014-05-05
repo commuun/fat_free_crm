@@ -16,7 +16,14 @@ module TagsHelper
       elsif !query.include?(hashtag)
         query += " #{hashtag}"
       end
-      arr << link_to_function(tag, "crm.search_tagged('#{query}', '#{model.class.to_s.tableize}')", :title => tag)
+      link = link_to_function(tag, "crm.search_tagged('#{query}', '#{model.class.to_s.tableize}')", :title => tag, :class => Setting.priority_tags.include?(tag) ? 'priority' : '' )
+
+      # Make sure the highlighted tags show up at the front of the list
+      if Setting.priority_tags.include?(tag)
+        arr.unshift( link )
+      else
+        arr.push( link )
+      end
     end.join(" ").html_safe
   end
 

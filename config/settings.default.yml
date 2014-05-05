@@ -267,6 +267,16 @@ salutations:
   - :ir
   - :prof
 
+
+# Priority tags
+#
+# List all tags that should be highlighted in the tag list, this allows us to
+# place important tags before the rest
+#------------------------------------------------------------------------------
+priority_tags:
+  - VIP
+
+
 #------------------------------------------------------------------------------
 # Account Category. To add custom account type use string value, for example:
 #

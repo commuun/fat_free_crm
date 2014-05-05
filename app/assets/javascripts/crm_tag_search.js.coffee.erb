@@ -30,8 +30,12 @@
           select.attr( 'style', input.attr('style') )
           select.addClass( 'select2' )
           $('<option>').attr('value', '' ).html('').appendTo(select)
-          $.each data, (idx, value) ->
-            $('<option>').attr('value', value[0] ).html(value[1]).appendTo(select)
+          priority = $('<optgroup>').attr('label', '<%= I18n.t('priority') %>').appendTo(select)
+          $.each data.priority, (idx, value) ->
+            $('<option>').attr('value', value[0] ).html(value[1]).appendTo(priority)
+          tags = $('<optgroup>').attr('label', '<%= I18n.t('tags') %>').appendTo(select)
+          $.each data.tags, (idx, value) ->
+            $('<option>').attr('value', value[0] ).html(value[1]).appendTo(tags)
           input.replaceWith( select )
     else
       input_new = $('<input>')
