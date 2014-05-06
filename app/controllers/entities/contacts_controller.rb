@@ -242,7 +242,6 @@ class ContactsController < EntitiesController
 
       # Apply the tags and groups from the other contacts to the base
       @contact.tag_list = @contacts.map{ |c| c.tag_list }.flatten.uniq
-      @contact.group_list = @contacts.map{ |c| c.group_list }.flatten.uniq
 
       # If any of the fields in the base contact is blank, fill it in with one of the others
       %w[first_name preposition last_name salutation initials email telephone title department alt_email mobile fax].each do |attribute|
