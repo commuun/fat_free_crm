@@ -77,11 +77,23 @@ class Account < ActiveRecord::Base
   # Exclude these attributes from Ransack search
   unransackable :user_id, :assigned_to, :access, :website, :deleted_at, :created_at, :updated_at, :rating, :subscribed_users
 
+  # Validate account names
   validates_presence_of :name, :message => :missing_account_name
   validates_uniqueness_of :name, :scope => :deleted_at, :if => -> { Setting.require_unique_account_names }
+    
+  # Validate phone numbers
+  validates_format_of :phone, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+  validates_format_of :toll_free_phone, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+  validates_format_of :fax, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+
+  # Validate email addresses
+  validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, allow_blank: true
+ 
+  # Validate rating and category   
   validates :rating, :inclusion => { in: 0..5 }, allow_blank: true
   validates :category, :inclusion => { in: Proc.new{ Setting.unroll(:account_category).map{|s| s.last.to_s} } }, allow_blank: true
-  validate :users_for_shared_access
+
+  validate :users_for_shared_access 
 
   before_save :nullify_blank_category
 

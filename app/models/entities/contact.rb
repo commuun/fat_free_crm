@@ -106,10 +106,21 @@ class Contact < ActiveRecord::Base
   before_save :add_new_account
   before_save :add_new_note
 
+  validate :users_for_shared_access
+
+  # Validate first and last name if required
   validates_presence_of :first_name, :message => :missing_first_name, :if => -> { Setting.require_first_names }
   validates_presence_of :last_name,  :message => :missing_last_name,  :if => -> { Setting.require_last_names  }
+
+  # Email address validation
   validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, allow_blank: true
-  validate :users_for_shared_access
+  validates_format_of :alt_email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, allow_blank: true
+
+  # Phone number validation
+  validates_format_of :phone, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+  validates_format_of :fax, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+  validates_format_of :mobile, with: /^[\d\+\-\.\ ()]*$/, allow_blank: true
+
 
   # Default values provided through class methods.
   #----------------------------------------------------------------------------
