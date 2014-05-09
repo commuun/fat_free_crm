@@ -16,7 +16,7 @@
 
   crm.populate_tags = (select) ->
     value = select.find('option:selected').val()
-    input = select.parents('.fields').find('input.ransack_query, select.ransack_query')
+    input = select.parents('.fields.condition').find('input.ransack_query, select.ransack_query')
 
     if value == 'tags_name'
       $.ajax
