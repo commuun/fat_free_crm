@@ -50,8 +50,9 @@ gem 'highline'
 
 gem 'ffaker', '>= 1.12.0'
 
-# FatFreeCRM has released it's own versions of the following gems:
-gem 'ransack_ui', '>= 1.1.0'
+# We use a slightly customized ransack_ui that allows localization
+gem 'ransack_ui', git: 'git@github.com:commuun/ransack_ui.git'
+
 gem 'email_reply_parser_ffcrm'
 
 group :development do
