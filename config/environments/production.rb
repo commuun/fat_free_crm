@@ -50,7 +50,7 @@ if defined?(FatFreeCRM::Application)
 
     # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
     # config.assets.precompile += %w( search.js )
-    config.assets.precompile += ['print.css', 'jquery_ui_datepicker/*.js']
+    config.assets.precompile += ['print.css', 'jquery_ui_datepicker/*.js', 'ransack_ui/*.js', 'crm_translations-*.js' ]
 
     # Enable threaded mode
     # config.threadsafe!
