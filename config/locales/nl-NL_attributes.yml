@@ -4,10 +4,12 @@ nl-NL:
       contact: Persoon
       account: Account
       address: Adres
-      tag: Tag
+      acts_as_taggable_on/tag: Tag
       comment: Notitie
-    attributes:
+    attributes: &attributes
       contact:
+        id: ID
+        identifier: ID
         first_name: Voornaam
         last_name: Achternaam
         title: Titel
@@ -26,6 +28,8 @@ nl-NL:
         salutation: Aanhef
         use_private_address: Gebruik privéadres
       account:
+        id: ID
+        identifier: ID
         name: Naam
         access: Toegang
         website: Website
@@ -37,6 +41,7 @@ nl-NL:
         rating: Rating
         category: Categorie
       address:
+        id: ID
         street1: Straat
         street2: Straat 2
         city: Plaats
@@ -45,10 +50,27 @@ nl-NL:
         country: Land
         full_address: Volledig adres
         address_type: Adres type
-      tag:
-        name: Naam
       comment:
+        id: ID
         private: Prive
         title: Titel
         comment: Notitie
         state: Status
+      acts_as_taggable_on/tag:
+        id: ID
+        name: Naam
+
+  ransack:
+    attributes:
+      <<: *attributes
+    associations:
+      contact:
+        addresses: Adressen
+        comments: Reacties
+        tags: Tags
+        accounts: Organisaties
+      account:
+        addresses: Adressen
+        comments: Reacties
+        tags: Tags
+        contacts: Personen
