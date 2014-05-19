@@ -69,16 +69,6 @@ class ContactsController < EntitiesController
       if @contact.save_with_account_and_permissions(params)
         @contact.add_comment_by_user(@comment_body, current_user)
         @contacts = get_contacts if called_from_index_page?
-      else
-        unless params[:account][:id].blank?
-          @account = Account.find(params[:account][:id])
-        else
-          if request.referer =~ /\/accounts\/(\d+)\z/
-            @account = Account.find($1) # related account
-          else
-            @account = Account.new(:user => current_user)
-          end
-        end
       end
     end
   end
