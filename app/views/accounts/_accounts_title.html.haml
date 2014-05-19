@@ -2,8 +2,10 @@
   #buttons
     = view_buttons
   .create_asset
-    = find_duplicates_accounts_link 
-    = link_to_inline :create_account, new_account_path, :text => t('create_account')
+    - if can? :manage, Account
+      = find_duplicates_accounts_link 
+    - if can? :create, Account
+      = link_to_inline :create_account, new_account_path, :text => t('create_account')
 
 .title.accounts
   %span{:id => "create_account_title"}= t controller_name.to_sym

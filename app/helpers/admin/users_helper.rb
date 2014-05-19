@@ -43,9 +43,7 @@ module Admin::UsersHelper
     elsif user.suspended?
       t(:user_suspended)
     elsif user.admin?
-      t(:user_admin)
-    else
-      t(:user_active)
+      t("user_#{user.role}")
     end
     summary.join(', ')
   end

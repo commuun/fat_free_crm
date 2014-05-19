@@ -484,7 +484,6 @@ pt-BR:
   no_match: No %{value} match
   no_recent_items: Não existem itens recentes para exibir ainda.
   options: Opções
-  permissions: Permissões
   please_retry: favor tente outra consulta.
   recent_items: Itens recentes
   search_assets: Buscar %{value}

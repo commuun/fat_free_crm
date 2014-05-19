@@ -4,10 +4,8 @@
     .strip.signed_up #{t :user_signed_up}
   - elsif user.suspended?
     .strip.suspended #{t :user_suspended}
-  - elsif user.admin?
-    .strip.admin #{t :user_admin}
-  - else
-    .strip.active #{t :user_active}
+  - elsif user.role == 'admin'
+    .strip.admin= t("user_#{user.role}")
 
   = avatar_for(user, :size => :medium, :width => 30, :height => 30 )
 

@@ -512,7 +512,6 @@ en-GB:
   no_match: No %{value} match
   no_recent_items: There are no recent items to display yet.
   options: Options
-  permissions: Permissions
   please_retry: please try another query.
   recent_items: Recent Items
   select_contact: Select Contact
@@ -594,8 +593,6 @@ en-GB:
   groups: Groups
   groups_small: groups
   group_small: group
-  confirm_group_delete: Are you sure you wish to delete this group? There are %{count}
-    items that still reference it.
   approve: Approve
   create_user: Create User
   last_seen: last seen %{value} ago

@@ -111,11 +111,7 @@ module FatFreeCRM
 
         # Find the asset from deduced conditions
         if asset = klass.where(conditions).first
-          if sender_has_permissions_for?(asset)
-            attach(email, asset, :strip_first_line)
-          else
-            log "Sender does not have permissions to attach email to #{data["Type"]} #{data["Email"]} <#{data["Name"]}>"
-          end
+          attach(email, asset, :strip_first_line)
         else
           log "#{data["Type"]} #{data["Email"]} <#{data["Name"]}> not found, creating new one..."
           asset = klass.create!(default_values(klass, data))
@@ -135,7 +131,7 @@ module FatFreeCRM
             asset = klass.where(["(lower(alt_email) = ?)", recipient.downcase]).first
           end
 
-          if asset && sender_has_permissions_for?(asset)
+          if asset
             attach(email, asset)
             attached = true
           end
@@ -198,8 +194,7 @@ module FatFreeCRM
         keyword = data.delete("Type").capitalize
 
         defaults = {
-          :user   => @sender,
-          :access => default_access
+          :user   => @sender
         }
 
         case keyword
@@ -227,8 +222,7 @@ module FatFreeCRM
           :user       => @sender,
           :first_name => recipient_local.capitalize,
           :last_name  => "(unknown)",
-          :email      => recipient,
-          :access     => default_access
+          :email      => recipient
         }
 
         # Search for domain name in Accounts.
@@ -241,20 +235,11 @@ module FatFreeCRM
           defaults[:account] = Account.create!(
             :user   => @sender,
             :email  => recipient,
-            :name   => recipient_domain.capitalize,
-            :access => default_access
+            :name   => recipient_domain.capitalize
           )
         end
         defaults
       end
-
-      # If default access is 'Shared' then change it to 'Private' because we don't know how
-      # to choose anyone to share it with here.
-      #--------------------------------------------------------------------------------------
-      def default_access
-        Setting.default_access == "Shared" ? 'Private' : Setting.default_access
-      end
-
 
       # Notify users with the results of the operations
       #--------------------------------------------------------------------------------------

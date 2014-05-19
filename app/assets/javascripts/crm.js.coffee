@@ -166,18 +166,6 @@
 
 
     #----------------------------------------------------------------------------
-    flip_campaign_permissions: (value) ->
-      if value
-        $("#lead_access_campaign").prop('disabled', false)
-        $("#lead_access_campaign").checked = 1
-        $("#copy_permissions").css color: "#3f3f3f"
-      else
-        $("#lead_access_campaign").prop('disabled', true)
-        $("#copy_permissions").css color: "grey"
-        $("#lead_access_private").checked = 1
-
-
-    #----------------------------------------------------------------------------
     flip_subtitle: (el) ->
       $el = $(el)
       arrow = $el.find("small")

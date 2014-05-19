@@ -10,43 +10,60 @@ class Ability
 
   def initialize(user)
 
+    # An alias for all basic crud operations (:manage also includes non-crud operations)
+    alias_action :index, :show, :new, :create, :edit, :update, :destroy, :to => :crud
+
     # handle signup
     can(:create, User) if User.can_signup?
 
     if user.present?
-      entities = [Account, Contact]
+      common_abilities user
 
-      # User
-      can :manage, User, id: user.id # can do any action on themselves
-
-      # Entities
-      can :manage, entities, :access => 'Public'
-      can :manage, entities, :user_id => user.id
-
-      #
-      # Due to an obscure bug (see https://github.com/ryanb/cancan/issues/213)
-      # we must switch on user.admin? here to avoid the nil constraints which
-      # activate the issue referred to above.
-      #
-      if user.admin?
-        can :manage, :all
-      else
-        # Group or User permissions
-        t = Permission.arel_table
-        scope = t[:user_id].eq(user.id)
-
-        if (group_ids = user.group_ids).any?
-          scope = scope.or(t[:group_id].eq_any(group_ids))
-        end
-
-        entities.each do |klass|
-          if (asset_ids = Permission.where(scope.and(t[:asset_type].eq(klass.name))).value_of(:asset_id)).any?
-            can :manage, klass, :id => asset_ids
-          end
-        end
-      end # if user.admin?
-
+      case user.role
+        when 'admin'
+          admin_abilities user
+        when 'user'
+          user_abilities user
+        when 'guest'
+          guest_abilities user
+      end
     end
+  end
+
+  #
+  # These abilities apply to all users, regardless of their role
+  def common_abilities user
+    # User
+    can :crud, User, id: user.id # can do any action on themselves
+  end
+
+  #
+  # These abilities apply to average users
+  def admin_abilities user
+    # Management roles also include things like finding duplicates and merging,
+    # these actions are reserved for admins only
+    can :manage, User
+    can :manage, entities
+    can :manage, Comment
+  end
+
+  #
+  # These abilities apply to average users
+  def user_abilities user
+    can :crud, entities
+    can [:read, :create], Comment
+  end
+
+  # 
+  # These abilities apply to "low level" users
+  def guest_abilities user
+    can :read, entities
+  end
+
+  #
+  # These are 'common' entities
+  def entities
+    [Account, Contact]
   end
 
   ActiveSupport.run_load_hooks(:fat_free_crm_ability, self)

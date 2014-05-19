@@ -40,6 +40,8 @@
 #
 
 class User < ActiveRecord::Base
+  ROLES = %w[guest user admin].freeze
+
   attr_protected :admin, :suspended_at
 
   before_create  :check_if_needs_approval
@@ -50,7 +52,6 @@ class User < ActiveRecord::Base
   has_many    :comments, :as => :commentable                   # As owner who created a comment.
   has_many    :accounts
   has_many    :contacts
-  has_many    :permissions, :dependent => :destroy
   has_many    :preferences, :dependent => :destroy
   has_many    :lists
   has_and_belongs_to_many :groups
@@ -83,7 +84,14 @@ class User < ActiveRecord::Base
   # observer without extra authentication query.
   cattr_accessor :current_user
 
+  validates_inclusion_of :role, :in => ROLES
   validates_presence_of :email, :message => :missing_email
+
+  #----------------------------------------------------------------------------
+  def self.roles_for_select
+    ROLES
+  end
+
 
   #----------------------------------------------------------------------------
   def name

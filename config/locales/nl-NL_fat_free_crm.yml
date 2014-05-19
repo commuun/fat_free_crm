@@ -377,7 +377,6 @@ nl-NL:
   no_match: Geen %{value} overeenkomst
   no_recent_items: Er zijn nog geen recente items om te tonen.
   options: Opties
-  permissions: Permissies
   please_retry: probeer a.u.b. een andere query.
   recent_items: Recente Items
   select_contact: Selecteer Persoon
@@ -461,7 +460,6 @@ nl-NL:
 
   # Views -> Admin -> Users
   #----------------------------------------------------------------------------
-  confirm_group_delete: Weet u zeker dat u deze groep wil verwijderen. Er zijn %{count} items die er naar verwijzen.
   approve: Bevestig
   create_user: Creëer Gebruiker
   last_seen: '%{value} geleden voor het laatst gezien'
@@ -473,6 +471,8 @@ nl-NL:
   suspend: Blokkeren
   user_active: Actief
   user_admin: Admin
+  user_guest: Gast
+  user_user: Gebruiker
   user_awaits_approval: wacht op uw goedkeuring
   user_confirm_delete: Een gebruiker kan alleen verwijderd worden als er geen gerelateerde onderdelen achterblijven.
   user_is_admin: De gebruiker is Administrator

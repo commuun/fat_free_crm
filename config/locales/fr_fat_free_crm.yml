@@ -502,7 +502,6 @@ fr:
   no_match: Aucun(e) %{value} ne correspond
   no_recent_items: Il n'y rien de récent à afficher pour l'instant.
   options: Options
-  permissions: Permissions
   please_retry: essayez une autre requête.
   recent_items: Objets récents
   select_contact: Choisir un contact

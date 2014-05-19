@@ -35,7 +35,7 @@ class ContactsController < EntitiesController
   # GET /contacts/new
   #----------------------------------------------------------------------------
   def new
-    @contact.attributes = {:user => current_user, :access => Setting.default_access}
+    @contact.attributes = {:user => current_user}
     @account = Account.new(:user => current_user)
 
     if params[:related]
@@ -66,7 +66,7 @@ class ContactsController < EntitiesController
   def create
     @comment_body = params[:comment_body]
     respond_with(@contact) do |format|
-      if @contact.save_with_account_and_permissions(params)
+      if @contact.save_with_account(params)
         @contact.add_comment_by_user(@comment_body, current_user)
         @contacts = get_contacts if called_from_index_page?
       end
@@ -77,7 +77,7 @@ class ContactsController < EntitiesController
   #----------------------------------------------------------------------------
   def update
     respond_with(@contact) do |format|
-      @contact.update_with_account_and_permissions(params)
+      @contact.update_with_account(params)
     end
   end
 

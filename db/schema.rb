@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140505152332) do
+ActiveRecord::Schema.define(:version => 20140511134407) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -279,8 +279,8 @@ ActiveRecord::Schema.define(:version => 20140505152332) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "username",            :limit => 32, :default => "",    :null => false
-    t.string   "email",               :limit => 64, :default => "",    :null => false
+    t.string   "username",            :limit => 32, :default => "", :null => false
+    t.string   "email",               :limit => 64, :default => "", :null => false
     t.string   "first_name",          :limit => 32
     t.string   "last_name",           :limit => 32
     t.string   "title",               :limit => 64
@@ -292,23 +292,23 @@ ActiveRecord::Schema.define(:version => 20140505152332) do
     t.string   "yahoo",               :limit => 32
     t.string   "google",              :limit => 32
     t.string   "skype",               :limit => 32
-    t.string   "password_hash",                     :default => "",    :null => false
-    t.string   "password_salt",                     :default => "",    :null => false
-    t.string   "persistence_token",                 :default => "",    :null => false
-    t.string   "perishable_token",                  :default => "",    :null => false
+    t.string   "password_hash",                     :default => "", :null => false
+    t.string   "password_salt",                     :default => "", :null => false
+    t.string   "persistence_token",                 :default => "", :null => false
+    t.string   "perishable_token",                  :default => "", :null => false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.datetime "current_login_at"
     t.string   "last_login_ip"
     t.string   "current_login_ip"
-    t.integer  "login_count",                       :default => 0,     :null => false
+    t.integer  "login_count",                       :default => 0,  :null => false
     t.datetime "deleted_at"
-    t.datetime "created_at",                                           :null => false
-    t.datetime "updated_at",                                           :null => false
-    t.boolean  "admin",                             :default => false, :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.datetime "suspended_at"
     t.string   "single_access_token"
     t.string   "preposition"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

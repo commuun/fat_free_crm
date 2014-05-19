@@ -12,7 +12,6 @@
 #  reports_to      :integer
 #  first_name      :string(64)      default(""), not null
 #  last_name       :string(64)      default(""), not null
-#  access          :string(8)       default("Public")
 #  title           :string(64)
 #  department      :string(64)
 #  source          :string(32)
@@ -59,7 +58,7 @@ class Contact < ActiveRecord::Base
   ransack_can_autocomplete
 
   # Exclude these attributes from Ransack search
-  unransackable :user_id, :assigned_to, :reports_to, :access, :blog, :linkedin, :facebook, :twitter, :deleted_at, :created_at, :updated_at, :skype, :subscribed_users, :preposition, :source, :fax, :use_private_address
+  unransackable :user_id, :assigned_to, :reports_to, :blog, :linkedin, :facebook, :twitter, :deleted_at, :created_at, :updated_at, :skype, :subscribed_users, :preposition, :source, :fax, :use_private_address
 
   serialize :subscribed_users, Set
 
@@ -67,6 +66,10 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :business_address, :allow_destroy => true, :reject_if => proc {|attributes| Address.reject_address(attributes)}
 
   scope :created_by,  ->(user) { where( user_id: user.id ) }
+
+  scope :my, lambda {
+    accessible_by(User.current_ability)
+  }
 
   scope :text_search, ->(query) {
     t = Contact.arel_table
@@ -88,7 +91,6 @@ class Contact < ActiveRecord::Base
     where( name_query.nil? ? other : name_query.or(other) )
   }
 
-  uses_user_permissions
   acts_as_commentable
   uses_comment_extensions
   acts_as_taggable_on :tags
@@ -105,8 +107,6 @@ class Contact < ActiveRecord::Base
 
   before_save :add_new_account
   before_save :add_new_note
-
-  validate :users_for_shared_access
 
   # Validate first and last name if required
   validates_presence_of :first_name, :message => :missing_first_name, :if => -> { Setting.require_first_names }
@@ -147,16 +147,14 @@ class Contact < ActiveRecord::Base
 
   # Backend handler for [Create New Contact] form (see contact/create).
   #----------------------------------------------------------------------------
-  def save_with_account_and_permissions(params)
+  def save_with_account(params)
     result = self.save
     result
   end
 
   # Backend handler for [Update Contact] form (see contact/update).
   #----------------------------------------------------------------------------
-  def update_with_account_and_permissions(params)
-    # Must set access before user_ids, because user_ids= method depends on access value.
-    self.access = params[:contact][:access] if params[:contact][:access]
+  def update_with_account(params)
     self.attributes = params[:contact]
     self.save
   end
@@ -205,11 +203,6 @@ class Contact < ActiveRecord::Base
   end
 
   private
-  # Make sure at least one user has been selected if the contact is being shared.
-  #----------------------------------------------------------------------------
-  def users_for_shared_access
-    errors.add(:access, :share_contact) if self[:access] == "Shared" && !self.permissions.any?
-  end
 
   # Handles importing and processing new contact data
   # > Takes a string containing the CSV data and a hash which maps the column

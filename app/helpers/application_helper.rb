@@ -53,8 +53,10 @@ module ApplicationHelper
 
     html = tag(:br)
     html << content_tag(:div, link_to(t(select_id), "#", :id => select_id), :class => "subtitle_tools")
-    html << content_tag(:div, "&nbsp;|&nbsp;".html_safe, :class => "subtitle_tools")
-    html << content_tag(:div, link_to_inline(create_id, create_url, :related => dom_id(related), :text => t(create_id)), :class => "subtitle_tools")
+    if can?(:create, asset.camelcase.constantize)
+      html << content_tag(:div, "&nbsp;|&nbsp;".html_safe, :class => "subtitle_tools")
+      html << content_tag(:div, link_to_inline(create_id, create_url, :related => dom_id(related), :text => t(create_id)), :class => "subtitle_tools")
+    end
     html << content_tag(:div, t(assets), :class => :subtitle, :id => "create_#{asset}_title")
     html << content_tag(:div, "", :class => :remote, :id => create_id, :style => "display:none;")
   end
@@ -319,16 +321,6 @@ module ApplicationHelper
       gravatar_image_tag(model.email, args)
     end
 
-  end
-
-  # Returns default permissions intro.
-  #----------------------------------------------------------------------------
-  def get_default_permissions_intro(access, text)
-    case access
-      when "Private" then t(:permissions_intro_private, text)
-      when "Public"  then t(:permissions_intro_public,  text)
-      when "Shared"  then t(:permissions_intro_shared,  text)
-    end
   end
 
   # Render a text field that is part of compound address.

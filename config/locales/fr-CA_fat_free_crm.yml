@@ -484,7 +484,6 @@ fr-CA:
   no_match: Acun(e) %{value} ne correspond
   no_recent_items: Il n'y rien de récent à afficher
   options: Options
-  permissions: Permissions
   please_retry: tentez une autre requête.
   recent_items: Objets récents
   search_assets: Recherche de %{value}

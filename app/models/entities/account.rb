@@ -10,7 +10,6 @@
 #  id              :integer         not null, primary key
 #  user_id         :integer
 #  name            :string(64)      default(""), not null
-#  access          :string(8)       default("Public")
 #  website         :string(64)
 #  toll_free_phone :string(32)
 #  phone           :string(32)
@@ -60,9 +59,12 @@ class Account < ActiveRecord::Base
     where('(user_id = :user_id)', :user_id => user.id)
   }
 
+  scope :my, lambda {
+    accessible_by(User.current_ability)
+  }
+
   scope :by_name, -> { order(:name) }
 
-  uses_user_permissions
   acts_as_commentable
   uses_comment_extensions
   acts_as_taggable_on :tags
@@ -75,7 +77,7 @@ class Account < ActiveRecord::Base
   ransack_can_autocomplete
 
   # Exclude these attributes from Ransack search
-  unransackable :user_id, :assigned_to, :access, :website, :deleted_at, :created_at, :updated_at, :rating, :subscribed_users
+  unransackable :user_id, :assigned_to, :website, :deleted_at, :created_at, :updated_at, :rating, :subscribed_users
 
   # Validate account names
   validates_presence_of :name, :message => :missing_account_name
@@ -92,8 +94,6 @@ class Account < ActiveRecord::Base
   # Validate rating and category   
   validates :rating, :inclusion => { in: 0..5 }, allow_blank: true
   validates :category, :inclusion => { in: Proc.new{ Setting.unroll(:account_category).map{|s| s.last.to_s} } }, allow_blank: true
-
-  validate :users_for_shared_access 
 
   before_save :nullify_blank_category
 
@@ -130,11 +130,7 @@ class Account < ActiveRecord::Base
       account = Account.find(params[:id])
     else
       account = Account.new(params)
-      if account.access != "Lead" || model.nil?
-        account.save
-      else
-        account.save_with_model_permissions(model)
-      end
+      account.save
     end
     account
   end
@@ -169,11 +165,6 @@ class Account < ActiveRecord::Base
   end
 
   private
-  # Make sure at least one user has been selected if the account is being shared.
-  #----------------------------------------------------------------------------
-  def users_for_shared_access
-    errors.add(:access, :share_account) if self[:access] == "Shared" && !self.permissions.any?
-  end
 
   def nullify_blank_category
     self.category = nil if self.category.blank?

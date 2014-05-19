@@ -821,8 +821,6 @@ de:
   groups: Gruppen
   groups_small: Gruppen
   group_small: Gruppe
-  confirm_group_delete: Wollen Sie wirklich diese Gruppe löschen? Sie wird noch von
-    %{count} Einheiten referenziert.
   group_memberships: Gruppen Zugehörigkeit
   account_contact_id: Firmen id
   account_contact_name: Firmen Name

@@ -382,7 +382,6 @@ en-US:
   no_match: No %{value} match
   no_recent_items: There are no recent items to display yet.
   options: Options
-  permissions: Permissions
   please_retry: please try another query.
   recent_items: Recent Items
   select_contact: Select Contact
@@ -468,8 +467,6 @@ en-US:
 
   # Views -> Admin -> Users
   #----------------------------------------------------------------------------
-  confirm_group_delete: Are you sure you wish to delete this group? There are %{count}
-    items that still reference it.
   approve: Approve
   create_user: Create User
   last_seen: last seen %{value} ago
@@ -481,6 +478,8 @@ en-US:
   suspend: Suspend
   user_active: Active
   user_admin: Admin
+  user_guest: Guest
+  user_user: User
   user_awaits_approval: awaits your approval
   user_confirm_delete: A user can only be deleted if no related assets are left behind.
   user_is_admin: The user is Administrator

@@ -2,9 +2,11 @@
   #buttons
     = view_buttons
   .create_asset
-    = import_contacts_link 
-    = find_duplicates_contacts_link 
-    = link_to_inline :create_contact, new_contact_path, :text => t('create_contact')
+    - if can? :manage, Contact
+      = import_contacts_link 
+      = find_duplicates_contacts_link 
+    - if can? :create, Contact
+      = link_to_inline :create_contact, new_contact_path, :text => t('create_contact')
 
 .title.contacts
   %span{:id => "create_contact_title"}= t controller_name.to_sym
