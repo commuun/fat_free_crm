@@ -391,8 +391,8 @@ nl-NL:
   state: Provincie
   country: Land
   select_a_country: Selecteer een Land
-  expand_all: Vergroot alles uit
-  collapse_all: Klap alles uit
+  expand_all: Klap alles uit
+  collapse_all: Klap alles in
   expanded: Uitvergroot
   collapsed: Uitgeklapt
 
