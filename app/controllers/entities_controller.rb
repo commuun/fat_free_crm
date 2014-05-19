@@ -27,16 +27,6 @@ class EntitiesController < ApplicationController
     respond_with(entity)
   end
 
-  # Common discard handler for all core controllers.
-  #----------------------------------------------------------------------------
-  def discard
-    @attachment = params[:attachment].constantize.find(params[:attachment_id])
-    entity.discard!(@attachment)
-    entity.reload
-
-    respond_with(entity)
-  end
-
   # Common subscribe handler for all core controllers.
   #----------------------------------------------------------------------------
   def subscribe

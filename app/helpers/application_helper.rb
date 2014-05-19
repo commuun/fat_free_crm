@@ -129,18 +129,6 @@ module ApplicationHelper
   end
 
   #----------------------------------------------------------------------------
-  def link_to_discard(object)
-    current_url = (request.xhr? ? request.referer : request.fullpath)
-    parent, parent_id = current_url.scan(%r|/(\w+)/(\d+)|).flatten
-
-    link_to(t(:discard),
-      url_for(:controller => parent, :action => :discard, :id => parent_id, :attachment => object.class.name, :attachment_id => object.id),
-      :method  => :post,
-      :remote  => true
-    )
-  end
-
-  #----------------------------------------------------------------------------
   def link_to_cancel(url, params = {})
     url = params[:url] if params[:url]
     link_to(t(:cancel),
@@ -338,16 +326,6 @@ module ApplicationHelper
         :placeholder => hint
       )
     end
-  end
-
-  # Return true if:
-  #   - it's an Ajax request made from the asset landing page (i.e. create opportunity
-  #     from a contact landing page) OR
-  #   - we're actually showing asset landing page.
-  #----------------------------------------------------------------------------
-  def shown_on_landing_page?
-    !!((request.xhr? && request.referer =~ %r|/\w+/\d+|) ||
-       (!request.xhr? && request.fullpath =~ %r|/\w+/\d+|))
   end
 
   # Helper to display links to supported data export formats.

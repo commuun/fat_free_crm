@@ -93,10 +93,6 @@ class AccountsController < EntitiesController
   #----------------------------------------------------------------------------
   # Handled by EntitiesController :attach
 
-  # PUT /accounts/1/discard
-  #----------------------------------------------------------------------------
-  # Handled by EntitiesController :discard
-
   # POST /accounts/auto_complete/query                                     AJAX
   #----------------------------------------------------------------------------
   # Handled by ApplicationController :auto_complete

@@ -164,10 +164,6 @@ class ContactsController < EntitiesController
   #----------------------------------------------------------------------------
   # Handled by EntitiesController :attach
 
-  # POST /contacts/1/discard
-  #----------------------------------------------------------------------------
-  # Handled by EntitiesController :discard
-
   # POST /contacts/auto_complete/query                                     AJAX
   #----------------------------------------------------------------------------
   # Handled by ApplicationController :auto_complete
