@@ -259,6 +259,13 @@
 #  :url:
 #    :controller: admin/plugins
 
+# Contact groups
+# These are general groups that can be applied to users
+#
+contact_groups:
+  - VIP
+  - Contributor
+
 # Salutations. To add more salutations (make sure to add the i18n translation
 # string as well)
 #

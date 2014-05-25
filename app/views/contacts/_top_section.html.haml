@@ -33,6 +33,10 @@
           = f.text_field :phone
 
       %tr
+        %td
+          .label #{t :group}:
+          = f.select :group, Setting.contact_groups, { include_blank: true }, class: 'select2_clear'
+        %td= spacer
         = render :partial => "/shared/tags", :locals => {:f => f }
 
       %tr

@@ -273,6 +273,7 @@ nl-NL:
   linked_in: LinkedIn
   myself: Mijzelf
   note: Notitie
+  group: Groep
   permissions_intro_private: Standaard heeft alleen u toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.
   permissions_intro_public: Standaard hebben alle gebruikers toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.
   permissions_intro_shared: Standaard hebben alleen de geselecteerde gebruikers toegang tot de %{value}. U kunt later de toegangsrechten wijzigen.

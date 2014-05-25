@@ -16,6 +16,7 @@ nl-NL:
         department: Department
         source: Source
         email: Email
+        group: Group
         alt_email: Alternative email
         phone: Telephone
         mobile: Mobile
