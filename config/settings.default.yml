@@ -216,6 +216,11 @@
   :icon: accounts
   :url:
     :controller: accounts
+- :active: false
+  :text: :tags
+  :icon: tags
+  :url:
+    :controller: tags
 - :active: true
   :text: :tab_dashboard
   :icon: dashboard

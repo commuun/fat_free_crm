@@ -9,14 +9,8 @@ module TagsHelper
   #----------------------------------------------------------------------------
   def tags_for_index(model)
     model.tag_list.inject([]) do |arr, tag|
-      query = controller.send(:current_query) || ""
-      hashtag = "##{tag}"
-      if query.empty?
-        query = hashtag
-      elsif !query.include?(hashtag)
-        query += " #{hashtag}"
-      end
-      link = link_to_function(tag, "crm.search_tagged('#{query}', '#{model.class.to_s.tableize}')", :title => tag, :class => Setting.priority_tags.include?(tag) ? 'priority' : '' )
+
+      link = tag_search_link( tag, model )
 
       # Make sure the highlighted tags show up at the front of the list
       if Setting.priority_tags.include?(tag)
@@ -33,6 +27,23 @@ module TagsHelper
         concat(content_tag(:li, tag))
       end
     end.html_safe
+  end
+
+  def tag_search_link tag, model = nil
+    query = controller.send(:current_query) || ""
+    hashtag = "##{tag}"
+    if query.empty?
+      query = hashtag
+    elsif !query.include?(hashtag)
+      query += " #{hashtag}"
+    end
+
+    if model
+      path_name = model.class.name.underscore.pluralize
+    else
+      path_name = 'contacts'
+    end
+    link_to tag, send( "#{path_name}_path", query: "##{tag}" ), :title => tag, :class => Setting.priority_tags.include?(tag) ? 'priority' : ''
   end
 
 end

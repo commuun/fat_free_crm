@@ -261,6 +261,7 @@ nl-NL:
   duplicate_contacts: Dubbele personen
   duplicate_filter: 'Dubbele records per:'
   merge: Samenvoegen
+  merge_with: Samenvoegen
   merge_blank: Geef een nieuwe waarde op
   salutation: Aanhef
   department: Afdeling
@@ -603,6 +604,7 @@ nl-NL:
   tag_small: tag
   tagged: Getagd
   create_tag: Creëer Tag
+  edit_tag: Tag wijzigen
   save_tag: Bewaar Tag
   field_group_tags: Veldgroepen getoond voor deze Tag
 

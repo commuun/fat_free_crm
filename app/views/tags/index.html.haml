@@ -1,0 +1,14 @@
+.title.tags
+  = t(:tags)
+
+%h3= t(:priority)
+
+%ul.tag-list.list
+  = render Tag.priority.order_by_taggings
+
+%br/
+
+%h3= t(:tags)
+
+%ul.tag-list.list
+  = render Tag.non_priority.order_by_taggings
