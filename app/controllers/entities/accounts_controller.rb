@@ -150,7 +150,8 @@ class AccountsController < EntitiesController
         params[:account][:shipping_address_attributes][:address_type] = 'Shipping'
 
         # And apply the submitted parameters to it
-        if @account.update_attributes!(params[:account])
+        @account.assign_attributes(params[:account])
+        if @account.save(validate: false)
           # If successful, destroy all the other mergable accounts
           @accounts.each(&:destroy)
           # And show the new account

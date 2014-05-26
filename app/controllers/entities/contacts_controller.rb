@@ -215,7 +215,8 @@ class ContactsController < EntitiesController
         params[:contact][:business_address_attributes][:address_type] = 'Business'
 
         # And apply the submitted parameters to it
-        if @contact.update_attributes!(params[:contact])
+        @contact.assign_attributes(params[:contact])
+        if @contact.save( validate: false )
           # If successful, destroy all the other mergable accounts
           @contacts.each(&:destroy)
           # And show the new contact
