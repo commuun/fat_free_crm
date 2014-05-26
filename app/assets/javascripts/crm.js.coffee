@@ -358,6 +358,8 @@
 
     #----------------------------------------------------------------------------
     auto_complete: (controller, related, focus) ->
+      if controller == '' or controller == undefined
+        controller = 'contacts'
       $("#auto_complete_query").autocomplete(
         source: (request, response) =>
           request = {auto_complete_query: request['term'], related: related}

@@ -216,6 +216,11 @@
   :icon: accounts
   :url:
     :controller: accounts
+- :active: false
+  :text: :tags
+  :icon: tags
+  :url:
+    :controller: tags
 - :active: true
   :text: :tab_dashboard
   :icon: dashboard
@@ -253,6 +258,13 @@
 #  :icon: :fa-plus-circle
 #  :url:
 #    :controller: admin/plugins
+
+# Contact groups
+# These are general groups that can be applied to users
+#
+contact_groups:
+  - VIP
+  - Contributor
 
 # Salutations. To add more salutations (make sure to add the i18n translation
 # string as well)

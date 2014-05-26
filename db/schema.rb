@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140511134407) do
+ActiveRecord::Schema.define(:version => 20140525222054) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -134,6 +134,7 @@ ActiveRecord::Schema.define(:version => 20140511134407) do
     t.boolean  "use_private_address"
     t.string   "identifier"
     t.string   "initials"
+    t.string   "group"
   end
 
   add_index "contacts", ["assigned_to"], :name => "index_contacts_on_assigned_to"

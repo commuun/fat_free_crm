@@ -16,6 +16,7 @@ nl-NL:
         initials: Initialen
         department: Afdeling
         source: Bron
+        group: Groep
         email: E-mail
         alt_email: Alternatieve email
         phone: Telefoon

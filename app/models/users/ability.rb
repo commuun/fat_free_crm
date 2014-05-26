@@ -45,6 +45,7 @@ class Ability
     can :manage, User
     can :manage, entities
     can :manage, Comment
+    can :manage, Tag
   end
 
   #

@@ -26,8 +26,6 @@ Rails.application.routes.draw do
   resources :emails,         :only   => [:destroy]
   resources :passwords,      :only   => [:new, :create, :edit, :update]
 
-  resources :tags,           :only   => [:index]
-
   resources :accounts, :id => /\d+/ do
     collection do
       get  :advanced_search
@@ -81,6 +79,12 @@ Rails.application.routes.draw do
     end
     collection do
       match :auto_complete
+    end
+  end
+
+  resources :tags do
+    member do
+      post :merge
     end
   end
 
