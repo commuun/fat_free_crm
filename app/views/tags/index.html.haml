@@ -1,14 +1,36 @@
-.title.tags
+.title_tools
+  .create_asset
+    - if can? :create, Tag
+      = link_to new_tag_path do
+        %span.arrow &#9658;
+        = t(:new_tag)
+
+.title
   = t(:tags)
+
+%p
+  %strong= t(:sort_tags_by)
+  - if params[:order] && params[:order] == 'usage'
+    = t(:usage).downcase
+    = link_to t(:name).downcase, tags_path( order: 'name' )
+  - else
+    = link_to t(:usage).downcase, tags_path( order: 'usage' )
+    = t(:name).downcase
 
 %h3= t(:priority)
 
 %ul.tag-list.list
-  = render Tag.priority.order_by_taggings
+  - if params[:order] && params[:order] == 'usage'
+    = render Tag.priority.order_by_taggings
+  - else
+    = render Tag.priority.order(:name)
 
 %br/
 
 %h3= t(:tags)
 
 %ul.tag-list.list
-  = render Tag.non_priority.order_by_taggings
+  - if params[:order] && params[:order] == 'usage'
+    = render Tag.non_priority.order_by_taggings
+  - else
+    = render Tag.non_priority.order(:name)

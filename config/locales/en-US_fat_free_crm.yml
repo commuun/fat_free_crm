@@ -622,8 +622,12 @@ en-US:
   tag_small: tag
   tagged: Tagged
   create_tag: Create Tag
+  new_tag: Add Tag
+  edit_tag: Edit Tag
   save_tag: Save Tag
   field_group_tags: Field Groups shown for this Tag
+  sort_tags_by: 'Sort tags by:'
+  usage: Usage
 
   # Views -> Admin -> Plugins
   #----------------------------------------------------------------------------

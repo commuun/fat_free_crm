@@ -605,9 +605,12 @@ nl-NL:
   tag_small: tag
   tagged: Getagd
   create_tag: Creëer Tag
+  new_tag: Tag toevoegen
   edit_tag: Tag wijzigen
   save_tag: Bewaar Tag
   field_group_tags: Veldgroepen getoond voor deze Tag
+  sort_tags_by: 'Sorteren op:'
+  usage: Gebruik
 
   # Views -> Admin -> Plugins
   #----------------------------------------------------------------------------

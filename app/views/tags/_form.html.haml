@@ -1,0 +1,20 @@
+= simple_form_for(@tag, :html => one_submit_only) do |f|
+
+  = f.error_messages :object_name => t(:tag)
+
+  .section
+    %table
+      %tr
+        %td
+          .label.top= t(:name)
+          = f.text_field :name
+
+      - unless @tag.new_record?
+        %tr
+          %td 
+            .label.top= t(:merge_with)
+            = f.select :merge_with, [[t(:select_none),'']] + Tag.order_by_taggings.map { |t| ["#{t.name} (#{t.cnt})", t.name] }
+
+  .buttonbar
+    = f.submit t(:save_tag)
+
