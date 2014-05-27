@@ -43,7 +43,7 @@ module TagsHelper
     else
       path_name = 'contacts'
     end
-    link_to tag, send( "#{path_name}_path", query: "##{tag}" ), :title => tag, :class => Setting.priority_tags.include?(tag) ? 'priority' : ''
+    link_to tag, send( "#{path_name}_path", query: "##{tag.to_s.gsub(/\s/,'+')}" ), :title => tag, :class => Setting.priority_tags.include?(tag) ? 'priority' : ''
   end
 
 end

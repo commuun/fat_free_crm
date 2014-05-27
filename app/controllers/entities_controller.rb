@@ -165,7 +165,7 @@ private
     query, tags = [], []
     search_string.strip.split(/\s+/).each do |token|
       if token.starts_with?("#")
-        tags << token[1 .. -1]
+        tags << token[1 .. -1].gsub('+', ' ')
       else
         query << token
       end
