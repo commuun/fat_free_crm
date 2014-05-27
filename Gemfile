@@ -50,6 +50,8 @@ gem 'highline'
 
 gem 'ffaker', '>= 1.12.0'
 
+# Force ransack to use version 1.1.0, later versions break with ransack_ui
+gem 'ransack', '1.1.0'
 # We use a slightly customized ransack_ui that allows localization
 gem 'ransack_ui', git: 'git@github.com:commuun/ransack_ui.git'
 
