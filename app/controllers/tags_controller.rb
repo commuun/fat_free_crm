@@ -1,6 +1,8 @@
 class TagsController < ApplicationController
   before_filter :require_user
 
+  before_filter :set_current_tab, :only => [ :index, :show ]
+
   load_and_authorize_resource
 
   def index
