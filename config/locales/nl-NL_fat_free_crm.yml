@@ -486,6 +486,20 @@ nl-NL:
   users: Gebruikers
   users_small: gebruikers
 
+  notification:
+    password_reset: |-
+      Wij hebben een verzoek ontvangen om uw wachtwoord te resetten. Als u dit verzoek niet zelf heeft gemaakt kunt u deze mail veilig negeren.
+
+      Om een nieuw wachtwoord aan te maken klikt u op de onderstaande link:
+
+      %{url}
+
+      Als dit niet werkt kunt u ook proberen deze link te knippen en plakken in het adresveld van uw webbrowser.
+
+      -- 
+      met vriendelijke groet,
+      %{site_title}
+
   # Views -> Versions
   #----------------------------------------------------------------------------
   versions: History
