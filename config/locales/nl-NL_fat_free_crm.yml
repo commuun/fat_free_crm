@@ -321,12 +321,11 @@ nl-NL:
   action_completed: voltooid
   action_create: gecreëerd
   action_destroy: verwijderd
-  action_reassigned: opnieuw toegewezen
-  action_rejected: afgewezen
-  action_rescheduled: opnieuw ingepland
-  action_update: geüpdate
-  action_view: bekeken
-  action_won: gewonnen
+  action_reassigned: heeft opnieuw toegewezen
+  action_rejected: heeft afgewezen
+  action_rescheduled: heeft opnieuw ingepland
+  action_update: heeft geüpdate
+  action_view: bekeek
   activities: Activiteiten
   no_activity_records: Geen activiteiten records gevonden.
   recent_activity: Recente Activiteit
