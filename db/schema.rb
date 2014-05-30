@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140525222054) do
+ActiveRecord::Schema.define(:version => 20140530160223) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20140525222054) do
     t.datetime "updated_at",                                           :null => false
     t.string   "email",            :limit => 64
     t.string   "background_info"
-    t.integer  "rating",                         :default => 0,        :null => false
     t.string   "category",         :limit => 32
     t.text     "subscribed_users"
     t.string   "identifier"

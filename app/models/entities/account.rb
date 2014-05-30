@@ -19,7 +19,6 @@
 #  updated_at      :datetime
 #  email           :string(64)
 #  background_info :string(255)
-#  rating          :integer         default(0), not null
 #  category        :string(32)
 #
 
@@ -71,13 +70,13 @@ class Account < ActiveRecord::Base
   has_paper_trail :ignore => [ :subscribed_users ]
   has_fields
   exportable
-  sortable :by => [ "name ASC", "rating DESC", "created_at DESC", "updated_at DESC" ], :default => "created_at DESC"
+  sortable :by => [ "name ASC", "created_at DESC", "updated_at DESC" ], :default => "created_at DESC"
 
   has_ransackable_associations %w(contacts tags addresses comments)
   ransack_can_autocomplete
 
   # Exclude these attributes from Ransack search
-  unransackable :user_id, :assigned_to, :website, :deleted_at, :created_at, :updated_at, :rating, :subscribed_users
+  unransackable :user_id, :assigned_to, :website, :deleted_at, :created_at, :updated_at, :subscribed_users
 
   # Validate account names
   validates_presence_of :name, :message => :missing_account_name
@@ -91,8 +90,7 @@ class Account < ActiveRecord::Base
   # Validate email addresses
   validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i, allow_blank: true
  
-  # Validate rating and category   
-  validates :rating, :inclusion => { in: 0..5 }, allow_blank: true
+  # Validate category   
   validates :category, :inclusion => { in: Proc.new{ Setting.unroll(:account_category).map{|s| s.last.to_s} } }, allow_blank: true
 
   before_save :nullify_blank_category

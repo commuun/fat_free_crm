@@ -166,7 +166,7 @@ class AccountsController < EntitiesController
       @account.tag_list = @accounts.map{ |c| c.tag_list }.flatten.uniq
 
       # If any of the fields in the base account is blank, fill it in with one of the others
-      %w[name category rating toll_free_phone phone fax website email].each do |attribute|
+      %w[name category toll_free_phone phone fax website email].each do |attribute|
         idx = 0
         while @account[attribute].blank? && idx < @accounts.count
           @account[attribute] = @accounts[idx][attribute]
