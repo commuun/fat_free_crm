@@ -7,6 +7,7 @@
       %span> !&nbsp;&nbsp;
 
       = link_to(t(:quick_find), "#", :id => "jumper") << " |"
+      = link_to(t(:tab_dashboard), dashboard_path) << " |"
       = link_to(t(:profile), profile_path) << " |"
       - if can? :manage, User
         = link_to(t(:admin), admin_path) << " |"

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   root :to => 'contacts#index'
 
-  match 'activities' => 'home#index'
+  match 'activities' => 'home#index',              :as => :dashboard
   match 'admin'      => 'admin/users#index',       :as => :admin
   match 'login'      => 'authentications#new',     :as => :login
   match 'logout'     => 'authentications#destroy', :as => :logout
