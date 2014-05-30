@@ -166,23 +166,6 @@
 
 
     #----------------------------------------------------------------------------
-    flip_subtitle: (el) ->
-      $el = $(el)
-      arrow = $el.find("small")
-      intro = $el.parent().next().children("small")
-
-      # Optionally, the intro might be next to the link.
-      intro = $el.next("small")  unless intro.length
-      section = $el.parent().next().children("div")
-      section.slideToggle(
-        250
-        =>
-          arrow.html(if section.css('display') is 'none' then @COLLAPSED else @EXPANDED)
-          intro.toggle()
-      )
-
-
-    #----------------------------------------------------------------------------
     flip_note_or_email: (link, more, less) ->
       body = undefined
       state = undefined

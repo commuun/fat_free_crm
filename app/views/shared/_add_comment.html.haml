@@ -1,8 +1,7 @@
 - edit ||= false
-- collapsed = @comment_body.nil?  && f.object.errors.empty?
-= subtitle :comment, collapsed, t(:comment)
+= subtitle :comment, t(:comment)
 .section
-  %small#comment_intro{ hidden_if(!collapsed) }
+  %small#comment_intro
     = t(:comment_intro)
-  #campaign_comment{ hidden_if(collapsed) }
+  #campaign_comment
     = text_area_tag :comment_body, @comment_body

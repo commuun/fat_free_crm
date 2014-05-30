@@ -1,10 +1,9 @@
 - edit ||= false
-- collapsed = session[:contact_presence].nil? # && @contact.errors.empty?
-= subtitle :contact_presence, collapsed, t(:web_presence)
+= subtitle :contact_presence, t(:web_presence)
 .section
-  %small#contact_presence_intro{ hidden_if(!collapsed) }
+  %small#contact_presence_intro
     = t(:intro, t(:web_presence_small)) unless edit
-  #contact_presence{ hidden_if(collapsed) }
+  #contact_presence
     %table
       %tr
         %td

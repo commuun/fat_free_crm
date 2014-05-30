@@ -1,10 +1,9 @@
 - edit ||= false
-- collapsed = session[:contact_extra].nil? # && @contact.errors.empty?
-= subtitle :contact_extra, collapsed, t(:extra_info)
+= subtitle :contact_extra, t(:extra_info)
 .section
-  %small#contact_extra_intro{ hidden_if(!collapsed) }
+  %small#contact_extra_intro
     = t(:intro, t(:extra_info_small)) unless edit
-  #contact_extra{ hidden_if(collapsed) }
+  #contact_extra
     %table
       = hook(:contact_extra_details_form, self, :f => f) do
         %tr

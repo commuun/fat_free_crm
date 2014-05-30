@@ -35,13 +35,8 @@ module ApplicationHelper
   end
 
   #----------------------------------------------------------------------------
-  def subtitle(id, hidden = true, text = id.to_s.split("_").last.capitalize)
-    content_tag("div",
-      link_to("<small>#{ hidden ? "&#9658;" : "&#9660;" }</small> #{text}".html_safe,
-        url_for(:controller => :home, :action => :toggle, :id => id),
-        :remote => true,
-        :onclick => "crm.flip_subtitle(this)"
-      ), :class => "subtitle")
+  def subtitle(id, text = id.to_s.split("_").last.capitalize)
+    content_tag("div", "<small>&#9660;</small> #{text}".html_safe, :class => "subtitle")
   end
 
   #----------------------------------------------------------------------------
@@ -391,15 +386,11 @@ module ApplicationHelper
 
   #----------------------------------------------------------------------------
   # Combines the 'subtitle' helper with the small info text on the same line.
-  def section_title(id, hidden = true, text = nil, info_text = nil)
+  def section_title(id, text = nil, info_text = nil)
     text = id.to_s.split("_").last.capitalize if text == nil
     content_tag("div", :class => "subtitle show_attributes") do
-      content = link_to("<small>#{ hidden ? "&#9658;" : "&#9660;" }</small> #{text}".html_safe,
-        url_for(:controller => :home, :action => :toggle, :id => id),
-        :remote  => true,
-        :onclick => "crm.flip_subtitle(this)"
-      )
-      content << content_tag("small", info_text.to_s, {:class => "subtitle_inline_info", :id => "#{id}_intro", :style => hidden ? "" : "display:none;"})
+      content = "<small>&#9660;</small> #{text}".html_safe
+      content << content_tag("small", info_text.to_s, {:class => "subtitle_inline_info", :id => "#{id}_intro"})
     end
   end
 

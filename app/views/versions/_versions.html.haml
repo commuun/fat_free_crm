@@ -1,9 +1,8 @@
 %div#versions
-  - collapsed = session[:version_history].nil?
   %br
-  = subtitle(:version_history, collapsed, t(:versions))
+  = subtitle(:version_history, t(:versions))
   %div
-    %div{ hidden_if(collapsed) }
+    %div
       .list
         - versions = Version.history(object).paginate(:page => 1, :per_page => 20)
         = render :partial => "versions/version", :collection => versions
