@@ -138,7 +138,7 @@ class Contact < ActiveRecord::Base
   #----------------------------------------------------------------------------
   def full_name(format = nil)
     if format.nil? || format == "before"
-      [self.first_name, self.preposition, self.last_name]
+      [self.first_name.blank? ? self.initials : self.first_name, self.preposition, self.last_name]
     else
       [self.preposition, self.last_name, self.first_name]
     end.reject(&:blank?).join(' ')
