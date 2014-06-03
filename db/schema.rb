@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140530160223) do
+ActiveRecord::Schema.define(:version => 20140603111053) do
 
   create_table "account_contacts", :force => true do |t|
     t.integer  "account_id"
@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20140530160223) do
     t.string   "background_info"
     t.string   "category",         :limit => 32
     t.text     "subscribed_users"
-    t.string   "identifier"
   end
 
   add_index "accounts", ["assigned_to"], :name => "index_accounts_on_assigned_to"
@@ -131,9 +130,9 @@ ActiveRecord::Schema.define(:version => 20140530160223) do
     t.string   "preposition"
     t.string   "salutation"
     t.boolean  "use_private_address"
-    t.string   "identifier"
     t.string   "initials"
     t.string   "group"
+    t.string   "language"
   end
 
   add_index "contacts", ["assigned_to"], :name => "index_contacts_on_assigned_to"

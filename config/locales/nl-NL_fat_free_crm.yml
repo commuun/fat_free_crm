@@ -1,6 +1,5 @@
 ---
 nl-NL:
-  language: Nederlands
 
   # Generic terms.
   #----------------------------------------------------------------------------
@@ -250,6 +249,7 @@ nl-NL:
   #----------------------------------------------------------------------------
   alt_email_small: Andere
   blog: Website/Blog
+  language: Taal
   contact: Persoon
   contact_small: persoon
   contacts: Personen

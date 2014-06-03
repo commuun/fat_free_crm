@@ -30,6 +30,9 @@ gem 'acts_as_commentable', '~> 3.0.1'
 gem 'acts-as-taggable-on', '~> 2.3.3'
 gem 'acts_as_list', '~> 0.1.4'
 
+# Store the preferred language of a contact
+gem 'localized_language_select', :git => 'git://github.com/damianham/localized_language_select.git'
+
 # Paper trail allows us to version our data
 gem 'paper_trail', '~> 2.7.0' # not ready for v3 yet
 

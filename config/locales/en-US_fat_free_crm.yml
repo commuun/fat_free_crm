@@ -1,7 +1,5 @@
 ---
 en-US:
-  language: English
-
   # Generic terms.
   #----------------------------------------------------------------------------
   id: Id
@@ -261,6 +259,7 @@ en-US:
   contacts_small: contacts
   contact_summary: Contact Summary
   create_contact: Create Contact
+  language: Language
   import_contacts: Import Contacts
   duplicate_contacts: Find duplicates
   duplicate_filter: Filter duplicates by

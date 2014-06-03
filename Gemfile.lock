@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/damianham/localized_language_select.git
+  revision: 5ce61493fde6cd9cf784b44551b25da138001bb3
+  specs:
+    localized_language_select (0.2.1)
+      rails (>= 2.3.5)
+      rails (>= 2.3.5)
+
+GIT
   remote: git@github.com:commuun/ransack_ui.git
   revision: 414f5bdd4209543d0b0cf05305d77460af76a349
   specs:
@@ -343,6 +351,7 @@ DEPENDENCIES
   headless
   highline
   jquery-rails
+  localized_language_select!
   mysql2
   nokogiri
   paper_trail (~> 2.7.0)
